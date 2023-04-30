@@ -1,0 +1,33 @@
+.container{
+   
+    padding: 3% 10%;
+    border-radius: 5px;
+    -webkit-box-shadow: -1px 5px 15px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 5px 15px 0px rgba(0,0,0,0.75);
+box-shadow: -1px 5px 15px 0px rgba(0,0,0,0.75);
+background: rgba(255, 253, 253, 0.95); 
+    
+}
+
+h1{
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.main-form{
+    
+    margin-top: 30px;
+}
+
+.form-group{
+    padding: 10px;
+}
+
+.form-control{
+    margin-top: 6px;
+ 
+}
+
+input{
+    max-width: 400px;
+}
