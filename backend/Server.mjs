@@ -45,8 +45,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use(bp.urlencoded({extended:true}));
-app.use(bp.json());
 
 app.post('/store-data',(req,res)=>{
   console.log(req.body);   
