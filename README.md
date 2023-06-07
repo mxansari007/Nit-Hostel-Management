@@ -8,3 +8,9 @@ This project will solve the problems of students residing in hostels, and make p
 - 
 =======
 
+## How To use Our Web App
+
+- to start out web app use command: 
+- npm install react-script
+- then use command
+- npm start
