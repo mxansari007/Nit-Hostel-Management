@@ -6,15 +6,18 @@ import Signup from './Components/Signup';
 import {Route,Routes,BrowserRouter as Router} from 'react-router-dom';
 
 
+
+
 function App() {
+  
   return (
     <>
        
     <Router>
 
-    <Navbar/>
+    <Navbar />
 <Routes>
-  <Route path='/' element={<Adminlogin/>}/>
+  <Route path='/' element={<Adminlogin />}/>
   <Route path='/student' element={<Studentlogin/>}/>
   <Route path='/signup' element={<Signup/>}/>
 </Routes>
@@ -26,3 +29,5 @@ function App() {
 }
 
 export default App;
+
+
