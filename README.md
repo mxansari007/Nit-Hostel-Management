@@ -1,16 +1,37 @@
-<<<<<<< HEAD
-# Nit-Hostel-Management
-This project will solve the problems of students residing in hostels, and make process faster and convenient.
+##Hostel Management System
+- it is a web application which provide facilities to the students residing in hostel, in addition make the work of administrator easy.
 
-## Facilities of this App
+#Features
+- Registration for Students
+- Student can file for complaints
+- Apply Leave
+- View mess Fees
+- View Mess Menu
+- Apply for Mess Menu
 
-- You can raise an issue like for example if your lan is not working
-- 
-=======
 
-## How To use Our Web App
-
-- to start out web app use command: 
+##How to Run Our App
+- first use command
 - npm install react-script
-- then use command
+- then start the app using command
 - npm start
+
+
+##Tools in Use
+- Material-UI
+- React
+- HTML
+- CSS
+- JavaScript
+- MongoDb
+- No
+
+
+##Authors
+- @mxanasri007
+- @aqibhussain2202
+- @deepak77899
+- @Addiii111 
+
+
+
