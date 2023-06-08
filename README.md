@@ -1,5 +1,5 @@
 ##Hostel Management System
-it is a web application which provide facilities to the students residing in hostel, in addition make the work of administrator easy.
+- it is a web application which provide facilities to the students residing in hostel, in addition make the work of administrator easy.
 
 #Features
 - Registration for Students
