@@ -1,17 +1,16 @@
-Hostel Management System
-Hostel Management System is used to manage students in hostels. This was especially made for NIT KKR.
+##Hostel Management System
+it is a web application which provide facilities to the students residing in hostel, in addition make the work of administrator easy.
 
-Features
-Registration for Students
-Admin Dashboard
-Student Dashboard
-View roommates
-Apply Leave
-Admin can approve and reject leave request
-Admin can search student block details
+#Features
+- Registration for Students
+- Student can file for complaints
+- Apply Leave
+- View mess Fess
+- View Mess Menu
+- Apply for Mess Menu
 
-Deployment
-To deploy this project follow these commands:
+
+##How to Run Our App
 
  1. git clone https://github.com/aqibhussain2202/Nit-Hostel-Management.git
  2. Place this folder in D:  drive
@@ -20,30 +19,21 @@ To deploy this project follow these commands:
  5. Run the project by typing- npm start
 
 
-Lessons Learned
-Material-UI
-React
-HTML
-CSS
-JavaScript
-MongoDb
+##Tools in Use
+- Material-UI
+- React
+- HTML
+- CSS
+- JavaScript
+- MongoDb
+- No
 
 
-Demo
+##Authors
+- @mxanasri007
+- @aqibhussain2202
+- @deepak77899
+- @Addiii111 
 
 
-Authors
-@mxanasri007
-@aqibhussain2202
-@deepak77899
 
-
-🚀 About Me
-Hi👋, I'm Aqib. Student at NIT KURUKSHETRA.
-
-🛠 Skills
-Javascript, HTML, Java,Css,Mongodb .....
-
-Support
-For support, email mxanasari007@gmail.com
-aqibhussain2202@gmail.com
