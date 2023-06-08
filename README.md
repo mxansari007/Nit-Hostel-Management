@@ -5,7 +5,7 @@
 - Registration for Students
 - Student can file for complaints
 - Apply Leave
-- View mess Fess
+- View mess Fees
 - View Mess Menu
 - Apply for Mess Menu
 
