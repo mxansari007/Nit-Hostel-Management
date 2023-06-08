@@ -11,12 +11,10 @@
 
 
 ##How to Run Our App
-
- 1. git clone https://github.com/aqibhussain2202/Nit-Hostel-Management.git
- 2. Place this folder in D:  drive
- 3. Open Terminal (Hyper) 
- 4. Command -npm i react-scripts
- 5. Run the project by typing- npm start
+- first use command
+- npm install react-script
+- then start the app using command
+- npm start
 
 
 ##Tools in Use
