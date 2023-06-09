@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import './Studentlogin.css'
 import axios from 'axios';
+import Paper from '@mui/material/Paper';
 
 let isLoggedIn = false;
 
@@ -31,13 +32,12 @@ const Adminlogin =() =>{
    function handleSubmit() {
     setLoading(true);
     axios.post('http://localhost:8000/adminlogin',values)
-   .then((res)=>{})
+   .then((res)=>{navigate('/Dashboard')})
    .catch(err=>{alert("Invalid username & password");});
   }
 
 return(
-<div className="loginBox">
-
+ <Paper id="loginBox" elevation={2}>
 <h2>Admin Login</h2>
 <FormControl>
 <TextField onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
@@ -55,8 +55,7 @@ return(
         </LoadingButton>
         </FormControl>
         <p className='sign-up'>Login as <Link to='student'>Student</Link>/ <Link to='/signup'>Sign Up</Link></p>
-
-</div>
+</Paper>
 )
 };
 

@@ -9,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import axios from 'axios';
+import Paper from '@mui/material/Paper';
 
 const Signup = () => {
  
@@ -42,8 +43,11 @@ const onSubmit = (data)=>{
 
 return (
     <div className="container">
-    <h2>Sign Up</h2>
+    <Paper elevation={8}>
+    <h2 style={{marginTop:'20px'}}>Sign Up</h2>
+    
         <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+        
         <Grid container spacing={2} 
          direction="row"
          justifyContent="flex-start"
@@ -126,6 +130,7 @@ return (
         </Grid>
         </Grid>
         </form>
+        </Paper>
         <DevTool control={control}/>
     </div>
 )

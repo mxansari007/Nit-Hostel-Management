@@ -10,7 +10,7 @@ import { CssBaseline } from '@mui/material';
 import { cyan } from '@mui/material/colors';
 import './Studentlogin.css'
 import axios from 'axios';
-
+import Paper from '@mui/material/Paper';
 
 const theme = createTheme({
   palette:{
@@ -25,7 +25,7 @@ const Studentlogin =() =>{
 
 
 return(
-<div className="loginBox">
+<Paper elevation={2} id="loginBox">
 <ThemeProvider theme={theme}>
 <h2>Student Login</h2>
 <TextField sx={{display:'block',my:'17px'}} id="outlined-basic" label="Roll No  " type="text" variant="outlined"/>
@@ -43,7 +43,7 @@ return(
         </LoadingButton>
         <p className='sign-up'>Login as <Link to='/'>Admin</Link>/ <Link to='/signup'>Sign Up</Link></p>
 </ThemeProvider>
-</div>
+</Paper>
 )
 };
 

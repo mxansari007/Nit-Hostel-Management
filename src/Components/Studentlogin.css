@@ -1,14 +1,14 @@
 
 h2{font-family: 'Urbanist'; font-weight: 700;}
 
-.loginBox{
-  padding: 7px;
+#loginBox{
+  padding: 15px;
   margin:auto;
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- max-width: 500px;
+ max-width: 400px;
  background-color: transparent;
  margin-top: 100px;
 
