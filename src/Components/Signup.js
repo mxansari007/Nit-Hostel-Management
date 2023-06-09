@@ -8,10 +8,11 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import axios from 'axios';
 
 const Signup = () => {
  
-const [Departement, setDepartement] = useState('');
+const [department, setdepartment] = useState('');
 const [year, setYear] = useState('');
 
 
@@ -23,7 +24,7 @@ const form = useForm({
         year:"",
         password:"",
         confirm:"",
-        departement:"",
+        department:"",
         email:"",
     },
     mode:'all'
@@ -32,8 +33,10 @@ const form = useForm({
 const {register,watch,getValues,handleSubmit,control,formState:{errors}} = form;
 
 
-const onSubmit = ()=>{
-
+const onSubmit = (data)=>{
+   axios.post('http://localhost:8000/signup',data)
+   .then((res)=>{console.log(res.data);})
+   .catch(err=>{console.log(err);});
 }
 
 
@@ -64,14 +67,14 @@ return (
         <Grid item md={4}>
 
         <FormControl fullWidth onSubmit={handleSubmit(onSubmit)}>
-        <InputLabel id="demo-simple-select-label">Departement</InputLabel>
+        <InputLabel id="demo-simple-select-label">department</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={Departement}
-          label="Departement"
-          error={errors.departement}
-          {...register("departement",{onChange:(e)=>{setDepartement(e.target.value);},required:true})}
+          value={department}
+          label="department"
+          error={errors.department}
+          {...register("department",{onChange:(e)=>{setdepartment(e.target.value);},required:true})}
         >
           <MenuItem value={'MCA'}>MCA</MenuItem>
           <MenuItem value={'B.tech'}>B.Tech</MenuItem>

@@ -3,68 +3,18 @@ import { Link, Router } from 'react-router-dom'
 import  TextField  from '@mui/material/TextField';
 import LoginIcon from '@mui/icons-material/Login';
 import LoadingButton from '@mui/lab/LoadingButton';         
-import { useForm } from 'react-hook-form'
+// import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools';
 import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import './Studentlogin.css'
-import db from '../Database';
+// import db from '../Database';
 import Studentlogin from './Studentlogin';
-import { Sync } from '@mui/icons-material';
-import { useEffect } from 'react';
+// import { Sync } from '@mui/icons-material';
+// import { useEffect } from 'react';
+import axios from 'axios';
 
 let isLoggedIn = false;
-
-// const Adminlogin = () => {
-//   const form = useForm({
-//     defaultValues: {
-//       email: "",
-//       password: "",
-//     },
-//     mode: 'onTouched'
-//   });
-//   const { register, control, handleSubmit, formState, reset } = form;
-//   const { errors, isDirty, isValid, isSubmitting } = formState;
-//   const onSubmit = (data) => {
-//     console.log('submitted', data);
-//   }
-//   return (
-//     <main class="form-signin">
-//       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-
-//         <h1 class="h3 mb-3 fw-normal">Admin Login</h1>
-
-//         <div class="form-floating">
-//           <input type="email" class="form-control" id="floatingInput" placeholder="32211211" {...register("email", {
-//             required: { value: true, message: 'email is required' },
-//             pattern: {
-//               value:
-//                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-//               message: "Invalid Email Address",
-//             },
-//           })} />
-//           <label for="floatingInput">Email Id</label>
-//           <p>{errors.email?.message}</p>
-//         </div>
-//         <div class="form-floating">
-//           <input type="password" class="form-control" id="floatingPassword" placeholder="Password" {...register("password", { required: { value: true, message: 'password is required' } })} />
-//           <label for="floatingPassword">Password</label>
-//           <p>{errors.password?.message}</p>
-//         </div>
-
-
-//         <button disabled={!isDirty || !isValid || !isSubmitting} class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-
-//       </form>
-//       <DevTool control={control} />
-//       
-
-//     </main>
-
-//   )
-// };
-
-
 const Adminlogin =() =>{
   
   const [loading, setLoading] = React.useState(false);
@@ -82,20 +32,11 @@ const Adminlogin =() =>{
   }
 
 
-   function handleSubmit(event) {
-    setLoading(true);
-
-    if(db.username === values.username && db.password === values.password){
-      
-      isLoggedIn = true;
-      navigate('/Dashboard');
-    }
-    else{
-
-    }
-
-  
-
+   function handleSubmit() {
+    // setLoading(true);
+    axios.post('http://localhost:8000/adminlogin',values)
+   .then((res)=>{alert(res.data.message);})
+   .catch(err=>{console.log(err);});
   }
 
 return(
