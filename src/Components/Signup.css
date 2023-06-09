@@ -10,7 +10,7 @@
 
     margin-top: 3%;
 }
-#error{
+.error{
     color:red;
 }
 .form{
@@ -22,6 +22,8 @@
     max-width: 600px;
     margin: auto;
     align-items: flex-start;
+
+    padding: 20px;
 }
 
 .button{

@@ -3,19 +3,18 @@ import { Link, Router } from 'react-router-dom'
 import  TextField  from '@mui/material/TextField';
 import LoginIcon from '@mui/icons-material/Login';
 import LoadingButton from '@mui/lab/LoadingButton';         
-import { useForm } from 'react-hook-form'
+// import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools';
 import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import './Studentlogin.css'
-import db from '../Database';
+// import db from '../Database';
 import Studentlogin from './Studentlogin';
-import { Sync } from '@mui/icons-material';
-import { useEffect } from 'react';
+// import { Sync } from '@mui/icons-material';
+// import { useEffect } from 'react';
+import axios from 'axios';
 
 let isLoggedIn = false;
-
-
 
 const Adminlogin =() =>{
   
@@ -34,20 +33,11 @@ const Adminlogin =() =>{
   }
 
 
-   function handleSubmit(event) {
-    setLoading(true);
-
-    if(db.username === values.username && db.password === values.password){
-      
-      isLoggedIn = true;
-      navigate('/Dashboard');
-    }
-    else{
-
-    }
-
-  
-
+   function handleSubmit() {
+    // setLoading(true);
+    axios.post('http://localhost:8000/adminlogin',values)
+   .then((res)=>{alert(res.data.message);})
+   .catch(err=>{console.log(err);});
   }
 
 return(

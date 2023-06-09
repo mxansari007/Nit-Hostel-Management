@@ -8,10 +8,11 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import axios from 'axios';
 
 const Signup = () => {
  
-const [Departement, setDepartement] = useState('');
+const [department, setdepartment] = useState('');
 const [year, setYear] = useState('');
 
 
@@ -23,7 +24,7 @@ const form = useForm({
         year:"",
         password:"",
         confirm:"",
-        departement:"",
+        department:"",
         email:"",
     },
     mode:'all'
@@ -32,8 +33,10 @@ const form = useForm({
 const {register,watch,getValues,handleSubmit,control,formState:{errors}} = form;
 
 
-const onSubmit = ()=>{
-
+const onSubmit = (data)=>{
+   axios.post('http://localhost:8000/signup',data)
+   .then((res)=>{console.log(res.data);})
+   .catch(err=>{console.log(err);});
 }
 
 
@@ -48,27 +51,30 @@ return (
          
         >
         <Grid item md={6}>
-        <TextField error={errors.firstName} name="firstName" {...register("firstName",{required:{value:true,message:'*required'}})} id="outlined-basic" label="First Name" variant="outlined" type="text"/>
+        <TextField error={errors.firstName} name="firstName" {...register("firstName",{required:{value:true,message:'First Name is required'}})} id="outlined-basic" label="First Name" variant="outlined" type="text"/>
+        <p className="error" >{errors.firstName?.message}</p>
         </Grid>
         <Grid item md={6}>
-        <TextField error={errors.lastName} name="lastName" {...register("lastName",{required:{value:true,message:'*required'}})} id="outlined-basic" label="Last Name" variant="outlined" type="text"/>
+        <TextField error={errors.lastName} name="lastName" {...register("lastName",{required:{value:true,message:'Last Name is required'}})} id="outlined-basic" label="Last Name" variant="outlined" type="text"/>
+        <p className="error" >{errors.lastName?.message}</p>
         </Grid>
         </Grid>
         <Grid container spacing={2}>
         <Grid item md={4}>
-        <TextField error={errors.rollNo} name="rollNo" {...register("rollNo",{required:{value:true,message:'*required'},maxLength:8,minLength:8})} id="outlined-basic" label="Roll Number" variant="outlined" type="Number"/>
+        <TextField error={errors.rollNo} name="rollNo" {...register("rollNo",{required:{value:true,message:'*required'},maxLength:{value:8,message:'must be 8 digits'},minLength:{value:8,message:'must be 8 digits'}})} id="outlined-basic" label="Roll Number" variant="outlined" type="text"/>
+        <p className="error" >{errors.rollNo?.message}</p>
         </Grid>
         <Grid item md={4}>
 
         <FormControl fullWidth onSubmit={handleSubmit(onSubmit)}>
-        <InputLabel id="demo-simple-select-label">Departement</InputLabel>
+        <InputLabel id="demo-simple-select-label">department</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={Departement}
-          label="Departement"
-          error={errors.departement}
-          {...register("departement",{onChange:(e)=>{setDepartement(e.target.value);},required:true})}
+          value={department}
+          label="department"
+          error={errors.department}
+          {...register("department",{onChange:(e)=>{setdepartment(e.target.value);},required:true})}
         >
           <MenuItem value={'MCA'}>MCA</MenuItem>
           <MenuItem value={'B.tech'}>B.Tech</MenuItem>
@@ -100,7 +106,8 @@ return (
         </Grid>
         </Grid>
         
-        <TextField error={errors.email} {...register("email",{required:true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/})} id="outlined-basic" label="Email" variant="outlined" type="email"/>
+        <TextField error={errors.email} {...register("email",{required:'Email is required',pattern:{value:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,message:'Invalid Email'}})} id="outlined-basic" label="Email" variant="outlined" type="email"/>
+        <p className="error">{errors.email?.message}</p>
         <Grid container spacing={2}>
         <Grid item md={6} >
         <TextField error={errors.confirm} {...register("password")} id="outlined-basic" label="Password" variant="outlined" type="password"/>
