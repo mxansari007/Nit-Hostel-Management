@@ -1,5 +1,8 @@
 const mongoose  = require('mongoose');
 const validator = require('validator');
+const bcrypt=require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = "swnf23$tzv8545?[]qpxrsehttmjnhbgyhc3t7c";
 
 const studentSchema=new mongoose.Schema({
     rollNo:{
@@ -40,8 +43,31 @@ const studentSchema=new mongoose.Schema({
             }
         }
     },
+    tokens:[{
+        token:{
+            type:String,
+            required:true
+        }
+    }]
 });
 
+studentSchema.methods.generateAuthToken =async function(next){
+    try{
+       const token=jwt.sign({_id:this._id.toString()},JWT_SECRET);
+       this.tokens=this.tokens.concat({token});
+       await this.save();
+       return token;
+    }catch(e){
+          res.send("the error occurred"+error);
+          console.log("the error occurred"+error);
+    }
+};
+studentSchema.pre('save',async function(next){
+    if(this.isModified("password")){
+      this.password=await bcrypt.hash(this.password,10);
+      next();
+    }
+});
 
 //! we will create a new collection
 const Student = new mongoose.model('Student',studentSchema);
