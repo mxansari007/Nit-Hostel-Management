@@ -105,10 +105,12 @@ const UploadPage = ()=>{
               <TableCell component="th" scope="row">
                 {row.rollNo}
               </TableCell>
-              <TableCell align="right">{row.studentName}</TableCell>
-              <TableCell align="right">{row.mobileNumber}</TableCell>
-              <TableCell align="right">{row.roomno}</TableCell>
+              <TableCell align="right">{row.firstName}</TableCell>
+              <TableCell align="right">{row.lastName}</TableCell>
+              <TableCell align="right">{row.year}</TableCell>
+              <TableCell align="right">{row.password}</TableCell>
               <TableCell align="right">{row.departement}</TableCell>
+              <TableCell align="right">{row.email}</TableCell>
             </TableRow>
           ))}
         </TableBody>
