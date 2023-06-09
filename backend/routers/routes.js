@@ -28,7 +28,7 @@ router.post('/signup',async(req, res)=>{
     }
 });
 
-
+//// for admin login
 router.post('/adminlogin',async (req, res)=>{
     try {
         const {username,password}=req.body;
