@@ -1,0 +1,13 @@
+.InputBox{
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    height: 200px;
+}
+
+.table{
+    max-width: 1200px;
+    margin: auto;
+}
