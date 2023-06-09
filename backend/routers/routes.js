@@ -2,7 +2,7 @@ const express =require('express');
 const router =new express.Router();
 const Student =require('../models/students');
 const Admin = require('../models/admin');
-
+const bcrypt=require("bcryptjs");
 
 router.post('/signup',async(req, res)=>{
     try{
@@ -17,42 +17,60 @@ router.post('/signup',async(req, res)=>{
             department,
             email
         });
+        const token= await user.generateAuthToken();
 
-        console.log("await se pehle");
         const createUser= await user.save();
-        // res.status(201).send({message:"User registered successfully "+createUser.firstName + " "+ createUser.lastName});
-        console.log("res se pehle");
         res.status(201).send(createUser);
     }catch(e){
         res.status(400).send(e);
     }
 });
 
-
+//// for admin login
 router.post('/adminlogin',async (req, res)=>{
     try {
-        const username=req.body.username;
-        const password=req.body.password;
-        const User= await Admin.findOne({username:username})
-        console.log(User);
-        res.send({message:`Success ${User.username}`});
+        const {username,password}=req.body;
+        const findAdmin = await Admin.findOne({username: username});
+        const isMatch=await bcrypt.compare(password,findAdmin.password);
+        const token= await findAdmin.generateAuthToken();
+        console.log("upto token"+token);
+        console.log(isMatch);
+        if(isMatch){
+            res.status(200).send(findAdmin);
+        }else{
+            res.status(404).send("Invalid Username or Password");
+        }
     } catch (error) {
-        res.status(404).send("Invalid Username");
+        res.status(404).send("Invalid Username "+error.message);
     }
-
-
-    // const {username, password} = req.body;
-    // const dbdata=await Admin.find({username:username});
-    // console.log(dbdata.password + " " + password);
-    // if(dbdata){
-    //     if(dbdata.password==password){
-    //       res.status(200).send({message: `Login successful  ${dbdata}`});
-    //      }else{
-    //         res.status(400).send({message:`password is incorrect  ${dbdata} and will be`});
-    //     }
-    // }else{
-    //      res.send({message: `User not registered ${dbdata} nnnjn`});
-    // }
 });
+
+//// for students login
+
+router.post('/studentlogin',async (req, res)=>{
+    try {
+        const {rollno,password}=req.body;
+        const findAdmin = await Admin.findOne({rollno: rollno, password: password});
+        if(findAdmin){
+            res.status(200).send(findAdmin);
+        }else{
+            res.status(404).send("Invalid Username or Password");
+        }
+    } catch (error) {
+        res.status(404).send("Invalid Username "+error.message);
+    }
+});
+
+//// for csv students upload
+router.post('/csv',(req,res)=>{
+    try {
+        Student.insertMany(req.body).then((ress)=>{
+            res.status(201).send(ress);
+        })
+    }catch (error){
+        res.status(400).send(error);
+    }
+});
+
 
 module.exports = router;
