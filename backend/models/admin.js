@@ -2,13 +2,13 @@ const mongoose  = require('mongoose');
 const validator = require('validator');
 
 const adminSchema=new mongoose.Schema({
-    password:{
-        type:String,
-        required:true
-    },
     username:{
         type:String,
         required:true,
+    },
+    password:{
+        type:String,
+        required:true
     },
 });
 

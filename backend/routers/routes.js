@@ -31,28 +31,41 @@ router.post('/signup',async(req, res)=>{
 
 router.post('/adminlogin',async (req, res)=>{
     try {
-        const username=req.body.username;
-        const password=req.body.password;
-        const User= await Admin.findOne({username:username})
-        console.log(User);
-        res.send({message:`Success ${User.username}`});
+        const {username,password}=req.body;
+        const findAdmin = await Admin.findOne({username: username, password: password});
+        if(findAdmin){
+            res.status(200).send(findAdmin);
+        }else{
+            res.status(404).send("Invalid Username or Password");
+        }
     } catch (error) {
-        res.status(404).send("Invalid Username");
+        res.status(404).send("Invalid Username "+error.message);
     }
-
-
-    // const {username, password} = req.body;
-    // const dbdata=await Admin.find({username:username});
-    // console.log(dbdata.password + " " + password);
-    // if(dbdata){
-    //     if(dbdata.password==password){
-    //       res.status(200).send({message: `Login successful  ${dbdata}`});
-    //      }else{
-    //         res.status(400).send({message:`password is incorrect  ${dbdata} and will be`});
-    //     }
-    // }else{
-    //      res.send({message: `User not registered ${dbdata} nnnjn`});
-    // }
 });
+
+//// for students login
+
+
+
+//// for csv students upload
+router.post('/csv',(req,res)=>{
+    try {
+        // const user = new Student({
+        //     rollNo,
+        //     firstName,
+        //     lastName,
+        //     year,
+        //     password,
+        //     department,
+        //     email
+        // });
+        Student.insertMany(req.body).then((ress)=>{
+            res.status(201).send(ress);
+        })
+    }catch (error){
+        res.status(400).send(error);
+    }
+});
+
 
 module.exports = router;
