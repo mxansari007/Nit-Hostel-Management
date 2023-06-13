@@ -39,9 +39,11 @@ const UploadPage = ()=>{
       reader.onload = function(e) {
           var data = [];
           var headers = [];
-          var rows = e.target.result.split("\r\n");               
+          var rows = e.target.result.split("\r\n");
+          // console.log("rows   : "+ rows[0]);
           for (var i = 0; i < rows.length; i++) {
               var cells = rows[i].split(",");
+              // console.log("column :   " + cells[0]);
               var rowData = {};
               for(var j=0;j<cells.length;j++){
                   if(i==0){
@@ -61,10 +63,11 @@ const UploadPage = ()=>{
                 data.push(rowData);
               }
           }
+
             setHeads(headers);
             setData([...data]);
           //sending json to backend
-
+          // console.log("yo json data hai "+ [...data][0].firstName);
           axios.post('http://localhost:8000/csv',jsonData)
             .then((res)=>{console.log(res.data);})
             .catch(err=>{console.log(err);});

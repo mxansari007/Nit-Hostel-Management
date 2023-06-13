@@ -62,9 +62,19 @@ router.post('/studentlogin',async (req, res)=>{
 });
 
 //// for csv students upload
-router.post('/csv',(req,res)=>{
+router.post('/csv', (req,res)=>{
+    const data=req.body;
+    data.map((key)=>{
+     let roll=key.rollNo;
+      roll=parseInt(roll, 10);
+      key.rollNo=roll;
+     let year=key.year;
+      year=parseInt(year, 10);
+      key.year=year;
+    });
+    console.log(data);
     try {
-        Student.insertMany(req.body).then((ress)=>{
+    Student.insertMany(data).then((ress)=>{
             res.status(201).send(ress);
         })
     }catch (error){
