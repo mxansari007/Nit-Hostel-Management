@@ -1,5 +1,5 @@
 import { async } from "q";
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,6 +15,10 @@ import axios from 'axios';
 const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
     let [jsonData,setData] = useState([]);
+ 
+    useEffect(()=>{axios.post('http://localhost:8000/csv',jsonData)
+    .then((res)=>{console.log(res.data);})
+    .catch(err=>{console.log(err);});},[jsonData]);
     const handleFile = ()=>{
     
     var files = document.getElementById('file_upload').files;
@@ -68,9 +72,6 @@ const UploadPage = ()=>{
             setData([...data]);
           //sending json to backend
           // console.log("yo json data hai "+ [...data][0].firstName);
-          axios.post('http://localhost:8000/csv',jsonData)
-            .then((res)=>{console.log(res.data);})
-            .catch(err=>{console.log(err);});
           
           }
       }catch(e){
