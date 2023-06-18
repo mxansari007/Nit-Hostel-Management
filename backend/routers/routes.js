@@ -62,7 +62,7 @@ router.post('/studentlogin',async (req, res)=>{
 });
 
 //// for csv students upload
-router.post('/csv', (req,res)=>{
+router.post('/csv', async (req,res)=>{
     const data=req.body;
     
     data.map((key)=>{
@@ -75,9 +75,9 @@ router.post('/csv', (req,res)=>{
     });
     console.log(data);
     try {
-    Student.insertMany(data).then((ress)=>{
-            res.status(201).send(ress);
-        })
+   const sks=await Student.insertMany(data);
+   console.log(sks);
+   res.send(sks);
     }catch (error){
         res.status(400).send(error);
     }
