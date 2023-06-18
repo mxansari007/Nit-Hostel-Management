@@ -47,7 +47,7 @@ return <Container maxWidth="lg" sx={{mt:'100px'}}>
             <DropDown 
             names=
             {[
-                {value:'View Info',icon:<VisibilityIcon/>,place:''},
+                {value:'View Info',icon:<VisibilityIcon/>,place:'/viewinfo'},
                 {value:'Upload Info',icon:<CloudUploadIcon/>,place:'/uploadpage'},
                 {value:'Download Info',icon:<SimCardDownloadRoundedIcon/>,place:''}
                 ]}/ >
