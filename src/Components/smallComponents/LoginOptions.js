@@ -6,13 +6,15 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
-
-
+import { UserContext } from '../../App';
+import {useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function LoginOptions(){
 
-
+  const [isLoggedIn, setLogin] = useContext(UserContext);
+  const Navigate = useNavigate();
     const [anchorElUser, setAnchorElUser] = useState(null);
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -21,6 +23,7 @@ export default function LoginOptions(){
       const handleCloseUserMenu = () => {
         setAnchorElUser(null);
       };
+
 
     return(
         <Box sx={{ flexGrow: 0 }}>
@@ -46,8 +49,14 @@ export default function LoginOptions(){
           onClose={handleCloseUserMenu}
         >
           {settings.map((setting) => (
-            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">{setting}</Typography>
+            <MenuItem  key={setting}  onClick={()=>{
+                   setAnchorElUser(null);
+                    if(setting==='Logout'){
+                      Navigate('/');
+                      setLogin(false);
+                    }
+            }} name={setting}>
+              <Typography  textAlign="center">{setting}</Typography>
             </MenuItem>
           ))}
         </Menu>

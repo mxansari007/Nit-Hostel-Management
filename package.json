@@ -5,19 +5,17 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/public-sans": "^5.0.3",
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.83",
     "@mui/lab": "^5.0.0-alpha.133",
-    "@mui/material": "^5.13.4",
+    "@mui/material": "^5.13.5",
     "@mui/x-data-grid": "^6.6.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
@@ -57,15 +55,6 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
-    "assert": "^2.0.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
-    "https-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "process": "^0.11.10",
-    "react-app-rewired": "^2.2.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "url": "^0.11.0"
+    "react-app-rewired": "^2.2.1"
   }
 }

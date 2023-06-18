@@ -6,16 +6,19 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { DevTool } from '@hookform/devtools';
 import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
-import './Studentlogin.css'
+import './Css/Studentlogin.css'
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
+import { useContext } from 'react';
+import { UserContext } from '../App';
+import Stack from '@mui/material/Stack';
 
-let isLoggedIn = false;
 
 const Adminlogin =() =>{
   
   const [loading, setLoading] = React.useState(false);
   const [values,setValues] = useState({username:null,password:null});
+  const [isLoggedIn, setLogin] = useContext(UserContext);
   let navigate = useNavigate();
   
   function handleChange(event){
@@ -32,12 +35,17 @@ const Adminlogin =() =>{
    function handleSubmit() {
     setLoading(true);
     axios.post('http://localhost:8000/adminlogin',values)
-   .then((res)=>{navigate('/Dashboard')})
+   .then((res)=>{
+    setLogin(true);
+
+    navigate('/Dashboard')})
    .catch(err=>{alert("Invalid username & password");});
   }
 
-return(
+return(<>
+
  <Paper id="loginBox" elevation={2}>
+      
 <h2>Admin Login</h2>
 <FormControl>
 <TextField onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
@@ -56,6 +64,7 @@ return(
         </FormControl>
         <p className='sign-up'>Login as <Link to='student'>Student</Link>/ <Link to='/signup'>Sign Up</Link></p>
 </Paper>
+</>
 )
 };
 
@@ -63,4 +72,3 @@ return(
 
 export default Adminlogin
 
-export {isLoggedIn};

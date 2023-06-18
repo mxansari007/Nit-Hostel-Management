@@ -8,12 +8,15 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import DropDown from './smallComponents/DropDown';
 import MarkEmailUnreadRoundedIcon from '@mui/icons-material/MarkEmailUnreadRounded';
 import NightShelterIcon from '@mui/icons-material/NightShelter';
-import './Dashboard.css';
+import './Css/Dashboard.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
+import {UserContext} from '../App';
+import {useEffect,useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
     typography:{
@@ -24,6 +27,15 @@ const theme = createTheme({
 
 
 function DashBoard(){
+
+    const Navigate = useNavigate();
+    const [isLoggedIn] = useContext(UserContext);
+
+    useEffect(()=>{
+        if(isLoggedIn===false){
+            Navigate('/');
+        }
+    },[isLoggedIn])
 
 return <Container maxWidth="lg" sx={{mt:'100px'}}>
 <ThemeProvider theme={theme}>

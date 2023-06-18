@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
-import './UploadPage.css';
+import './Css/UploadPage.css';
 import axios from 'axios';
 
 const UploadPage = ()=>{
