@@ -12,7 +12,7 @@ const Signup = lazy(()=>createDelay(import ('./Components/Signup')));
 const Dashboard = lazy(()=>createDelay(import ('./Components/Dashboard')));
 const UploadPage = lazy(()=>createDelay(import ('./Components/UploadPage')));
 
-const Viewinfo = lazy(()=>createDelay(import ('./Components/Viewinfo')));
+const Viewinfo = lazy(()=>createDelay(import ('./Components/Viewinfo.tsx')));
 
 const UserContext = createContext();
 function App() {

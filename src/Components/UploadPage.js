@@ -113,7 +113,7 @@ const UploadPage = ()=>{
               <TableCell align="right">{row.lastName}</TableCell>
               <TableCell align="right">{row.year}</TableCell>
               <TableCell align="right">{row.password}</TableCell>
-              <TableCell align="right">{row.departement}</TableCell>
+              <TableCell align="right">{row.department}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
             </TableRow>
           ))}

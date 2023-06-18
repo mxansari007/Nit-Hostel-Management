@@ -1,25 +1,42 @@
 import Button from "@mui/material/Button";
 import "./Css/viewinfo.css";
+import React from 'react';
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { useReducer } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
 
-//initial toggle state 
-const initialSearchState = {
+//initial toggle state
+var initialSearchState : {
+  rollNo: boolean;
+  firstName: boolean;
+  lastName: boolean;
+  departement: boolean;
+};
+
+initialSearchState = {
   rollNo: false,
   firstName: false,
   lastName: false,
   departement: false
 };
 
+//Setting types for the form
+type FormValues = {
+  rollNo:number;
+  firstName: string;
+  lastName: string;
+  departement: string;
+};
+
 
 //for Toggeling inputs
-const Reducer = (state, action) => {
-  switch (action.type) {
+const Reducer = (state, action:string) => {
+
+  switch (action) {
     case "Roll No":
       return {
         rollNo: !state.rollNo,
@@ -60,9 +77,9 @@ const Reducer = (state, action) => {
 
 export default function App() {
   //using useForm hooks for state management of forms
-    const form = useForm({
+    const form = useForm<FormValues>({
     defaultValues: {
-      rollNo: "",
+      rollNo: undefined,
       firstName: "",
       lastName: "",
       departement: ""
@@ -74,11 +91,12 @@ export default function App() {
   const [state, dispatch] = useReducer(Reducer, initialSearchState);
 
   const handleChange = (event) => {
-    dispatch({ type: event.target.name });
+    dispatch(event.target.name);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit:SubmitHandler<FormValues>= (data) => {
     console.log(data);
+    
     //place your axios here
     axios.post('http://localhost:8000/viewStudentInfo',data)
     .then((res)=>{console.log(res.data);})
@@ -97,7 +115,7 @@ export default function App() {
             />
           ))}
         </div>
-        {state.rollNo ? (<input {...register("rollNo")} placeholder="Roll no" />) : null}
+        {state.rollNo ? (<input {...register("rollNo")} placeholder="Roll no" type="number"/>) : null}
         {state.firstName ? (<input {...register("firstName")} placeholder="First Name" />) : null}
         {state.lastName ? (<input {...register("lastName")} placeholder="Last Name" />) : null}
         {state.departement ? (<input {...register("departement")} placeholder="Departement" />) : null}
