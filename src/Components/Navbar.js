@@ -10,12 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import logo from './images/2.png'
-import './Navbar.css'
+import './Css/Navbar.css'
 import {Link} from 'react-router-dom';
 import LoginOptions from './smallComponents/LoginOptions';
 import { useNavigate } from 'react-router-dom';
-import { isLoggedIn } from './Adminlogin';
-
+import { useContext } from 'react';
+import { UserContext } from '../App';
 
 
 const pages = ['Home', 'Contact Us', 'About'];
@@ -23,6 +23,7 @@ const pages = ['Home', 'Contact Us', 'About'];
 
 const Navbar=()=> {
 
+  const [isLoggedIn] = useContext(UserContext);
   
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();

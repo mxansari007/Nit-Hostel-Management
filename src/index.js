@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
-
+import {BrowserRouter as Router} from 'react-router-dom';
 
 const theme = createTheme({
     palette:{
@@ -21,7 +21,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <ThemeProvider theme={theme}>
+  <Router>
     <App />
+    </Router>
     </ThemeProvider>
   </React.StrictMode>
 );
