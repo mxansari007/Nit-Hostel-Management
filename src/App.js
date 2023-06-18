@@ -88,13 +88,6 @@ function createDelay(promise) {
 
 
 
-function createDelay(promise) {
-  return new Promise(resolve => {
-    setTimeout(resolve, 1500);
-  }).then(() => promise);
-}
-
-
 export default App;
 
 export {UserContext};
