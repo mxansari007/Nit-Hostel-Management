@@ -6,6 +6,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { useReducer } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import axios from 'axios';
 
 //initial toggle state 
 const initialSearchState = {
@@ -79,6 +80,9 @@ export default function App() {
   const onSubmit = (data) => {
     console.log(data);
     //place your axios here
+    axios.post('http://localhost:8000/viewStudentInfo',data)
+    .then((res)=>{console.log(res.data);})
+    .catch(err=>{console.log(err);});
   };
 
   return (
