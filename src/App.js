@@ -24,15 +24,16 @@ function App() {
 const [isLoggedIn,setLogin] = useState(false);
 const Navigate = useNavigate();
 
+
+
 useEffect(()=>{
+
 
   if((isLoggedIn===false)){
     Navigate('/');
   }
-
-
-  if((isLoggedIn===false)){
-    Navigate('/');
+  else{
+    Navigate('/Dashboard');
   }
 
 
@@ -85,7 +86,6 @@ function createDelay(promise) {
     setTimeout(resolve, 1000);
   }).then(() => promise);
 }
-
 
 
 export default App;

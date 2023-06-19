@@ -82,6 +82,30 @@ router.post('/csv', async (req,res)=>{
         res.status(400).send(error);
     }
 });
-
+//// view student data
+router.post('/viewStudentInfo',async (req, res)=>{
+  try {
+    const {rollNo,firstName,lastName,department} = req.body;
+    const payload = {};
+    if(rollNo!='' && rollNo!=undefined){
+        payload.rollNo=parseInt(rollNo, 10);
+    }
+    if(firstName!='' && firstName!=undefined){
+        payload.firstName=firstName;
+    }
+    if(lastName!='' && lastName!=undefined){
+        payload.lastName=lastName;
+    }
+    if(department!='' && department!=undefined){
+        payload.department=department;
+    }
+    console.log("payload: "+payload);
+    const students = await Student.find(payload).exec();
+    console.log("student"+students);
+    res.send(students);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
 
 module.exports = router;

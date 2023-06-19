@@ -1,4 +1,4 @@
-import React, { Component , useState} from 'react'
+import React, {  useState,useEffect} from 'react'
 import { Link, Router } from 'react-router-dom'
 import  TextField  from '@mui/material/TextField';
 import LoginIcon from '@mui/icons-material/Login';
@@ -20,7 +20,8 @@ const Adminlogin =() =>{
   const [values,setValues] = useState({username:null,password:null});
   const [isLoggedIn, setLogin] = useContext(UserContext);
   let navigate = useNavigate();
-  
+
+
   function handleChange(event){
     var name = event.target.name;
 
@@ -37,7 +38,6 @@ const Adminlogin =() =>{
     axios.post('http://localhost:8000/adminlogin',values)
    .then((res)=>{
     setLogin(true);
-
     navigate('/Dashboard')})
    .catch(err=>{alert("Invalid username & password");});
   }
