@@ -7,6 +7,8 @@ import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
 import {BrowserRouter as Router} from 'react-router-dom';
 
+
+//You can change global style from here
 const theme = createTheme({
     palette:{
       primary:{
