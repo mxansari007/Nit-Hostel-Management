@@ -4,7 +4,7 @@
 }
 
 .logo-heading h1{font-family: 'Montserrat'; font-weight: 700; font-size: 2rem; text-align: left;margin-top: 10px;}
-.logo-heading p{font-family: 'Urbanist';  font-size: 1.5rem; text-align: left;margin-top: -7px;}
+.logo-heading p{font-family: 'Urbanist';  font-size: 1.5rem; text-align: left;margin-top: -20px;}
 #logo{
     width: 108px;
     padding: 10%;
@@ -21,6 +21,16 @@
     justify-content: right;
     align-items: center;
 }
+
+@media screen and (max-width:768px)  {
+    .logo-heading h1{font-size: 1.4rem;}
+    .logo-heading p{font-size: 1.2rem;}
+    #logo{
+        width:70px;
+        
+    }
+}
+
 
 
 

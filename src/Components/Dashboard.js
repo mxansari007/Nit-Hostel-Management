@@ -37,7 +37,7 @@ function DashBoard(){
         }
     },[isLoggedIn])
 
-return <Container maxWidth="lg" sx={{mt:'100px'}}>
+return (<Container maxWidth="lg" sx={{mt:'100px'}}>
 <ThemeProvider theme={theme}>
 <Grid container spacing={2} >
     <Grid  item xs={12} md={4}>
@@ -91,7 +91,7 @@ return <Container maxWidth="lg" sx={{mt:'100px'}}>
     
 </Grid>
 </ThemeProvider>
-</Container>
+</Container>)
 
 }
 

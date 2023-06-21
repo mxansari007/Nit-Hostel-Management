@@ -65,7 +65,7 @@ return (
         </Grid>
         <Grid container spacing={2}>
         <Grid item md={4}>
-        <TextField error={errors.rollNo} name="rollNo" {...register("rollNo",{required:{value:true,message:'*required'},maxLength:{value:8,message:'must be 8 digits'},minLength:{value:8,message:'must be 8 digits'}})} id="outlined-basic" label="Roll Number" variant="outlined" type="text"/>
+        <TextField error={errors.rollNo} name="rollNo" {...register("rollNo",{required:{value:true,message:'*required'},maxLength:{value:8,message:'must be 8 digits'}, pattern: {value: /^[0-9]+$/,message: 'Please enter a number',},minLength:{value:8,message:'must be 8 digits'}})} id="outlined-basic" label="Roll Number" variant="outlined" type="text"/>
         <p className="error" >{errors.rollNo?.message}</p>
         </Grid>
         <Grid item md={4}>
