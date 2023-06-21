@@ -26,29 +26,7 @@ const Navigate = useNavigate();
 
 
 
-useEffect(()=>{
-
-
-  if((isLoggedIn===false)){
-    Navigate('/');
-  }
-  else{
-    Navigate('/Dashboard');
-  }
-
-
-},[isLoggedIn])
-
-
-const ConditionalDashbaord = ()=>{
-  if(isLoggedIn){
-    return <Dashboard />
-  }
-  else{
-
-    return <h1>Cannot access</h1>
-  }
-}
+ 
 
 
 
@@ -63,14 +41,11 @@ const ConditionalDashbaord = ()=>{
 
   <Route path='/student' element={<Suspense  fallback={<Loadingpage />}><Studentlogin/></Suspense>}/>
   <Route path='/signup' element={<Suspense  fallback={<Loadingpage />}><Signup/></Suspense>}/>
-  <Route path='/Dashboard' element={<Suspense  fallback={<Loadingpage />}><ConditionalDashbaord/></Suspense>}/>
   <Route path='/uploadpage' element={<Suspense  fallback={<Loadingpage />}><UploadPage/></Suspense>}/>
   <Route path='/viewinfo' element={<Suspense  fallback={<Loadingpage />}><Viewinfo/></Suspense>}/>
-
   <Route path='/student' element={<Suspense  fallback={<Loadingpage />}><Studentlogin/></Suspense>}/>
-  
   <Route path='/signup' element={<Suspense  fallback={<Loadingpage />}><Signup/></Suspense>}/>
-  <Route path='/Dashboard' element={<Suspense  fallback={<Loadingpage />}><ConditionalDashbaord/></Suspense>}/>
+  <Route path='/Dashboard' element={<Suspense  fallback={<Loadingpage />}><Dashboard /></Suspense>}/>
   <Route path='/uploadpage' element={<Suspense  fallback={<Loadingpage />}><UploadPage/></Suspense>}/>
 
   </Routes>

@@ -6,13 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
 import {BrowserRouter as Router} from 'react-router-dom';
-
+import './Components/Css/Fonts.css'
 
 //You can change global style from here
 const theme = createTheme({
     palette:{
       primary:{
-        main: teal['A400']
+        main: teal[400]
       },
     },
 });
