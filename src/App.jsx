@@ -58,7 +58,7 @@ const Navigate = useNavigate();
 //creating a delay for lazy loading
 function createDelay(promise) {
   return new Promise(resolve => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, 500);
   }).then(() => promise);
 }
 
