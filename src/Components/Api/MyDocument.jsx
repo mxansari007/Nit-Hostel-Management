@@ -11,7 +11,7 @@ import {
 //register fonts
 
 import React from "react";
-
+import logo from '../images/logo.png';
 
 
 
@@ -61,20 +61,20 @@ fonts:[
     },
     title:{
         fontFamily:"Merriweather",
-        fontSize:'30',
-        textAlign:'center',
+        fontSize:'25',
         fontWeight:700,
         color:'crimson'
     },
     Header: {
-      margin:  '10px 0',
       padding: 10,
+      display:'flex',
+      flexDirection:'row',
+      margin:'0 auto'
       
     },
     subTitle:{
         fontFamily:"Merriweather",
-        fontSize:'25',
-        textAlign:'center',
+        fontSize:'22',
         fontWeight:400
     },
 
@@ -85,11 +85,11 @@ fonts:[
     },
     info:{
         marginLeft:40,
-        marginTop:50,
+        marginTop:30,
         
     },
     enterinfo:{
-        marginTop:50,
+        marginTop:30,
         marginLeft:20
     },
     boldText:{
@@ -104,7 +104,16 @@ fonts:[
         fontSize:18,
         padding:2
 
+    },
+    logo:{
+      width:'90px',
+      float:'left'
+    },
+    logoText:{
+      marginTop:'10px',
+      marginLeft:'10px'
     }
+
   });
   
 
@@ -125,9 +134,12 @@ console.log(props)
           <Page size="A4" style={styles.page}>
           <View style={styles.mainContainer}>
           <View style={styles.Header}>
-          <Text style={styles.title}>NIT Kurukshetra</Text>
+             <Image src={logo} style={styles.logo}/>
+            <View style={styles.logoText}>
+              <Text style={styles.title}>NIT Kurukshetra</Text>
               <Text style={styles.subTitle}>Vivekanand Bhawan Hostel 11</Text>
             </View>
+          </View>
             <View style={styles.imageProperties}>
                 {/* <Image src='' /> */}
                 <Text style={styles.imageText}>Photo</Text>
