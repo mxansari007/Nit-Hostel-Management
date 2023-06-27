@@ -6,11 +6,11 @@ import { useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import NotLoggedIn from '../Pages/NotLoggedIn/NotLoggedIn';
 import PageNotFound from '../Pages/PageNotFound/PageNotFound';
-const Studentlogin = lazy(()=>createDelay(import ('../Pages/StudentLogin/Studentlogin')));
-const Signup = lazy(()=>createDelay(import ('../Pages/SignUp/Signup')));
-const Dashboard = lazy(()=>createDelay(import ('../Pages/Dashboard/Dashboard')));
-const UploadPage = lazy(()=>createDelay(import ('../Pages/Dashboard/UploadPage/UploadPage')));
-const Viewinfo = lazy(()=>createDelay(import ('../Pages/Dashboard/Viewinfo/Viewinfo')));
+const Studentlogin = lazy(() => import ('../Pages/StudentLogin/Studentlogin'));
+const Signup = lazy(() => import ('../Pages/SignUp/Signup'));
+const Dashboard = lazy(() => import ('../Pages/Dashboard/Dashboard'));
+const UploadPage = lazy(() => import ('../Pages/Dashboard/UploadPage/UploadPage'));
+const Viewinfo = lazy(() => import ('../Pages/Dashboard/Viewinfo/Viewinfo'));
 
 
 const Routing = () => {
@@ -50,13 +50,6 @@ const navigate = useNavigate();
 }
 
 
-//creating a delay for lazy loading
-function createDelay(promise) {
-    return new Promise(resolve => {
-      setTimeout(resolve, 500);
-    }).then(() => promise);
-  }
-  
 
 
 export default Routing;
