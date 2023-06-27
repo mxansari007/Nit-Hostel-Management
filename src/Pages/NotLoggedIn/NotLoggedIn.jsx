@@ -4,7 +4,7 @@ const NotLoggedIn = ()=>{
    
    
    return<>
-        <h1>You are not logged In</h1>
+
         <Navigate to="/" replace/>
     </>
 }
