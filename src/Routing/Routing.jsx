@@ -9,8 +9,8 @@ import PageNotFound from '../Pages/PageNotFound/PageNotFound';
 const Studentlogin = lazy(() => import ('../Pages/StudentLogin/Studentlogin'));
 const Signup = lazy(() => import ('../Pages/SignUp/Signup'));
 const Dashboard = lazy(() => import ('../Pages/Dashboard/Dashboard'));
-const UploadPage = lazy(() => import ('../Pages/Dashboard/UploadPage/UploadPage'));
-const Viewinfo = lazy(() => import ('../Pages/Dashboard/Viewinfo/Viewinfo'));
+import UploadPage from  '../Pages/Dashboard/UploadPage/UploadPage';
+import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 
 
 const Routing = () => {
