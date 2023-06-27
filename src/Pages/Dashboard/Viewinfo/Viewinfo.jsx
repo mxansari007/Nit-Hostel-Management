@@ -135,7 +135,7 @@ export default function App() {
             />
           ))}
         </div>
-        
+        <div>
         <Grid container spacing={2} 
           direction="row"
           justifyContent="flex-start"
@@ -158,6 +158,7 @@ export default function App() {
         <p>{state.departement?'MCA, M.tech, P.hd, B.tech':null}</p>
         </Grid>
         </Grid>
+        </div>
         <div className="buttons">
         <Button id="Submitbt" type="submit" variant="contained" sx={{marginRight:'10px'}}>
           Search

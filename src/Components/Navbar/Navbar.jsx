@@ -55,13 +55,27 @@ const Navbar=()=> {
     <AppBar position="static">
       <Container maxWidth="xl" sx={{backgroundColor:'white'}}>
         <Toolbar disableGutters>
-        
-          <i><img src={logo} id="logo"/></i>
+        <div className='logo-container'>
+          <div>
+          <img src={logo} id="logo"/>
+          </div>
           <div className="logo-heading">
-
           <h1>NIT Kurukshetra</h1>
           <p>Hostel Management System</p>
           </div>
+          </div>
+
+          <div className='logo-container-small'>
+          <div>
+          <img src={logo} id="logo"/>
+          </div>
+          <div className="logo-heading">
+          <h1>NIT Kkr</h1>
+          <p>HMS</p>
+          </div>
+          </div>
+
+
           <Box className="smallMenu" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"

@@ -11,6 +11,7 @@ import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
 import './assets/css/Uploadpage.css';
 import axios from 'axios';
+import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
 const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
@@ -88,12 +89,15 @@ const UploadPage = ()=>{
     return <>
 
 
+
     <div className="InputBox">
     <Input color="primary" type="file" id="file_upload"/>
     <Button onClick={handleFile} variant="contained">Upload</Button>
     </div>
 
-
+<div className="Instruction-btn">
+<UploadInstructions />
+</div>
 <div className="table">
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
