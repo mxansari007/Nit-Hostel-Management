@@ -9,7 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import './assets/css/AdminLogin.css';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
-
+import { useDispatch } from 'react-redux';
+import {login} from '../../Store/Reducers/loginSlice';
 
 
 const Adminlogin =() =>{
@@ -17,6 +18,8 @@ const Adminlogin =() =>{
   const [loading, setLoading] = React.useState(false);
   const [values,setValues] = useState({username:null,password:null});
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  
 
 
   function handleChange(event){
@@ -35,6 +38,8 @@ const Adminlogin =() =>{
     console.log(import.meta.env.VITE_BASE_URL);
     axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values)
    .then((res)=>{
+    console.log(res.data);
+    dispatch(login());
     navigate('/Dashboard')})
    .catch(err=>{alert("Invalid username & password");});
   }
@@ -59,7 +64,7 @@ return(<>
           <span>Login</span>
         </LoadingButton>
         </FormControl>
-        <p className='sign-up'>Login as <Link to='student'>Student</Link>/ <Link to='/signup'>Sign Up</Link></p>
+        <p className='sign-up'>Login as <Link className="link" to='student'>Student</Link>/ <Link className="link" to='/signup'>Sign Up</Link></p>
 </Paper>
 </>
 )

@@ -6,7 +6,9 @@ import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
 import {BrowserRouter} from 'react-router-dom';
 import './MainStyle/Css/Fonts.css';
-
+import './MainStyle/Css/Styles.css'
+import { Provider } from 'react-redux';
+import store from './Store/Store';
 //You can change global style from here
 const theme = createTheme({
     palette:{
@@ -21,11 +23,13 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <Provider store={store}>
   <ThemeProvider theme={theme}>
   <BrowserRouter>
     <App />
     </BrowserRouter>
     </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

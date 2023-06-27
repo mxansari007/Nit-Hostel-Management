@@ -16,7 +16,9 @@ const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
     let [jsonData,setData] = useState([]);
  
-    useEffect(()=>{axios.post(import.meta.env.VITE_BASE_URL + '/csv',jsonData)
+    useEffect(()=>{
+      console.log(jsonData);
+      axios.post(import.meta.env.VITE_BASE_URL + '/csv',jsonData)
     .then((res)=>{console.log(res.data);})
     .catch(err=>{console.log(err);});},[jsonData]);
     const handleFile = ()=>{

@@ -7,10 +7,16 @@ import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import {logout} from '../../Store/Reducers/loginSlice';
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function LoginOptions(){
 
+
+  const dispatch = useDispatch();  
+  const isLoggedIn = useSelector(state => state.isLoggedIn.value)
   const Navigate = useNavigate();
     const [anchorElUser, setAnchorElUser] = useState(null);
     const handleOpenUserMenu = (event) => {
@@ -50,6 +56,7 @@ export default function LoginOptions(){
                    setAnchorElUser(null);
                     if(setting==='Logout'){
                       Navigate('/');
+                      dispatch(logout());
                     }
             }} name={setting}>
               <Typography  textAlign="center">{setting}</Typography>

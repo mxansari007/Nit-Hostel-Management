@@ -11,9 +11,9 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import logo from './assets/images/2.png';
 import './assets/css/Navbar.css';
-import {Link} from 'react-router-dom';
 import LoginOptions from '../smallComponents/LoginOptions';
 import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -113,7 +113,7 @@ const Navbar=()=> {
               </Button>
             ))}
           </Box>
-         <LoginOptions/>
+         {localStorage.getItem('userId')?<LoginOptions/>:null}
         </Toolbar>
       </Container>
     </AppBar>
