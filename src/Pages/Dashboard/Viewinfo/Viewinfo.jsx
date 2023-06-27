@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import "./Css/viewinfo.css";
+import "./assets/css/Viewinfo.css";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import MyDocument from "./Api/MyDocument";
+import MyDocument from "../../../API/MyDocument/MyDocument";
 import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
 import { RadioButtonUnchecked } from "@mui/icons-material";
@@ -106,7 +106,7 @@ export default function App() {
     console.log(data);
     
     //place your axios here
-    axios.post('http://localhost:8000/viewStudentInfo',data)
+    axios.post(import.meta.env.VITE_BASE_URL+'/viewStudentInfo',data)
     .then((res)=>{console.log(res.data);
         setData(res.data);
         if(res.data.length === 0){

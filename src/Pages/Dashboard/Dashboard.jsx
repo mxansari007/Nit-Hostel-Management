@@ -3,20 +3,17 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper'
 import Container from '@mui/material/Container'
 import FolderSharedRoundedIcon from '@mui/icons-material/FolderSharedRounded';
-import Icon from '@mui/material/Icon';
 import { createTheme, ThemeProvider } from '@mui/material';
-import DropDown from './smallComponents/DropDown';
+import DropDown from '../../Components/smallComponents/DropDown';
 import MarkEmailUnreadRoundedIcon from '@mui/icons-material/MarkEmailUnreadRounded';
 import NightShelterIcon from '@mui/icons-material/NightShelter';
-import './Css/Dashboard.css';
+import './assets/css/Dashboard.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
-import {UserContext} from '../App';
-import {useEffect,useContext} from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 const theme = createTheme({
     typography:{
@@ -28,14 +25,8 @@ const theme = createTheme({
 
 function DashBoard(){
 
-    const Navigate = useNavigate();
-    const [isLoggedIn] = useContext(UserContext);
 
-    useEffect(()=>{
-        if(isLoggedIn===false){
-            Navigate('/');
-        }
-    },[isLoggedIn])
+
 
 return (<Container maxWidth="lg" sx={{mt:'100px'}}>
 <ThemeProvider theme={theme}>

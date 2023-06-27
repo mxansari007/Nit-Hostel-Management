@@ -1,24 +1,21 @@
-import React, {  useState,useEffect} from 'react'
-import { Link, Router } from 'react-router-dom'
+import React, {  useState } from 'react'
+import { Link } from 'react-router-dom'
 import  TextField  from '@mui/material/TextField';
 import LoginIcon from '@mui/icons-material/Login';
 import LoadingButton from '@mui/lab/LoadingButton';         
 import { DevTool } from '@hookform/devtools';
 import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
-import './Css/Studentlogin.css'
+import './assets/css/AdminLogin.css';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
-import { useContext } from 'react';
-import { UserContext } from '../App';
-import Stack from '@mui/material/Stack';
+
 
 
 const Adminlogin =() =>{
   
   const [loading, setLoading] = React.useState(false);
   const [values,setValues] = useState({username:null,password:null});
-  const [isLoggedIn, setLogin] = useContext(UserContext);
   let navigate = useNavigate();
 
 
@@ -35,9 +32,9 @@ const Adminlogin =() =>{
 
    function handleSubmit() {
     setLoading(true);
-    axios.post('http://localhost:8000/adminlogin',values)
+    console.log(import.meta.env.VITE_BASE_URL);
+    axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values)
    .then((res)=>{
-    setLogin(true);
     navigate('/Dashboard')})
    .catch(err=>{alert("Invalid username & password");});
   }

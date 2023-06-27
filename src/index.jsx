@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
-import {BrowserRouter as Router} from 'react-router-dom';
-import './Components/Css/Fonts.css'
+import {BrowserRouter} from 'react-router-dom';
+import './MainStyle/Css/Fonts.css';
 
 //You can change global style from here
 const theme = createTheme({
@@ -23,9 +22,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <ThemeProvider theme={theme}>
-  <Router>
+  <BrowserRouter>
     <App />
-    </Router>
+    </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
 );

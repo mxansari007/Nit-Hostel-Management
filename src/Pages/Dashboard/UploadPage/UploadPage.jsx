@@ -9,14 +9,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
-import './Css/UploadPage.css';
+import './assets/css/Uploadpage.css';
 import axios from 'axios';
 
 const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
     let [jsonData,setData] = useState([]);
  
-    useEffect(()=>{axios.post('http://localhost:8000/csv',jsonData)
+    useEffect(()=>{axios.post(import.meta.env.VITE_BASE_URL + '/csv',jsonData)
     .then((res)=>{console.log(res.data);})
     .catch(err=>{console.log(err);});},[jsonData]);
     const handleFile = ()=>{
