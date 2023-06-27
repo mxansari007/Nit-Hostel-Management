@@ -2,7 +2,7 @@ import React, { Component,useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools';
 import { TextField,Button,Box } from '@mui/material';
-import './Css/Signup.css';
+import './assets/css/Signup.css';
 import Grid from '@mui/material/Grid';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -35,7 +35,7 @@ const {register,watch,getValues,handleSubmit,control,formState:{errors}} = form;
 
 
 const onSubmit = (data)=>{
-   axios.post('http://localhost:8000/signup',data)
+   axios.post('https://hostelbackend-pqrk.onrender.com/signup',data)
    .then((res)=>{console.log(res.data);})
    .catch(err=>{console.log(err);});
 }

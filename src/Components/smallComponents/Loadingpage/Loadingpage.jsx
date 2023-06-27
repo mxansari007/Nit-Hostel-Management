@@ -1,5 +1,5 @@
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
-import '../Css/Loadingpage.css';
+import './assets/css/Loadingpage.css';
 
 
 const Loadingpage = ()=>{

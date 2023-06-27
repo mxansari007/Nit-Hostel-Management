@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools';
 import { CssBaseline } from '@mui/material';
 import { cyan } from '@mui/material/colors';
-import './Css/Studentlogin.css'
+import './assets/css/Studentlogin.css';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
 
