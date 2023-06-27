@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
-import './assets/css/Uploadpage.css';
+import './assets/css/UploadPage.css';
 import axios from 'axios';
 import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
