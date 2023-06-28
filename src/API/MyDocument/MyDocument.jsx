@@ -4,11 +4,11 @@ import {
     Text,
     View,
     StyleSheet,
-    PDFViewer,
     Font,
     Image
   } from "@react-pdf/renderer";
 //register fonts
+
 
 import React from "react";
 import logo from './logo.png';
