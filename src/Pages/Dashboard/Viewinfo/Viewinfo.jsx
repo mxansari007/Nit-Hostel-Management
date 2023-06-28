@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import MyDocument from "../../../API/MyDocument/MyDocument";
+import MyDocument from "../../../API/MyDocument/MyDocument.jsx";
 import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
 import { RadioButtonUnchecked } from "@mui/icons-material";
