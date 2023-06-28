@@ -76,14 +76,6 @@ const Reducer = (state, action) => {
   }
 };
 
-const generatePdfDocument = async (documentData,fileName) => {
-  const blob = await pdf((
-      <MyDocument
-          data={documentData}
-      />
-  )).toBlob();
-  saveAs(blob, fileName);
-}
 
 
 export default function App() {
@@ -106,7 +98,15 @@ export default function App() {
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
 
 
-
+  const generatePdfDocument = async (documentData,fileName) => {
+    const blob = await pdf((
+        <MyDocument
+            data={documentData}
+        />
+    )).toBlob();
+    saveAs(blob, fileName);
+  }
+  
 
 
   //all Event Listners
