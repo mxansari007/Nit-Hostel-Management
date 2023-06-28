@@ -14,11 +14,11 @@ import { useReducer,useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "../../../API/MyDocument/MyDocument.jsx";
 import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
-import { RadioButtonUnchecked } from "@mui/icons-material";
+import { saveAs } from 'file-saver';
+import { pdf } from '@react-pdf/renderer';
 //initial toggle state 
 const initialSearchState = {
   rollNo: false,
@@ -76,6 +76,16 @@ const Reducer = (state, action) => {
   }
 };
 
+const generatePdfDocument = async (documentData,fileName) => {
+  const blob = await pdf((
+      <MyDocument
+          data={documentData}
+      />
+  )).toBlob();
+  saveAs(blob, fileName);
+}
+
+
 export default function App() {
   //using useForm hooks for state management of forms
     const form = useForm({
@@ -94,6 +104,8 @@ export default function App() {
   const tableHeads = ['Roll no','First Name','Last Name','Year','Password','Department','Email','View Info'];
   const [isFound,setFound] = useState(true);
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
+
+
 
 
 
@@ -208,10 +220,8 @@ export default function App() {
               <TableCell align="right">{row.password}</TableCell>
               <TableCell align="right">{row.department}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">    <PDFDownloadLink document={<MyDocument data={row} />} fileName={row.rollNo+'.pdf'}> 
-                                          {({ blob, url, loading, error }) =>
-                                          loading ? 'Generating Pdf...' :'Download'}
-                                          </PDFDownloadLink>
+              <TableCell align="right">    
+                        <Button variant="outlined" onClick={()=>{generatePdfDocument(row,row.rollNo+'.pdf')}}>Download Pdf</Button>
                   </TableCell>
             </TableRow>)
           })}
