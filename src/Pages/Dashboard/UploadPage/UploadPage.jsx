@@ -11,12 +11,9 @@ import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
 import './assets/css/UploadPage.css';
 import axios from 'axios';
-<<<<<<< HEAD
 import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
-=======
 const csv=require('csvtojson')
->>>>>>> 80d5cf8b8c3cdc0ce2c2b21df1e5da0403d65f86
 const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
     let [jsonData,setData] = useState([]);
