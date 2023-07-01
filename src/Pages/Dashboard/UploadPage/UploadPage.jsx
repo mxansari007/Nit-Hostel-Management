@@ -17,18 +17,9 @@ import UploadInstructions from "../../../Components/smallComponents/Modals/Uploa
 const UploadPage = ()=>{
     
   let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email'];
-    let [File,setFile] = useState();
+    
     let [jsonData,setData] = useState([]);
- 
-    useEffect(()=>{
-      async (File)=>{
-  
-        const jsonData = await axios.post(import.meta.env.VITE_BASE_URL+ '/csv',File,{
-            headers:{'Content-Type':'multipart/form-data'}
-        })
-  
-    }
-    },[File]);
+
 
     const handleFile = ()=>{
     
@@ -41,7 +32,26 @@ const UploadPage = ()=>{
     var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
     if (extension == '.CSV') {
         //Here calling another method to read CSV file into json
-        setFile(files[0]);
+        const bodyForData = new FormData();
+        bodyForData.append("file",files[0]);
+        
+        axios
+        .post(import.meta.env.VITE_BASE_URL + '/csv', bodyForData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "x-rapidapi-host": "file-upload8.p.rapidapi.com",
+            "x-rapidapi-key": "af582c969cmshc0186c63f1e9d28p10fbf5jsn1a1c05604d94",
+          },
+        })
+        .then((response) => {
+      // handle the response
+          console.log(response);
+        })
+        .catch((error) => {
+          // handle errors
+          console.log(error);
+        });
+      
     }else{
         alert("Please select a valid csv file.");
     }
