@@ -96,16 +96,18 @@ export default function App() {
   const tableHeads = ['Roll no','First Name','Last Name','Year','Password','Department','Email','View Info'];
   const [isFound,setFound] = useState(true);
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
-
-
+  let blob;
+useEffect(()=>{
   const generatePdfDocument = async (documentData,fileName) => {
-    const blob = await pdf((
+    blob = await pdf((
         <MyDocument
             data={documentData}
         />
     )).toBlob();
     saveAs(blob, fileName);
   }
+},[blob])
+ 
   
 
 
