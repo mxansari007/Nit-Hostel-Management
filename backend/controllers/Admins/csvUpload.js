@@ -1,16 +1,31 @@
 const Student =require('../../models/students');
 const Profile = require('../../models/Profile');
 const BankDetails = require('../../models/BankDetails');
-exports.csvUpload = async (req,res)=>{
-    const data=req.body;
+const csv=require('csvtojson')
+const fs=require('fs');
 
+exports.csvUpload = async (req,res)=>{
+    
+try {
+  csv()
+   .fromFile(req.file.path)
+   .then(async (jsonObj)=>{
     try {
+       fs.unlink(req.file.path,(err)=>{
+        if (err){
+          console.log("error occured : "+err);
+          return;
+        }
+        console.log("file deleted successfully");
+       })
+
+
       const alldb=await Student.find({});
       let insertPayload=[];
       let update=[];
 
       //?code to seperate insetpayload and update
-      data.forEach((item,index)=>{
+      jsonObj.forEach((item,index)=>{
         const exists=alldb.some((student)=>{
                return student.rollNo == item.rollNo;
         });
@@ -20,7 +35,7 @@ exports.csvUpload = async (req,res)=>{
             insertPayload.push(item);
         }
       });
-
+      
 
      
 //? Separate student, profile, and bank details data
@@ -121,4 +136,8 @@ Promise.all(bankDetailsPromises)
      }catch (error){
         return res.status(400).send(error);
     }
+   })
+  } catch (error) {
+  
+}
 };

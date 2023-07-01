@@ -18,6 +18,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^4.0.1",
     "axios": "^1.4.0",
+    "concurrently": "^8.2.0",
     "csvtojson": "^2.0.10",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -43,7 +44,8 @@
     "build": "vite build",
     "test": "vite test",
     "eject": "vite test",
-    "server": "vite preview"
+    "server": "nodemon backend/index.js",
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": [
