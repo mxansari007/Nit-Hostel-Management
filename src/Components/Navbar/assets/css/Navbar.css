@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+    color: black;
+}
+
+.logo-heading h1{font-family: 'Montserrat'; font-weight: 700; font-size: 1.5rem; }
+.logo-heading p{font-family: 'Urbanist';  font-size: 1rem;margin-top: -20px;}
+#logo{
+    width: 80px;
+    padding:10px;
+}
+
+
+
+.pages{
+    padding-right: 5%;
+    justify-content: right;
+    align-items: center;
+}
+
+.smallMenu{
+    margin-right: 2%;
+    justify-content: right;
+    align-items: center;
+}
+
+@media screen and (max-width:768px)  {
+    .logo-heading h1{font-size: 1.4rem;}
+    .logo-heading p{font-size: 1rem;}
+    #logo{
+        width:70px;
+        
+    }
+
+    .logo-container{
+        display:none;
+    }
+
+    .logo-container-small{
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .logo-container{
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .logo-container-small{
+        display: none;
+    }
+}
+
+
+

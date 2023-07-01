@@ -1,0 +1,31 @@
+.mainSection{
+  margin-top:25px;
+  text-align: center;
+  
+}
+
+
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    max-width:600px ;
+    margin-top:40px;
+    margin-bottom:40px;
+    margin:auto;
+    
+  }
+
+
+  .table{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.buttons{
+  padding:5px;
+}
