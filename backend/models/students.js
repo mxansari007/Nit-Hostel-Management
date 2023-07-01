@@ -3,7 +3,6 @@ const validator = require('validator');
 const bcrypt=require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = "swnf23$tzv8545?[]qpxrsehttmjnhbgyhc3t7c";
-
 const studentSchema=new mongoose.Schema({
     rollNo:{
         type:Number,
@@ -42,6 +41,11 @@ const studentSchema=new mongoose.Schema({
                 throw new Error("invalid email");
             }
         }
+    },
+    Profile:{
+        type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "Profile",
     },
     tokens:[{
         token:{
