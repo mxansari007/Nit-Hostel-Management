@@ -13,16 +13,22 @@ import './assets/css/UploadPage.css';
 import axios from 'axios';
 import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
-const csv=require('csvtojson')
+
 const UploadPage = ()=>{
-    let [tableHeads,setHeads] = useState([]);
-    let [jsonData,setData] = useState([]);
+    
+  let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email'];
+    let [File,setFile] = useState();
  
     useEffect(()=>{
-      console.log(jsonData);
-      axios.post(import.meta.env.VITE_BASE_URL + '/csv',jsonData)
-    .then((res)=>{console.log(res.data);})
-    .catch(err=>{console.log(err);});},[jsonData]);
+      async function FileToBackEnd(file){
+  
+        const [tableHeads, jsonData] = await axios.post(import.meta.env.VITE_BASE_URL+ '/csv',File,{
+            headers:{'Content-Type':'multipart/form-data'}
+        })
+  
+    }
+    },[File]);
+
     const handleFile = ()=>{
     
     var files = document.getElementById('file_upload').files;
@@ -34,24 +40,17 @@ const UploadPage = ()=>{
     var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
     if (extension == '.CSV') {
         //Here calling another method to read CSV file into json
-        csvFileToJSON(files[0]);
+        setFile(files[0]);
     }else{
         alert("Please select a valid csv file.");
     }
 
-     //Method to read csv file and convert it into JSON 
-  function csvFileToJSON(file){
-    csv()
-    .fromFile(file)
-    .then((jsonObj)=>{
-      console.log(jsonObj);
-    })
-  }
-  }
+     //Method to read csv file and convert it into JSON
+     
+
+}
 
     return <>
-
-
 
     <div className="InputBox">
     <Input color="primary" type="file" id="file_upload"/>
@@ -91,6 +90,7 @@ const UploadPage = ()=>{
     </TableContainer>
     </div>
     </>
+
 }
 
 
