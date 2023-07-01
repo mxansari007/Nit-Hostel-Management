@@ -18,11 +18,12 @@ const UploadPage = ()=>{
     
   let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email'];
     let [File,setFile] = useState();
+    let [jsonData,setData] = useState([]);
  
     useEffect(()=>{
-      async function FileToBackEnd(file){
+      async (File)=>{
   
-        const [tableHeads, jsonData] = await axios.post(import.meta.env.VITE_BASE_URL+ '/csv',File,{
+        const jsonData = await axios.post(import.meta.env.VITE_BASE_URL+ '/csv',File,{
             headers:{'Content-Type':'multipart/form-data'}
         })
   
