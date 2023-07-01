@@ -11,8 +11,12 @@ import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
 import './assets/css/UploadPage.css';
 import axios from 'axios';
+<<<<<<< HEAD
 import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
+=======
+const csv=require('csvtojson')
+>>>>>>> 80d5cf8b8c3cdc0ce2c2b21df1e5da0403d65f86
 const UploadPage = ()=>{
     let [tableHeads,setHeads] = useState([]);
     let [jsonData,setData] = useState([]);
@@ -40,51 +44,13 @@ const UploadPage = ()=>{
 
      //Method to read csv file and convert it into JSON 
   function csvFileToJSON(file){
-    try {
-      var reader = new FileReader();
-      reader.readAsBinaryString(file);
-      reader.onload = function(e) {
-          var data = [];
-          var headers = [];
-          var rows = e.target.result.split("\r\n");
-          // console.log("rows   : "+ rows[0]);
-          for (var i = 0; i < rows.length; i++) {
-              var cells = rows[i].split(",");
-              // console.log("column :   " + cells[0]);
-              var rowData = {};
-              for(var j=0;j<cells.length;j++){
-                  if(i==0){
-                      var headerName = cells[j].trim();
-                      headers.push(headerName);
-                      
-                  }else{
-                      var key = headers[j];
-                      if(key){
-                          rowData[key] = cells[j].trim();
-                      }
-                  }
-              }
-
-              //skip the first row (header) data
-              if(i!=0){
-                data.push(rowData);
-              }
-          }
-
-            setHeads(headers);
-            setData([...data]);
-          //sending json to backend
-          // console.log("yo json data hai "+ [...data][0].firstName);
-          
-          }
-      }catch(e){
-          console.error(e);
-      }
-     
+    csv()
+    .fromFile(file)
+    .then((jsonObj)=>{
+      console.log(jsonObj);
+    })
   }
   }
-   
-
 
     return <>
 
