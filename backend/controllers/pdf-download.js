@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 exports.pdfDownload = async (req, res) => {
-    
+    var outputpdf;
     try {
         // Read HTML Template
     const jsonData=req.body;
@@ -16,13 +16,14 @@ exports.pdfDownload = async (req, res) => {
         orientation: "portrait",
         border: "10mm"
     };
+    outputpdf=path.join(__dirname,`/pdfOutputs/${filename}`);
     var document = {
         html: html,
         data:{
           name:jsonData.name,
           class:jsonData.class
         },
-        path: path.join(__dirname,`/pdfOutputs/${filename}`),   
+        path:outputpdf,
         type: "",
     };
     pdf
@@ -35,6 +36,15 @@ exports.pdfDownload = async (req, res) => {
         .catch((error) => {
             console.error(error);
             return res.send(error);
+        })
+        .finally(() => {
+            fs.unlink(outputpdf,(err)=>{
+                if (err){
+                  console.log("error occured : "+err);
+                  return;
+                }
+                console.log("file deleted successfully");
+               })
         });
     } catch (error) {
         return res.send(error);
