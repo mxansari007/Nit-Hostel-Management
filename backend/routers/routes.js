@@ -7,6 +7,7 @@ const {csvUpload} =require("../controllers/Admins/csvUpload");
 const {studentLogin} =require("../controllers/Students/studentLogin");
 const {adminLogin} =require("../controllers/Admins/auth");
 const {studentSignup} =require("../controllers/Students/studentSignup");
+const {pdfDownload} =require("../controllers/pdf-download");
 
 var storage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -30,6 +31,8 @@ router.post('/studentlogin',studentLogin);
 
 //// for csv students upload
 router.post('/csv',upload.single('file'), csvUpload);
+//// to download pdf file
+router.post('/pdfDownload',pdfDownload);
 //// view student data
 router.post('/viewStudentInfo',studentInfo);
 
