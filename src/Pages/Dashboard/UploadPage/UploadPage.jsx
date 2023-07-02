@@ -11,14 +11,17 @@ import Button from '@mui/material/Button'
 import Input from '@mui/material/Input';
 import './assets/css/UploadPage.css';
 import axios from 'axios';
+import EditIcon from '@mui/icons-material/Edit';
+import EditUploadData from "../../../Components/smallComponents/Modals/EditUploadData";
 import UploadInstructions from "../../../Components/smallComponents/Modals/UploadInstructions";
 
 
 const UploadPage = ()=>{
     
-  let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email'];
+  let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email','Edit'];
     
     let [jsonData,setData] = useState([]);
+
 
 
     const handleFile = ()=>{
@@ -45,7 +48,8 @@ const UploadPage = ()=>{
         })
         .then((response) => {
       // handle the response
-          console.log(response);
+          console.log(response.data);
+          setData(response.data);
         })
         .catch((error) => {
           // handle errors
@@ -71,7 +75,9 @@ const UploadPage = ()=>{
 <div className="Instruction-btn">
 <UploadInstructions />
 </div>
+
 <div className="table">
+<h2 className="table-heading">Duplicate Data</h2>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -94,6 +100,7 @@ const UploadPage = ()=>{
               <TableCell align="right">{row.password}</TableCell>
               <TableCell align="right">{row.department}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
+              <TableCell align="right"><EditUploadData row={row}  /></TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -14,11 +14,10 @@ import { useReducer,useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
-import MyDocument from "../../../API/MyDocument/MyDocument.jsx";
 import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
-import { saveAs } from 'file-saver';
-import { pdf } from '@react-pdf/renderer';
+import LoadingButton from '@mui/lab/LoadingButton';
+import FileSaver from "file-saver";
 //initial toggle state 
 const initialSearchState = {
   rollNo: false,
@@ -93,21 +92,12 @@ export default function App() {
   const { register, handleSubmit, control,reset,formState:{errors} } = form;
   const [state, dispatch] = useReducer(Reducer, initialSearchState);
   const [jsonData, setData] = useState([]);
-  const tableHeads = ['Roll no','First Name','Last Name','Year','Password','Department','Email','View Info'];
+  const tableHeads = ['Roll no','First Name','Last Name','Year','Password','Department','Email','Download'];
   const [isFound,setFound] = useState(true);
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
-  let blob;
 
-  const generatePdfDocument = async (documentData,fileName) => {
-    blob = await pdf((
-        <MyDocument
-            data={documentData}
-        />
-    )).toBlob();
-    saveAs(blob, fileName);
-  }
 
- 
+
   
 
 
@@ -115,6 +105,8 @@ export default function App() {
   const handleChange = (event) => {
     dispatch({ type: event.target.name });
   };
+
+
 
   const onSubmit = (data) => {
     console.log(data);
@@ -208,6 +200,7 @@ export default function App() {
         <TableBody>
         
           {jsonData.map((row) => {
+            
             return(
             <TableRow
               key={row.rollNo}
@@ -223,7 +216,20 @@ export default function App() {
               <TableCell align="right">{row.department}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">    
-                        <Button variant="outlined" onClick={()=>{generatePdfDocument(row,row.rollNo+'.pdf')}}>Download Pdf</Button>
+                <button onClick={
+                  ()=>{axios.post(import.meta.env.VITE_BASE_URL+ '/pdfDownload',{
+                        "templateName":"viewInfo",
+                        "name":row.firstName,
+                        "rollNo":row.rollNo,
+                        "firstName":row.firstName,
+                        "lastName":row.lastName,
+                        "year":row.year,
+                        "department":row.department,
+                        "email":row.email}).then((response)=>{
+                         console.log(response);
+
+                       }).catch((err)=>{console.log(err);})
+                        }}>Download</button>
                   </TableCell>
             </TableRow>)
           })}
