@@ -21,7 +21,13 @@ exports.pdfDownload = async (req, res) => {
         html: html,
         data:{
           name:jsonData.name,
-          class:jsonData.class
+          class:jsonData.class,
+          rollNo:jsonData.rollNo,
+          firstName:jsonData.firstName,
+          lastName:jsonData.lastName,
+          department:jsonData.department,
+          year:jsonData.year,
+          email:jsonData.email
         },
         path:outputpdf,
         type: "",
@@ -29,22 +35,21 @@ exports.pdfDownload = async (req, res) => {
     pdf
         .create(document, options)
         .then((response) => {
-            console.log(response);
-            return res.download(response.filename);
+            console.log(response.filename);
+            fs.readFile(response.filename,(err,file)=>{
+                if (err) {
+                    console.log(err);
+                    return res.status(500).send("could not download pdf");
+                }
+                res.setHeader('Content-Type', 'application/pdf');
+                res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+                res.send(file);
+            });
 
         })
         .catch((error) => {
             console.error(error);
             return res.send(error);
-        })
-        .finally(() => {
-            fs.unlink(outputpdf,(err)=>{
-                if (err){
-                  console.log("error occured : "+err);
-                  return;
-                }
-                console.log("file deleted successfully");
-               })
         });
     } catch (error) {
         return res.send(error);
