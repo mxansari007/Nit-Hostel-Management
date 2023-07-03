@@ -18,6 +18,7 @@ import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import FileSaver from "file-saver";
+import fileDownloader from "js-file-download";
 //initial toggle state 
 const initialSearchState = {
   rollNo: false,
@@ -225,8 +226,9 @@ export default function App() {
                         "lastName":row.lastName,
                         "year":row.year,
                         "department":row.department,
-                        "email":row.email}).then((response)=>{
+                        "email":row.email},{responseType:'arraybuffer'}).then((response)=>{
                          console.log(response);
+                         fileDownloader(response.data, `${row.rollNo}_${row.firstName}.pdf`);
 
                        }).catch((err)=>{console.log(err);})
                         }}>Download</button>
