@@ -21,7 +21,13 @@ exports.pdfDownload = async (req, res) => {
         html: html,
         data:{
           name:jsonData.name,
-          class:jsonData.class
+          class:jsonData.class,
+          rollNo:jsonData.rollNo,
+          firstName:jsonData.firstName,
+          lastName:jsonData.lastName,
+          department:jsonData.department,
+          year:jsonData.year,
+          email:jsonData.email
         },
         path:outputpdf,
         type: "",
