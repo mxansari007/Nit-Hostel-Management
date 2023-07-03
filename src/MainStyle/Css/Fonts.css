@@ -1,0 +1,34 @@
+h1{
+    font-family: 'Montserrat','Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size:2rem;
+}
+
+h2{
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+p{
+    font-family: 'Urbanist';
+    font-weight: 400;
+}
+
+
+@media screen and (max-width:570px) {
+    h1{
+       
+    }
+    
+    h2{
+       font-size: 1.5;
+    }
+    
+    p{
+        font-size: 1rem;
+    }
+    
+    
+    
+}

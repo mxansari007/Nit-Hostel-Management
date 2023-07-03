@@ -10,7 +10,8 @@ const auth = async (req, res, next) => {
       'swnf23$tzv8545?[]qpxrsehttmjnhbgyhc3t7c'
     )
 
-    console.log(verifyUser)
+    // console.log(verifyUser)
+    next();
   } catch (error) {
     res.status(401).send(error)
   }

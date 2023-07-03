@@ -1,0 +1,24 @@
+
+
+#loginBox{
+  padding: 15px;
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  background-color: transparent;
+  margin-top: 100px;
+
+}
+
+.inputBox{
+  margin-top: 10px;
+}
+
+.Button{
+  padding: 20px;
+  
+}
+

@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
-import {BrowserRouter as Router} from 'react-router-dom';
-import './Components/Css/Fonts.css'
-
+import {BrowserRouter} from 'react-router-dom';
+import './MainStyle/Css/Fonts.css';
+import './MainStyle/Css/Styles.css'
+import { Provider } from 'react-redux';
+import store from './Store/Store';
 //You can change global style from here
 const theme = createTheme({
     palette:{
@@ -22,11 +23,13 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <Provider store={store}>
   <ThemeProvider theme={theme}>
-  <Router>
+  <BrowserRouter>
     <App />
-    </Router>
+    </BrowserRouter>
     </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

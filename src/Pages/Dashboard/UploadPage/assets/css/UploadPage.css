@@ -1,0 +1,27 @@
+.InputBox{
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    height: 100px;
+}
+
+.table{
+    max-width: 1200px;
+    margin: auto;
+    padding:25px;
+    
+}
+
+.Instruction-btn{
+    max-width: 400px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}
+
+.table-heading{
+    text-align: center;
+    font-size: 1.5rem;
+}
