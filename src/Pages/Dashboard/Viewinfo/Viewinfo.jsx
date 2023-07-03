@@ -229,7 +229,7 @@ export default function App() {
                         "email":row.email},{responseType:'arraybuffer'}).then((response)=>{
                          console.log(response);
                          fileDownloader(response.data, `${row.rollNo}_${row.firstName}.pdf`);
-
+                          setTimeout(()=>{},3000);
                        }).catch((err)=>{console.log(err);})
                         }}>Download</button>
                   </TableCell>
