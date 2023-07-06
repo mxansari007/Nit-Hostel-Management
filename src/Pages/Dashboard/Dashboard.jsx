@@ -51,7 +51,7 @@ return (<Container maxWidth="lg" sx={{mt:'100px'}}>
             <DropDown 
             names=
             {[
-                {value:'View Complaints',icon:<VisibilityIcon/>,place:''},
+                {value:'View Complaints',icon:<VisibilityIcon/>,place:'/viewcomplaints'},
                 {value:'Download Complaints',icon:<SimCardDownloadRoundedIcon/>,place:''},
                 {value:'Edit Complaints',icon:<EditRoundedIcon/>,place:''}
                 ]}/ >
