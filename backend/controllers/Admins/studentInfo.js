@@ -4,6 +4,7 @@ exports.studentInfo = async (req,res)=>{
     try {
         const {rollNo,firstName,lastName,department} = req.body;
         const payload = {};
+        console.log(rollNo);
         if(rollNo!='' && rollNo!=undefined){
             payload.rollNo=parseInt(rollNo, 10);
         }
@@ -19,8 +20,8 @@ exports.studentInfo = async (req,res)=>{
         console.log("payload: "+payload);
         const students = await Student.find(payload).exec();
         console.log("student"+students);
-        res.send(students);
+        return res.send(students);
       } catch (error) {
-        res.send(error.message);
+        return res.send(error.message);
       }
 };

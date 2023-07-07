@@ -43,7 +43,7 @@ exports.pdfDownload = async (req, res) => {
                 }
                 res.setHeader('Content-Type', 'application/pdf');
                 res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-                res.send(file);
+                return res.send(file);
             });
 
         })
