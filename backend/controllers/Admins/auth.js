@@ -10,7 +10,13 @@ exports.adminLogin=async (req,res)=>{
         console.log("upto token"+token);
         console.log(isMatch);
         if(isMatch){
-            res.status(200).send(findAdmin);
+        // we are storing cookie in jwtoken and it will expires in 30days
+        res.cookie('jwtoken', token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      }).status(200).send(findAdmin);
+  
+           
         }else{
             res.status(404).send("Invalid Username or Password");
         }

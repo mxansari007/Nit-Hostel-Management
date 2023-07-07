@@ -1,6 +1,7 @@
 const express =require('express');
 const router =new express.Router();
-const multer  = require('multer')
+const multer  = require('multer');
+
 
 const {studentInfo} =require("../controllers/Admins/studentInfo");
 const {csvUpload} =require("../controllers/Admins/csvUpload");
@@ -8,6 +9,7 @@ const {studentLogin} =require("../controllers/Students/studentLogin");
 const {adminLogin} =require("../controllers/Admins/auth");
 const {studentSignup} =require("../controllers/Students/studentSignup");
 const {pdfDownload} =require("../controllers/pdf-download");
+const {auth} = require("../middlewares/auth");
 
 var storage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -30,10 +32,10 @@ router.post('/adminlogin',adminLogin);
 router.post('/studentlogin',studentLogin);
 
 //// for csv students upload
-router.post('/csv',upload.single('file'), csvUpload);
+router.post('/csv',auth,upload.single('file'), csvUpload);
 //// to download pdf file
-router.post('/pdfDownload',pdfDownload);
+router.post('/pdfDownload',auth,pdfDownload);
 //// view student data
-router.post('/viewStudentInfo',studentInfo);
+router.post('/viewStudentInfo',auth,studentInfo);
 
 module.exports = router;
