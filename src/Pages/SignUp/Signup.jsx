@@ -37,7 +37,7 @@ const {register,watch,getValues,handleSubmit,control,formState:{errors}} = form;
 
 //event handling
 const onSubmit = (data)=>{
-   axios.post('https://hostelbackend-pqrk.onrender.com/signup',data)
+   axios.post(import.meta.env.VITE_BASE_URL + '/signup',data)
    .then((res)=>{console.log(res.data);})
    .catch(err=>{console.log(err);});
 }
