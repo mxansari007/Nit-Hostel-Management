@@ -32,10 +32,10 @@ router.post('/adminlogin',adminLogin);
 router.post('/studentlogin',studentLogin);
 
 //// for csv students upload
-router.post('/csv',auth,upload.single('file'), csvUpload);
+router.post('/csv',upload.single('file'), csvUpload);
 //// to download pdf file
-router.post('/pdfDownload',auth,pdfDownload);
+router.post('/pdfDownload',pdfDownload);
 //// view student data
-router.post('/viewStudentInfo',auth,studentInfo);
+router.post('/viewStudentInfo',studentInfo);
 
 module.exports = router;
