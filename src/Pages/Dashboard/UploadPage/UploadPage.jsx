@@ -18,12 +18,13 @@ import UploadInstructions from "../../../Components/smallComponents/Modals/Uploa
 
 const UploadPage = ()=>{
     
+  //state variables
   let tableHeads = ['rollNo','firstName','lastName','year','password','depatment','email','Edit'];
     
     let [jsonData,setData] = useState([]);
 
 
-
+//event handlers
     const handleFile = ()=>{
     
     var files = document.getElementById('file_upload').files;
@@ -59,12 +60,10 @@ const UploadPage = ()=>{
     }else{
         alert("Please select a valid csv file.");
     }
-
-     //Method to read csv file and convert it into JSON
      
-
 }
 
+//Jsx code 
     return <>
 
     <div className="InputBox">

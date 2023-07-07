@@ -15,13 +15,14 @@ import {login} from '../../Store/Reducers/loginSlice';
 
 const Adminlogin =() =>{
   
+  //state variables
   const [loading, setLoading] = React.useState(false);
   const [values,setValues] = useState({username:null,password:null});
   let navigate = useNavigate();
   const dispatch = useDispatch();
   
 
-
+//Event handlers
   function handleChange(event){
     var name = event.target.name;
 
@@ -44,6 +45,8 @@ const Adminlogin =() =>{
    .catch(err=>{alert("Invalid username & password");});
   }
 
+
+//Jsx Code
 return(<>
 
  <Paper id="loginBox" elevation={2}>

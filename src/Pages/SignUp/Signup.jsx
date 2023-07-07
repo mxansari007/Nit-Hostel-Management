@@ -12,11 +12,11 @@ import axios from 'axios';
 import Paper from '@mui/material/Paper';
 
 const Signup = () => {
- 
+ //state variables
 const [department, setdepartment] = useState('');
 const [year, setYear] = useState('');
 
-
+//intializing form
 const form = useForm({
     defaultValues:{
         rollNo:"",
@@ -31,16 +31,18 @@ const form = useForm({
     mode:'all'
 });
 
+
+//destructuring useform
 const {register,watch,getValues,handleSubmit,control,formState:{errors}} = form;
 
-
+//event handling
 const onSubmit = (data)=>{
    axios.post('https://hostelbackend-pqrk.onrender.com/signup',data)
    .then((res)=>{console.log(res.data);})
    .catch(err=>{console.log(err);});
 }
 
-
+//jsx code
 return (
     <div className="container">
     <Paper elevation={8}>
