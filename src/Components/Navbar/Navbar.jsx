@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from './assets/images/2.png';
 import './assets/css/Navbar.css';
 import LoginOptions from '../smallComponents/LoginOptions';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 
 
@@ -53,8 +53,9 @@ const Navbar=()=> {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" sx={{backgroundColor:'white'}}>
+      <Container maxWidth="100%" sx={{backgroundColor:'white'}}>
         <Toolbar disableGutters>
+          <Link className="logo-link" to="/">
         <div className='logo-container'>
           <div>
           <img src={logo} id="logo"/>
@@ -64,7 +65,7 @@ const Navbar=()=> {
           <p>Hostel Management System</p>
           </div>
           </div>
-
+          </Link>
           <div className='logo-container-small'>
           <div>
           <img src={logo} id="logo"/>

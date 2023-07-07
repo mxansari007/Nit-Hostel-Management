@@ -11,12 +11,13 @@ import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import { useDispatch } from 'react-redux';
 import {login} from '../../Store/Reducers/loginSlice';
-
+import { Alert } from '@mui/material';
 
 const Adminlogin =() =>{
   
   //state variables
   const [loading, setLoading] = React.useState(false);
+  const [errorMessage, setMessage] = useState(false);
   const [values,setValues] = useState({username:null,password:null});
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Adminlogin =() =>{
     console.log(res.data);
     dispatch(login());
     navigate('/Dashboard')})
-   .catch(err=>{alert("Invalid username & password");});
+   .catch(err=>{setLoading(false);setMessage(true);});
   }
 
 
@@ -50,7 +51,7 @@ const Adminlogin =() =>{
 return(<>
 
  <Paper id="loginBox" elevation={2}>
-      
+      {errorMessage?<Alert severity='error' onClose={() => {setMessage(false)}}>Incorrect Username or password</Alert>:null}
 <h2>Admin Login</h2>
 <FormControl>
 <TextField onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
