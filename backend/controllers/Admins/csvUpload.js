@@ -27,7 +27,7 @@ try {
       //?code to seperate insetpayload and update
       jsonObj.forEach((item,index)=>{
         const exists=alldb.some((student)=>{
-               return student.rollNo == item.rollNo;
+               return student.rollNo == item.rollNo || student.email == item.email;
         });
         if(exists){
             update.push(item);
