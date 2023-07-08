@@ -14,7 +14,7 @@ import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRound
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
 
-
+//global theme
 const theme = createTheme({
     typography:{
       fontFamily:['Montserrat','Ubuntu','Urbanist','Roboto'].join(',')
@@ -27,7 +27,7 @@ function DashBoard(){
 
 
 
-
+//jsx code
 return (<Container maxWidth="lg" sx={{mt:'100px'}}>
 <ThemeProvider theme={theme}>
 <Grid container spacing={2} >

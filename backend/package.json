@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
     "dotenv": "^16.3.1",
@@ -21,6 +22,7 @@
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "pdf-creator-node": "^2.3.5",
+    "serve-index": "^1.9.1",
     "validator": "^13.9.0"
   }
 }
