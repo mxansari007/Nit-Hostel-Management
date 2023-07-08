@@ -13,6 +13,7 @@ import UploadPage from  '../Pages/Dashboard/UploadPage/UploadPage';
 import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
 import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
+
 const Routing = () => {
 
 
