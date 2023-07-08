@@ -9,6 +9,8 @@ const {adminLogin} =require("../controllers/Admins/auth");
 const {studentSignup} =require("../controllers/Students/studentSignup");
 const {pdfDownload} =require("../controllers/pdf-download");
 
+
+
 var storage = multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,'./backend/public/uploads')
@@ -35,5 +37,8 @@ router.post('/csv',upload.single('file'), csvUpload);
 router.post('/pdfDownload',pdfDownload);
 //// view student data
 router.post('/viewStudentInfo',studentInfo);
+//// ftp server
+
+
 
 module.exports = router;
