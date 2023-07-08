@@ -3,6 +3,7 @@ const router =new express.Router();
 const multer  = require('multer');
 const path = require('path');
 
+
 const {studentInfo} =require("../controllers/Admins/studentInfo");
 const {csvUpload} =require("../controllers/Admins/csvUpload");
 const {jsonUpload} = require('../controllers/Admins/jsonUpload');
@@ -40,7 +41,7 @@ router.post('/jsonUpload',jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload',pdfDownload);
 //// view student data
-router.post('/viewStudentInfo',studentInfo);
+router.post('/viewStudentInfo',auth,studentInfo);
 
 
 
