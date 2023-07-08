@@ -64,7 +64,7 @@ return (<Container maxWidth="lg" sx={{mt:'100px'}}>
             <DropDown 
             names=
             {[
-                {value:'Allot Rooms',icon:<HowToRegRoundedIcon/>,place:''},
+                {value:'Allot Rooms',icon:<HowToRegRoundedIcon/>,place:'/allotrooms'},
                 {value:'Room Info',icon:<VisibilityIcon/>,place:''},
                 {value:'Upload Info',icon:<CloudUploadIcon/>,place:''}
                 ]}/ >
