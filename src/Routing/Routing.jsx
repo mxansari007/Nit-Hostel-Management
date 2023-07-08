@@ -11,8 +11,8 @@ const Signup = lazy(() => import ('../Pages/SignUp/Signup'));
 const Dashboard = lazy(() => import ('../Pages/Dashboard/Dashboard'));
 import UploadPage from  '../Pages/Dashboard/UploadPage/UploadPage';
 import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
-
-
+import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
+import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
 const Routing = () => {
 
 
@@ -28,6 +28,8 @@ const Routing = () => {
             <>
         <Routes>
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/viewcomplaints" element={<ViewComplaints />} />
+        <Route path="/allotrooms" element={<AllotRooms />} />
         <Route path='/uploadpage' element={<Suspense  fallback={<Loadingpage />}><UploadPage/></Suspense>}/>
         <Route path='/viewinfo' element={<Suspense  fallback={<Loadingpage />}><Viewinfo/></Suspense>}/>
         <Route path='/Dashboard' element={<Suspense  fallback={<Loadingpage />}><Dashboard /></Suspense>}/>
