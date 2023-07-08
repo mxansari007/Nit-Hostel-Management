@@ -14,7 +14,12 @@ exports.pdfDownload = async (req, res) => {
     var options = {
         format: "A4",
         orientation: "portrait",
-        border: "10mm"
+        border: "10mm",
+        childProcessOptions: {
+            env: {
+              OPENSSL_CONF: '/dev/null',
+            },
+          }
     };
     outputpdf=path.join(__dirname,`/pdfOutputs/${filename}`);
     var document = {
