@@ -5,6 +5,8 @@ const AllotRooms = ()=>{
     return <>
 
     <h1>Allot Rooms</h1>
+
+    
     </>
 }
 
