@@ -1,7 +1,7 @@
 const mongoose  = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "swnf23$tzv8545?[]qpxrsehttmjnhbgyhc3t7c";
+require("dotenv").config();
 const adminSchema=new mongoose.Schema({
     username:{
         type:String,
@@ -21,7 +21,9 @@ const adminSchema=new mongoose.Schema({
 
 adminSchema.methods.generateAuthToken =async function(next){
     try{
-       const token=jwt.sign({_id:this._id.toString()},JWT_SECRET);
+       const token=jwt.sign({_id:this._id.toString(),accountType: "admin"},process.env.JWT_SECRET,{
+        expiresIn: "1h",
+    });
        this.tokens=this.tokens.concat({token});
        await this.save();
        return token;
