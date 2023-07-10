@@ -18,6 +18,9 @@ app.use(express.urlencoded());
 
 app.use(cors());
 
+app.use(express.static('public'));
+app.use(require('./routes/index.jsx'));
+
 ////  we need to register the router
 app.use(router);
 
@@ -26,3 +29,4 @@ const port=process.env.PORT || 8000;
 app.listen(port,()=>{
     console.log("server is running at port "+ port );
 });
+

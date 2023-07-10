@@ -22,6 +22,7 @@
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "pdf-creator-node": "^2.3.5",
+    "serve-index": "^1.9.1",
     "validator": "^13.9.0"
   }
 }

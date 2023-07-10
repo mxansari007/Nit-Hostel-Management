@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const routes = require('../routers/routes')
 
-const auth = async (req, res, next) => {
+exports.auth = async (req, res, next) => {
   try {
     const token = req.cookies.jwtoken
 
@@ -17,4 +17,3 @@ const auth = async (req, res, next) => {
   }
 }
 
-module.exports = auth

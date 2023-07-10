@@ -14,7 +14,7 @@ import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRound
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
 
-
+//global theme
 const theme = createTheme({
     typography:{
       fontFamily:['Montserrat','Ubuntu','Urbanist','Roboto'].join(',')
@@ -27,7 +27,7 @@ function DashBoard(){
 
 
 
-
+//jsx code
 return (<Container maxWidth="lg" sx={{mt:'100px'}}>
 <ThemeProvider theme={theme}>
 <Grid container spacing={2} >
@@ -51,7 +51,7 @@ return (<Container maxWidth="lg" sx={{mt:'100px'}}>
             <DropDown 
             names=
             {[
-                {value:'View Complaints',icon:<VisibilityIcon/>,place:''},
+                {value:'View Complaints',icon:<VisibilityIcon/>,place:'/viewcomplaints'},
                 {value:'Download Complaints',icon:<SimCardDownloadRoundedIcon/>,place:''},
                 {value:'Edit Complaints',icon:<EditRoundedIcon/>,place:''}
                 ]}/ >
@@ -64,7 +64,7 @@ return (<Container maxWidth="lg" sx={{mt:'100px'}}>
             <DropDown 
             names=
             {[
-                {value:'Allot Rooms',icon:<HowToRegRoundedIcon/>,place:''},
+                {value:'Allot Rooms',icon:<HowToRegRoundedIcon/>,place:'/allotrooms'},
                 {value:'Room Info',icon:<VisibilityIcon/>,place:''},
                 {value:'Upload Info',icon:<CloudUploadIcon/>,place:''}
                 ]}/ >

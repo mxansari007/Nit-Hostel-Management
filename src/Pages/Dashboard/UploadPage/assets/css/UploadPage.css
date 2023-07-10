@@ -10,6 +10,7 @@
 .table{
     max-width: 1200px;
     margin: auto;
+    margin-top: 100px;
     padding:25px;
     
 }
@@ -24,4 +25,27 @@
 .table-heading{
     text-align: center;
     font-size: 1.5rem;
+}
+
+.Modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.modal-table{
+    max-width: 1200px;
+    background-color: antiquewhite;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.modifyButton{
+    max-width: 400px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }
