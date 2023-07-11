@@ -22,7 +22,7 @@ app.use(cors({
 }));
 
 app.use(express.static('public'));
-app.use(require('./routes/index.jsx'));
+// app.use(require('./routes/index.jsx'));
 
 ////  we need to register the router
 app.use(router);
