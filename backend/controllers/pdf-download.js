@@ -12,7 +12,7 @@ exports.pdfDownload = async (req, res) => {
     const html = fs.readFileSync(path.join(__dirname,`pdfTemplates/${jsonData.templateName}.html`), "utf8");
     const  filename=`${jsonData.rollNo}_${jsonData.name}.pdf`;
     var options = {
-        format: "A5",
+        format: "Letter",
         orientation: "portrait",
         border: "10mm",
         childProcessOptions: {
