@@ -38,7 +38,13 @@ const Adminlogin =() =>{
    function handleSubmit() {
     setLoading(true);
     console.log(import.meta.env.VITE_BASE_URL);
-    axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values)
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+        },
+        withCredentials: true
+      }
+    axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values,config)
    .then((res)=>{
     console.log(res.data);
     dispatch(login());

@@ -1,19 +1,29 @@
 const jwt = require('jsonwebtoken')
-const routes = require('../routers/routes')
-
+require("dotenv").config();
 exports.auth = async (req, res, next) => {
   try {
-    const token = req.cookies.jwtoken
+    //extract token
+    const token = req.Cookies.token 
+    || req.body.token;
 
+     //if token missing, then return response
+     console.log("in auth mid"+token);
+     if(!token) {
+      return res.status(404).send('TOken is missing');
+  }
+   try {
     const verifyUser = jwt.verify(
       token,
-      'swnf23$tzv8545?[]qpxrsehttmjnhbgyhc3t7c'
+      process.env.JWT_SECRET
     )
+    console.log(verifyUser);
+   } catch (error) {
+     return res.send("invalid token")
+   }
 
-    // console.log(verifyUser)
     next();
   } catch (error) {
-    res.status(401).send(error)
+     return res.status(401).send("auth me"+error);
   }
 }
 

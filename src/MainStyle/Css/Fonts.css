@@ -1,17 +1,21 @@
+*{
+    font-family: 'Nunito';
+}
+
 h1{
     font-family: 'Montserrat','Times New Roman', Times, serif;
-    font-weight: 700;
+    font-weight: 900;
     font-size:2rem;
 }
 
 h2{
-    font-family: 'Roboto';
-    font-weight: 500;
+    font-family: 'Urbanist';
+    font-weight: 600;
     font-size: 2rem;
 }
 
 p{
-    font-family: 'Urbanist';
+    font-family: 'Nunito';
     font-weight: 400;
 }
 
