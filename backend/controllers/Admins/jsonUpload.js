@@ -1,8 +1,6 @@
 const Student =require('../../models/students');
 const Profile = require('../../models/Profile');
 const BankDetails = require('../../models/BankDetails');
-const csv=require('csvtojson')
-const fs=require('fs');
 
 exports.jsonUpload = async (req,res)=>{
     

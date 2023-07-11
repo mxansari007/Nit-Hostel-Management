@@ -4,7 +4,6 @@ exports.studentInfo = async (req,res)=>{
     try {
         const {rollNo,firstName,lastName,department} = req.body;
         const payload = {};
-        console.log(rollNo);
         if(rollNo!='' && rollNo!=undefined){
             payload.rollNo=parseInt(rollNo, 10);
         }
