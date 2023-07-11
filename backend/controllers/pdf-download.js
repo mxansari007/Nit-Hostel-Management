@@ -12,7 +12,7 @@ exports.pdfDownload = async (req, res) => {
     const html = fs.readFileSync(path.join(__dirname,`pdfTemplates/${jsonData.templateName}.html`), "utf8");
     const  filename=`${jsonData.rollNo}_${jsonData.name}.pdf`;
     var options = {
-        format: "A4",
+        format: "A5",
         orientation: "portrait",
         border: "10mm",
         childProcessOptions: {
@@ -48,7 +48,7 @@ exports.pdfDownload = async (req, res) => {
                 }
                 res.setHeader('Content-Type', 'application/pdf');
                 res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-                res.send(file);
+                return res.send(file);
             });
 
         })

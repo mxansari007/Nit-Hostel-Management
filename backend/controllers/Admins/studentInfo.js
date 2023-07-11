@@ -19,8 +19,8 @@ exports.studentInfo = async (req,res)=>{
         console.log("payload: "+payload);
         const students = await Student.find(payload).exec();
         console.log("student"+students);
-        res.send(students);
+        return res.send(students);
       } catch (error) {
-        res.send(error.message);
+        return res.send(error.message);
       }
 };

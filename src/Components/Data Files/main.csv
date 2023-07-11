@@ -1,3 +1,4 @@
-rollNo,firstName,lastName,year,password,department,email
-52223434,deepak,sharma,4,njnj,MCA,kdkf@gmail.com
-52225134,deepak,sharma,4,njnj,MCA,jjdkf@hmail.com
+rollNo,firstName,lastName,year,password,department,email,gender,dateOfBirth,contactNumber,secondaryNumber,fatherName,fatherOccupation,motherName,motherOccupation,semester,bloodGroup,identificationMark,address,AccountHolderName,AccountNumber,BankName,IFSC
+52103434,deepak,sharma,4,njnj,MCA,kdkf@tmail.com,male,6-feb-2001,8295814295,,abc,cba,xyz,zxy,3,B+,none,kurukshetra,Deepak,2222,SBI,SBIN9292
+52293434,deepak,sharma,4,njnj,MCA,kdkf@bmail.com,male,6-feb-2001,8295814295,,abc,cba,fyz,zyf,3,B+,none,kurukshetra Haryana,Deepak,2222,SBI,SBIN9292
+
