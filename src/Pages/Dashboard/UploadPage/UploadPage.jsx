@@ -43,6 +43,7 @@ const UploadPage = ()=>{
     var files = document.getElementById('file_upload').files;
     if(files.length==0){
       setMessage(3);
+      setUploading(false);
       return;
     }
     var filename = files[0].name;
@@ -76,8 +77,6 @@ const UploadPage = ()=>{
           console.log(error);
         });
       
-    }else{
-        alert("Please select a valid csv file.");
     }
      
 }
@@ -96,6 +95,14 @@ const handleClose = ()=>{
 
 const modify = () => {
   setModifyLoading(true);
+
+  axios.post(import.meta.env.VITE_BASE_URL+ '/jsonUpload',newData).then((res)=>{
+    setModifyLoading(false);
+    console.log(res.data);
+  }).catch((err)=>{
+    console.log(err);
+  })
+
 }
 
 
