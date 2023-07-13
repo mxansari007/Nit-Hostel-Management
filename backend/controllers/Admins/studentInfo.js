@@ -17,10 +17,16 @@ exports.studentInfo = async (req,res)=>{
             payload.department=department;
         }
         console.log("payload: "+payload);
-        const students = await Student.find(payload).exec();
+        const students = await Student.find(payload).populate({
+            path:'Profile',
+            populate: {
+                path:'bankDetails',
+                model:'BankDetails'
+            }
+        }).exec();
         console.log("student"+students);
-        res.send(students);
+        return res.send(students);
       } catch (error) {
-        res.send(error.message);
+        return res.send(error.message);
       }
 };

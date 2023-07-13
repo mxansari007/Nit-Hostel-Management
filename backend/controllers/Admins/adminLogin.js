@@ -10,11 +10,12 @@ exports.adminLogin=async (req,res)=>{
         console.log("upto token"+token);
         console.log(isMatch);
         if(isMatch){
+            const options = {
+				expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+				httpOnly: true,
+			};
         // we are storing cookie in jwtoken and it will expires in 30days
-        res.cookie('jwtoken', token, {
-        expires: new Date(Date.now() + 25892000000),
-        httpOnly: true,
-      }).status(200).send(findAdmin);
+        res.cookie('token', token, options).status(200).send(findAdmin);
   
            
         }else{
