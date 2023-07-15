@@ -1,0 +1,59 @@
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+
+.photo{
+    width: 90px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+.all-info{
+    padding: 10px;
+}
+
+.sub-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Box{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+p{
+    padding:2px;
+}
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+    .Box{
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}
+
+
+@media screen and (max-width: 600px) {
+    .Box{
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .container{
+        width: 100%;
+        margin: auto;
+    }
+    
+}

@@ -16,9 +16,11 @@ import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
 import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
-import FileSaver from "file-saver";
-import fileDownloader from "js-file-download";
+import DownloadingButton from '../../../Components/smallComponents/DownloadingButton/DownloadingButton';
+import ViewInfoModal from "../../../Components/smallComponents/Modals/ViewInfoModal";
+
+
+
 //initial toggle state 
 const initialSearchState = {
   rollNo: false,
@@ -78,7 +80,8 @@ const Reducer = (state, action) => {
 
 
 
-export default function App() {
+export default function ViewInfo() {
+
   //using useForm hooks for state management of forms
     const form = useForm({
     defaultValues: {
@@ -93,10 +96,9 @@ export default function App() {
   const { register, handleSubmit, control,reset,formState:{errors} } = form;
   const [state, dispatch] = useReducer(Reducer, initialSearchState);
   const [jsonData, setData] = useState([]);
-  const tableHeads = ['Roll no','First Name','Last Name','Year','Password','Department','Email','Download'];
+  const tableHeads = ['Roll no','First Name','Last Name','Year','Department','Email','Download / View Info'];
   const [isFound,setFound] = useState(true);
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
-
 
 
   
@@ -186,7 +188,7 @@ export default function App() {
         </div>
         </div>
       </form>
-      <DevTool control={control} />
+
       
       
       {/* after search table */}
@@ -213,25 +215,12 @@ export default function App() {
               <TableCell align="right">{row.firstName}</TableCell>
               <TableCell align="right">{row.lastName}</TableCell>
               <TableCell align="right">{row.year}</TableCell>
-              <TableCell align="right">{row.password}</TableCell>
               <TableCell align="right">{row.department}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">    
-                <button onClick={
-                  ()=>{axios.post(import.meta.env.VITE_BASE_URL+ '/pdfDownload',{
-                        "templateName":"viewInfo",
-                        "name":row.firstName,
-                        "rollNo":row.rollNo,
-                        "firstName":row.firstName,
-                        "lastName":row.lastName,
-                        "year":row.year,
-                        "department":row.department,
-                        "email":row.email},{responseType:'arraybuffer'}).then((response)=>{
-                         console.log(response);
-                         fileDownloader(response.data, `${row.rollNo}_${row.firstName}.pdf`);
-
-                       }).catch((err)=>{console.log(err);})
-                        }}>Download</button>
+                <DownloadingButton row = {row} />
+                {/* <Button onClick={()=>{setLayout('fullscreen')}} size="small" sx={{ml:'5px'}} variant="contained">View info</Button> */}
+                 <ViewInfoModal row={row}/>
                   </TableCell>
             </TableRow>)
           })}

@@ -9,11 +9,16 @@ import './MainStyle/Css/Fonts.css';
 import './MainStyle/Css/Styles.css'
 import { Provider } from 'react-redux';
 import store from './Store/Store';
+
+
 //You can change global style from here
 const theme = createTheme({
     palette:{
       primary:{
-        main: teal[400]
+        main: teal[400],
+        light: teal[300],
+        dark: teal[600],
+        contrastText:teal[50]
       },
     },
 });
