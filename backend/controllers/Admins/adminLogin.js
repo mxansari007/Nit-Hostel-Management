@@ -15,13 +15,13 @@ exports.adminLogin=async (req,res)=>{
 				httpOnly: true,
 			};
         // we are storing cookie in jwtoken and it will expires in 30days
-        res.cookie('token', token, options).status(200).send(findAdmin);
+       return res.cookie('token', token, options).status(200).send(findAdmin);
   
            
         }else{
-            res.status(404).send("Invalid Username or Password");
+           return res.status(404).send("Invalid Username or Password");
         }
     } catch (error) {
-        res.status(404).send("Invalid Username "+error.message);
+      return res.status(404).send("Invalid Username "+error.message);
     }
 }
