@@ -1,7 +1,7 @@
 const express =require('express');
 const router =new express.Router();
 const multer  = require('multer');
-
+const path = require('path');
 
 const {studentInfo} =require("../controllers/Admins/studentInfo");
 const {csvUpload} =require("../controllers/Admins/csvUpload");
@@ -15,14 +15,14 @@ const {pdfDownload} =require("../controllers/pdf-download");
 
 var storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,'./backend/public/uploads')
+        cb(null,path.join(__dirname,'../public/uploads'))
     },
     filename:(req,file,cb)=>{
        cb(null,file.originalname);
     }
 });
 var upload = multer({storage:storage});
-
+console.log(path.join(__dirname,'../public/uploads'));
 //// student signup
 router.post('/signup',studentSignup);
 

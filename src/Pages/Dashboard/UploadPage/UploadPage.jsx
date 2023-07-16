@@ -74,6 +74,8 @@ const UploadPage = ()=>{
         })
         .catch((error) => {
           // handle errors
+          setUploading(false);
+          setMessage(5);
           console.log(error);
         });
       
@@ -127,6 +129,11 @@ const modify = () => {
 {message==4?<Alert onClose={()=>{setMessage(0)}} severity="error">
   <AlertTitle>Error</AlertTitle>
   No record selected— <strong>Please select a Record!</strong>
+</Alert>:null}
+
+{message==5?<Alert onClose={()=>{setMessage(0)}} severity="error">
+  <AlertTitle>Error</AlertTitle>
+  While Uploading File
 </Alert>:null}
 
     <div className="InputBox">
