@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import { useDispatch } from 'react-redux';
 import {login} from '../../Store/Reducers/loginSlice';
 import { Alert } from '@mui/material';
+import { useEffect } from 'react';
 
 const Adminlogin =() =>{
   
@@ -22,6 +23,8 @@ const Adminlogin =() =>{
   let navigate = useNavigate();
   const dispatch = useDispatch();
   
+
+
 
 //Event handlers
   function handleChange(event){
@@ -55,12 +58,12 @@ const Adminlogin =() =>{
 
 //Jsx Code
 return(<>
-
+{errorMessage?<Alert severity='error' onClose={() => {setMessage(false)}}>Incorrect Username or password</Alert>:null}
  <Paper id="loginBox" elevation={2}>
-      {errorMessage?<Alert severity='error' onClose={() => {setMessage(false)}}>Incorrect Username or password</Alert>:null}
+      
 <h2>Admin Login</h2>
 <FormControl>
-<TextField onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
+<TextField  onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
 <TextField onChange={handleChange} sx={{display:'block',my:'17px'}} name="password" id="outlined-basic" label="Password" type="password" variant="outlined"/>
 <LoadingButton className="Button"
           sx={{px:'25px',my:'17px',fontFamily:'Montserrat'}}
@@ -70,6 +73,7 @@ return(<>
           loadingPosition="end"
           variant="contained"
           type="submit"
+          
         >
           <span>Login</span>
         </LoadingButton>

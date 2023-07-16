@@ -1,5 +1,4 @@
 import './assets/ViewComplaints.css';
-
 const ViewComplaints =()=>{
 
     return <>
