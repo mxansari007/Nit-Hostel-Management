@@ -20,6 +20,7 @@ export default function ViewInfoModal(props) {
   const [loading, setLoading] = useState(false);
 
 
+  console.log(save.Profile.semester);
  const handleProfile = (e) =>{
   
   if(e.target.name == 'firstName'){
@@ -404,6 +405,8 @@ const saveToBackEnd = ()=>{
 
   setLoading(false);
   setVisible(false);
+
+  
 }
 
 

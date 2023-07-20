@@ -20,8 +20,6 @@ import { LoadingButton } from "@mui/lab";
 import {useForm} from 'react-hook-form';
 import { DevTool } from "@hookform/devtools";
 
-// modal style
-
 
 
 const UploadPage = ()=>{
