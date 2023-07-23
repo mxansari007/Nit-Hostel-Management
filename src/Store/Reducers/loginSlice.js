@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-
 export const loginSlice = createSlice({
     name:'isLoggedIn',
     initialState:{
@@ -15,6 +14,7 @@ export const loginSlice = createSlice({
         logout: (state) => {
             state.value = false
             localStorage.removeItem('userId');
+          
         }
     }
 })
