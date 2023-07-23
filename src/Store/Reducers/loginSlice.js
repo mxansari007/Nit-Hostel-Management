@@ -9,11 +9,11 @@ export const loginSlice = createSlice({
     reducers:{
         login:(state) =>{
             state.value = true
-            localStorage.setItem('userId',state.value);
+            // localStorage.setItem('userId',state.value);
         },
         logout: (state) => {
             state.value = false
-            localStorage.removeItem('userId');
+            // localStorage.removeItem('userId');
           
         }
     }
