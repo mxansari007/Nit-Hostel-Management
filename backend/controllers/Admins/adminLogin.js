@@ -14,9 +14,10 @@ exports.adminLogin=async (req,res)=>{
 				expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         // expires:10000,
 				httpOnly: true,
-                path: "/",
-                secure:true,
-                sameSite:'none'
+        path: "/",
+        sameSite:'none',
+        secure:true,
+        domain:'https://nit-hostel.onrender.com'
 			};
         // we are storing cookie in jwtoken and it will expires in 30days
         res.cookie('accessToken', token, options).status(200).send(token);
@@ -26,6 +27,6 @@ exports.adminLogin=async (req,res)=>{
             res.status(401).send("Invalid Username or Password");
         }
     } catch (error) {
-      return res.status(404).send("Invalid Username "+error.message);
+        res.status(404).send("Invalid Username "+error.message);
     }
 }
