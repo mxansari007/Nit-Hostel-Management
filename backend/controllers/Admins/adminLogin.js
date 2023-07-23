@@ -24,6 +24,6 @@ exports.adminLogin=async (req,res)=>{
             res.status(401).send("Invalid Username or Password");
         }
     } catch (error) {
-        res.status(404).send("Invalid Username "+error.message);
+      return res.status(404).send("Invalid Username "+error.message);
     }
 }
