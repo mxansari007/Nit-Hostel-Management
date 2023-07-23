@@ -17,12 +17,7 @@ import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
 const Routing = () => {
 
 
-
-
     const isLoggedIn = useSelector(state => state.isLoggedIn.value);
-    console.log(isLoggedIn);
-
-
 
     if(isLoggedIn){
         return(

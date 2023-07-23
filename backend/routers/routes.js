@@ -11,7 +11,7 @@ const {studentLogin} =require("../controllers/Students/studentLogin");
 const {adminLogin} =require("../controllers/Admins/adminLogin");
 const {studentSignup} =require("../controllers/Students/studentSignup");
 const {pdfDownload} =require("../controllers/pdf-download");
-
+const {auth} = require("../middlewares/auth");
 
 
 var storage = multer.diskStorage({
