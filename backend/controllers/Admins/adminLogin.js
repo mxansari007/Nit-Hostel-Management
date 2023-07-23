@@ -15,8 +15,7 @@ exports.adminLogin=async (req,res)=>{
 				httpOnly: true,
 			};
         // we are storing cookie in jwtoken and it will expires in 30days
-        //authToken
-        res.cookie('token', token, options).status(200).send(findAdmin);
+        res.cookie('token', token, options).status(200).send(token);
   
            
         }else{
