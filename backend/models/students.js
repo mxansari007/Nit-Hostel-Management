@@ -47,21 +47,12 @@ const studentSchema=new mongoose.Schema({
 		required: true,
 		ref: "Profile",
     },
-    tokens:[{
-        token:{
-            type:String,
-            required:true
-        }
-    }]
+    
 });
 
 studentSchema.methods.generateAuthToken =async function(next){
     try{
-       const token=jwt.sign({_id:this._id.toString(),accountType: "student"},process.env.JWT_SECRET,{
-        expiresIn: "1h",
-    });
-       this.tokens=this.tokens.concat({token});
-       await this.save();
+       const token=jwt.sign({_id:this._id.toString(),accountType: "student"},process.env.JWT_SECRET)
        return token;
     }catch(e){
           res.send("the error occurred"+error);

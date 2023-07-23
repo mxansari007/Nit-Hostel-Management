@@ -11,21 +11,12 @@ const adminSchema=new mongoose.Schema({
         type:String,
         required:true
     },  
-    tokens:[{
-        token:{
-            type:String,
-            required:true
-        }
-    }]
+   
 });
 
 adminSchema.methods.generateAuthToken =async function(next){
     try{
-       const token=jwt.sign({_id:this._id.toString(),accountType: "admin"},process.env.JWT_SECRET,{
-        expiresIn: "1h",
-    });
-       this.tokens=this.tokens.concat({token});
-       await this.save();
+       const token=jwt.sign({_id:this._id.toString(),accountType: "admin"},process.env.JWT_SECRET);
        return token;
     }catch(e){
           res.send("the error occurred"+error);
