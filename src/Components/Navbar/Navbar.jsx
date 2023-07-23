@@ -14,11 +14,12 @@ import './assets/css/Navbar.css';
 import LoginOptions from '../smallComponents/LoginOptions';
 import { useNavigate,Link } from 'react-router-dom';
 
-
+import {useSelector} from 'react-redux';
 
 
 const pages = ['Home', 'Contact Us', 'About'];
 
+const isLoggedIn = useSelector(state => state.isLoggedIn.value);
 
 const Navbar=()=> {
 
@@ -128,7 +129,7 @@ const Navbar=()=> {
               </Button>
             ))}
           </Box>
-         {localStorage.getItem('userId')?<LoginOptions/>:null}
+         {isLoggedIn?<LoginOptions/>:null}
         </Toolbar>
       </Container>
     </AppBar>

@@ -15,9 +15,7 @@ exports.adminLogin=async (req,res)=>{
         // expires:10000,
 				httpOnly: true,
         path: "/",
-        sameSite:'none',
-        secure:true,
-        domain:'https://nit-hostel.onrender.com'
+
 			};
         // we are storing cookie in jwtoken and it will expires in 30days
         res.cookie('accessToken', token, options).status(200).send(token);
