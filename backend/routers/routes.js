@@ -42,7 +42,7 @@ router.post('/jsonUpload',jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload',pdfDownload);
 //// view student data
-router.post('/viewStudentInfo',auth,studentInfo);
+router.post('/viewStudentInfo',studentInfo);
 
 
 
