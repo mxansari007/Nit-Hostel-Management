@@ -58,6 +58,7 @@ const UploadPage = ()=>{
             "x-rapidapi-host": "file-upload8.p.rapidapi.com",
             "x-rapidapi-key": "af582c969cmshc0186c63f1e9d28p10fbf5jsn1a1c05604d94",
           },
+          withCredentials:true
         })
         .then((response) => {
       // handle the response
@@ -96,7 +97,9 @@ const handleClose = ()=>{
 const modify = () => {
   setModifyLoading(true);
 
-  axios.post(import.meta.env.VITE_BASE_URL+ '/jsonUpload',newData).then((res)=>{
+  axios.post(import.meta.env.VITE_BASE_URL+ '/jsonUpload',newData,{
+    withCredentials:true,
+  }).then((res)=>{
     setModifyLoading(false);
     console.log(res.data);
   }).catch((err)=>{

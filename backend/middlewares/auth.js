@@ -3,17 +3,11 @@ require("dotenv").config();
 exports.auth = async (req, res, next) => {
   try {
     //extract token
-   const {authorization} = res.headers
-   if(!authorization) {
-    return res.status(401).send('Authorization token is req')
+   const token = req.cookies.accessToken
+   if(!token){
+    return res.status(401).send('Token is missing');
    }
-   const token = authorization.split(' ')[1]
 
-     //if token missing, then return response
-     console.log("in auth mid"+token);
-     if(!token) {
-      return res.status(404).send('Token is missing');
-  }
    try {
     const verifyUser = jwt.verify(
       token,

@@ -115,7 +115,9 @@ export default function ViewInfo() {
     console.log(data);
     
     //place your axios here
-    axios.post(import.meta.env.VITE_BASE_URL+'/viewStudentInfo',data)
+    axios.post(import.meta.env.VITE_BASE_URL+'/viewStudentInfo',data,{
+      withCredentials: true,
+    })
     .then((res)=>{console.log(res.data);
         setData(res.data);
         if(res.data.length === 0){
