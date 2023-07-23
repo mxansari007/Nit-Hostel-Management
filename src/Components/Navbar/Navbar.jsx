@@ -19,11 +19,11 @@ import {useSelector} from 'react-redux';
 
 const pages = ['Home', 'Contact Us', 'About'];
 
-const isLoggedIn = useSelector(state => state.isLoggedIn.value);
+
 
 const Navbar=()=> {
 
-  
+  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();
 
