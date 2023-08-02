@@ -7,13 +7,13 @@ export const loginSlice = createSlice({
         tokken:null,
     },
     reducers:{
-        login:(state,action) =>{
+        login:(state) =>{
             state.value = true
-            localStorage.setItem('userTokken',action.payload);
+            localStorage.setItem('localLogin',true);
         },
         logout: (state) => {
             state.value = false
-            localStorage.removeItem('userTokken');
+            localStorage.removeItem('localLogin');
           
         }
     }

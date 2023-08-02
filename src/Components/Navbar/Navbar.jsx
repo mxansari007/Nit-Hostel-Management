@@ -22,7 +22,7 @@ const pages = ['Home', 'Contact Us', 'About'];
 
 const Navbar=()=> {
 
-  const tokken = localStorage.getItem('userTokken');
+  const localLogin = localStorage.getItem('localLogin');
   
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();
@@ -129,7 +129,7 @@ const Navbar=()=> {
               </Button>
             ))}
           </Box>
-         {tokken?<LoginOptions/>:null}
+         {localLogin?<LoginOptions/>:null}
         </Toolbar>
       </Container>
     </AppBar>
