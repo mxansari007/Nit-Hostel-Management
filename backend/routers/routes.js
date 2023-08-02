@@ -46,10 +46,10 @@ router.post('/viewStudentInfo',auth,studentInfo);
 
 //// controllers  for  allot room
 
-router.addRooms('/addRooms',addRooms);
+// router.addRooms('/addRooms',addRooms);
 
-//*  get count 
-router.get('/getCount',auth,getCount);
-router.post('/roomsSearch',auth,roomsSearch);
+// //*  get count 
+// router.get('/getCount',auth,getCount);
+// router.post('/roomsSearch',auth,roomsSearch);
 
 module.exports = router;
