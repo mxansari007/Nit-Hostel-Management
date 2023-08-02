@@ -4,14 +4,14 @@
 
 h1{
     font-family: 'Montserrat','Times New Roman', Times, serif;
-    font-weight: 900;
-    font-size:2rem;
+    font-weight: 700;
+    font-size:1.5rem;
 }
 
 h2{
     font-family: 'Urbanist';
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 p{
@@ -20,17 +20,17 @@ p{
 }
 
 
-@media screen and (max-width:570px) {
+@media screen and (max-width:768px) {
     h1{
-       
+        font-size: 1rem;
     }
     
     h2{
-       font-size: 1.5;
+       font-size: 1rem;
     }
     
     p{
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
     
     

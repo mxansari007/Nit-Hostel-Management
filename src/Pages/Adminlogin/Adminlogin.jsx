@@ -49,8 +49,7 @@ const Adminlogin =() =>{
       }
     axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values,config)
    .then((res)=>{
-    console.log(res.data);
-    dispatch(login());
+    dispatch(login(res.data));
     navigate('/Dashboard')})
    .catch(err=>{setLoading(false);setMessage(true);});
   }

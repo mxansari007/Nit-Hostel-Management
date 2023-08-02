@@ -25,47 +25,28 @@ export default function ViewInfoModal(props) {
   
   if(e.target.name == 'firstName'){
     temp = {firstName:e.target.value,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
-                  department:props.row.department,
-                  email:props.row.email,
-                  Profile:props.row.Profile
+                ...save
                 }
               }
     else if(e.target.name == 'lastName'){
-      temp = {firstName:props.row.firstName,
+      temp = {  ...save,
                     lastName:e.target.value,
-                    rollNo:props.row.rollNo,
-                    department:props.row.department,
-                    email:props.row.email,
-                    Profile:props.row.Profile
                   }
                 }
   else if(e.target.name == 'rollNo'){
-    temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
+    temp = {      ...save,
                   rollNo:e.target.value,
-                  department:props.row.department,
-                  email:props.row.email,
-                  Profile:props.row.Profile
         }
   }
   else if(e.target.name == 'department'){
-     temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
+     temp = {     ...save,
                   department:e.target.value,
-                  email:props.row.email,
-                  Profile:props.row.Profile
                 }
               }
   else if(e.target.name == 'email'){
-    temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
-                  department:props.row.department,
+    temp = {      ...save,
                   email:e.target.value,
-                  Profile:props.row.Profile
+
                 }
   }
 
@@ -73,25 +54,11 @@ export default function ViewInfoModal(props) {
 
 const handleAd = (e) =>{
   if(e.target.name == 'semester'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
       Profile:{
         semester:e.target.value,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
-      }
+      },
+      ...save
     }
   }else if(e.target.name == 'gender'){
     temp = {firstName:props.row.firstName,

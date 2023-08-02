@@ -18,13 +18,11 @@ const Routing = () => {
 
 
 
-
     const isLoggedIn = useSelector(state => state.isLoggedIn.value);
-    console.log(isLoggedIn);
+    const tokken = localStorage.getItem('userTokken');
 
 
-
-    if(isLoggedIn||localStorage.getItem('userId')){
+    if(isLoggedIn||tokken){
         return(
             <>
         <Routes>
