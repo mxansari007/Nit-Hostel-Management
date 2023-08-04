@@ -106,7 +106,7 @@ const onSubmit = (data)=>{
       <TextField error={errors.contactNumber} name="contactNumber" size="small" {...register("contactNumber",{required:true})} variant='outlined' label="Contact"/>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.secondaryNumber} size="small" {...register("secondaryNumber",{required:true})} variant='outlined' label="Secondary Contact"/>
+      <TextField size="small" {...register("secondaryNumber")} variant='outlined' label="Secondary Contact"/>
     </div>
     <div style={{margin:'auto'}}>
       <TextField error={errors.address} size="small" {...register("address",{required:true})} variant='outlined' label="Address"/>

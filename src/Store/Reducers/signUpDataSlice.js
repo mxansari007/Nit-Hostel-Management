@@ -9,7 +9,7 @@ export const signUpDataSlice = createSlice({
 
     reducers:{
         setProfile:(state,action)=>{
-            state.data ={...action.payload,...state.data};
+            state.data ={...state.data,...action.payload};
             // delete state.data.confirm;
             console.log(state.data);
         },

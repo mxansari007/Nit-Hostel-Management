@@ -5,12 +5,16 @@ import { useSelector,useDispatch } from 'react-redux';
 import {useForm} from 'react-hook-form';
 import { setProfile } from '../../Store/Reducers/signUpDataSlice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Step3 = ()=>{
 
     const count = useSelector(state => state.signupProgress.count);
     const formData = useSelector(state =>state.signUpData.data);
     const Dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const form = useForm({
         defaultValues:{
             AccountHolderName:"",
@@ -35,6 +39,7 @@ const Step3 = ()=>{
             axios.post(import.meta.env.VITE_BASE_URL+ '/studentSignup',formData,config)
             .then(res=>{
                 console.log(true);
+                // navigate('/student')
             }).catch(err=>{
                 console.log(err);
             });

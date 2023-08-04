@@ -1,6 +1,6 @@
 const Profile = require("../../models/Profile");
 const Student = require("../../models/students");
-const BankDetails = require("../../models/BankDetails");
+const BankDetail = require("../../models/BankDetails");
 exports.studentSignup = async (req, res) => {
     try {
         // console.log(req.body);
@@ -10,7 +10,7 @@ exports.studentSignup = async (req, res) => {
             motherName, motherOccupation, semester, bloodGroup,
             identificationMark, address, AccountHolderName, AccountNumber, BankName, IFSC } = req.body;
 
-        const bankDetails = new BankDetails({
+        const bankDetails = new BankDetail({
             AccountHolderName,
             AccountNumber,
             BankName,
