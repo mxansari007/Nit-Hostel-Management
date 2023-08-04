@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginSlice from './Reducers/loginSlice';
-
+import signupSlice from "./Reducers/signupSlice";
+import signUpDataSlice from "./Reducers/signUpDataSlice";
 export default configureStore({
 
     reducer:{
-       isLoggedIn : loginSlice
+       isLoggedIn : loginSlice,
+       signupProgress:signupSlice,
+       signUpData: signUpDataSlice
     }
 })
