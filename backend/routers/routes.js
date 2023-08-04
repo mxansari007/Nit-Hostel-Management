@@ -48,7 +48,7 @@ router.post('/viewStudentInfo', auth, studentInfo);
 
 // router.addRooms('/addRooms',addRooms);
 
-//*  get count 
+// //*  get count 
 // router.get('/getCount',auth,getCount);
 // router.post('/roomsSearch',auth,roomsSearch);
 
