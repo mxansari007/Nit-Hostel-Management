@@ -1,53 +1,53 @@
-const mongoose  = require('mongoose');
+const mongoose = require('mongoose');
 const validator = require('validator');
-const ProfileSchema=new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
     gender: {
-		type: String,
-	},
-	dateOfBirth: {
-		type: String,
-	},
-	contactNumber: {
-		type: Number,
-		trim: true,
-	},
-    secondaryNumber:{
+        type: String,
+    },
+    dateOfBirth: {
+        type: String,
+    },
+    contactNumber: {
+        type: Number,
+        trim: true,
+    },
+    secondaryNumber: {
         type: Number,
     },
-    fatherName:{
+    fatherName: {
         type: String,
     },
-    fatherOccupation:{
+    fatherOccupation: {
         type: String,
     },
-    motherName:{
+    motherName: {
         type: String,
     },
-    motherOccupation:{
+    motherOccupation: {
         type: String,
     },
-    semester:{
-        type:Number
+    semester: {
+        type: Number
     },
-    bloodGroup:{
+    bloodGroup: {
         type: String,
     },
-    identificationMark:{
+    identificationMark: {
         type: String,
     }
     ,
-    address:{
+    address: {
         type: String,
     },
-    bankDetails:{
+    bankDetails: {
         type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: "BankDetails",
+        required: true,
+        ref: "BankDetails",
     }
 });
 
 //! we will create a new collection
-const Profile = new mongoose.model('Profile',ProfileSchema);
+const Profile = new mongoose.model('Profile', ProfileSchema);
 
 
 module.exports = Profile;
