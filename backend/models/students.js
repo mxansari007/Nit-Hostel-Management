@@ -52,7 +52,9 @@ const studentSchema = new mongoose.Schema({
         ref: "Rooms",
     },
 
-});
+},
+    { timestamps: true }
+);
 
 studentSchema.methods.generateAuthToken = async function (next) {
     try {

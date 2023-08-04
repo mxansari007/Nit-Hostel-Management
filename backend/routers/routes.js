@@ -12,7 +12,7 @@ const { adminLogin } = require("../controllers/Admins/adminLogin");
 const { studentSignup } = require("../controllers/Students/studentSignup");
 const { pdfDownload } = require("../controllers/pdf-download");
 const { auth } = require("../middlewares/auth");
-
+const { getCount } = require("../controllers/Admins/Rooms/getCount");
 
 
 var storage = multer.diskStorage({
@@ -46,10 +46,10 @@ router.post('/viewStudentInfo', auth, studentInfo);
 
 //// controllers  for  allot room
 
-// router.addRooms('/addRooms',addRooms);
+
 
 // //*  get count 
-// router.get('/getCount',auth,getCount);
+// router.get('/getCount', getCount);
 // router.post('/roomsSearch',auth,roomsSearch);
 
 module.exports = router;
