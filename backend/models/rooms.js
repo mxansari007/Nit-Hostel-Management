@@ -1,31 +1,29 @@
-const mongoose  = require('mongoose');
+const mongoose = require('mongoose');
 
-const roomSchema=new mongoose.Schema({
-    roomNo:{
-        type:Number,
-        required:true
-    },    
-    floorNo:{
-        type:Number
+const roomSchema = new mongoose.Schema({
+    roomNo: {
+        type: Number,
+        required: true,
+        unique: true
     },
-    HostelNo:{
-      type:Number
+    floorNo: {
+        type: Number
     },
-    occupants:{
-        type:Number
+    occupants: {
+        type: Number
     },
-    status:{
-         type:String
+    status: {
+        type: String
     },
-    students:[{
+    students: [{
         type: mongoose.Schema.Types.ObjectId,
-		ref: "Student",
+        ref: "Student",
     }],
 });
 
 
 //! we will create a new collection
-const Rooms = new mongoose.model('Rooms',roomSchema);
+const Rooms = new mongoose.model('Rooms', roomSchema);
 
 
 module.exports = Rooms;

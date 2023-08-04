@@ -1,5 +1,6 @@
 const Profile = require("../../models/Profile");
 const Student = require("../../models/students");
+const BankDetails = require("../../models/BankDetails");
 exports.studentSignup = async (req, res) => {
     try {
         // console.log(req.body);
@@ -7,16 +8,27 @@ exports.studentSignup = async (req, res) => {
             gender, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
-            identificationMark, address, bankDetails } = req.body;
+            identificationMark, address, AccountHolderName, AccountNumber, BankName, IFSC } = req.body;
+
+        const bankDetails = new BankDetails({
+            AccountHolderName,
+            AccountNumber,
+            BankName,
+            IFSC
+        })
+
+        await bankDetails.save();
 
         const profile = new Profile({
             gender, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
-            identificationMark, address, bankDetails
+            identificationMark, address, bankDetails: bankDetails._id
         })
         // console.log(profile)
         await profile.save();
+
+
 
 
         const user = new Student({
@@ -27,7 +39,8 @@ exports.studentSignup = async (req, res) => {
             password,
             department,
             email,
-            Profile: profile._id
+            Profile: profile._id,
+
         });
 
         // console.log(user)
