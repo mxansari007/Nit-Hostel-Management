@@ -4,11 +4,12 @@ import {prev,next} from '../../Store/Reducers/signupSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import {useForm} from 'react-hook-form';
 import { setProfile } from '../../Store/Reducers/signUpDataSlice';
-
+import axios from 'axios';
 
 const Step3 = ()=>{
 
     const count = useSelector(state => state.signupProgress.count);
+    const formData = useSelector(state =>state.signUpData.data);
     const Dispatch = useDispatch();
     const form = useForm({
         defaultValues:{
@@ -25,6 +26,18 @@ const Step3 = ()=>{
     const onSubmit = (data)=>{
         if(isValid){
             Dispatch(setProfile(data));
+            const config = {
+              headers: {
+                "Content-Type": "application/json"
+                },
+                withCredentials: true
+              }
+            axios.post(import.meta.env.VITE_BASE_URL+ '/studentSignup',formData,config)
+            .then(res=>{
+                console.log(true);
+            }).catch(err=>{
+                console.log(err);
+            });
         }
     }
 

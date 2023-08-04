@@ -13,12 +13,6 @@ export const signUpDataSlice = createSlice({
             // delete state.data.confirm;
             console.log(state.data);
         },
-
-        setAdditional:(state,action)=>{
-            state.data = {...action.payload,...state.data};
-                console.log(state.data);
-        }
-        
     }
 });
 
