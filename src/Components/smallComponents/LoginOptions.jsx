@@ -55,7 +55,6 @@ export default function LoginOptions(){
             <MenuItem  key={setting}  onClick={()=>{
                    setAnchorElUser(null);
                     if(setting==='Logout'){
-             
                       dispatch(logout());
                       Navigate('/');
                     }
