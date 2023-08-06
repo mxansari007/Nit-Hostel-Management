@@ -9,7 +9,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import { setProfile } from '../../Store/Reducers/signUpDataSlice';
+import { setAdditional } from '../../Store/Reducers/signUpDataSlice';
 // import AdapterDateFns from '@mui/lab/AdapterDateFns'; 
 
 const Step2 = ()=>{
@@ -46,7 +46,7 @@ const onSubmit = (data)=>{
   console.log(isValid);
   console.log(data);
   if(isValid){
-    Dispatch(setProfile(data));
+    Dispatch(setAdditional(data));
     Dispatch(next());
   }
 }

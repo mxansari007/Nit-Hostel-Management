@@ -9,7 +9,7 @@ const roomSchema = new mongoose.Schema({
     floorNo: {
         type: Number
     },
-    occupants: {
+    occupancy: {
         type: Number
     },
     status: {

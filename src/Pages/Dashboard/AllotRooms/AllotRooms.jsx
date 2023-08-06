@@ -2,44 +2,85 @@ import { TextField,Button } from '@mui/material';
 import './assets/AllotRooms.css';
 import {useRef} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import ViewDetails from './ViewDetails.jsx';
+import ActionAllot from './ActionAllot';
+
 
 const columns = [
-  { field: 'id', headerName: 'Room No', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'roomNo', headerName: 'Room No', width: 70 },
+  { field: 'floorNo', headerName: 'Floor No', width: 70 },
+  { 
+    field: 'student1', 
+    headerName: 'Student #1', 
+    width: 130,
+    valueGetter:(params) =>{
+      if(params.row.students.length == 2){
+        return `${params.row.students[0]}`;
+      }
+    }
+   },
+  { 
+    field: 'student2', 
+    headerName: 'Student #2', 
+    width: 130,
+    valueGetter:(params) =>{
+      if(params.row.students.length == 2){
+        return `${params.row.students[1]}`;
+      }
+    }
+  },
+  { field: 'student3', 
+    headerName: 'Student #3', 
+    width: 130,
+    valueGetter:(params) =>{
+      if(params.row.students.length == 2){
+        return '-';
+      }
+    }
+  },
   {
-    field: 'age',
-    headerName: 'Age',
+    field: 'occupancy',
+    headerName: 'Occupancy',
     type: 'number',
     width: 90,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
+    field: 'status',
+    headerName: 'Status',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    width: 80,
   },
+  {
+    field: "Allot",
+    headerName: "Allot Rooms",
+    sortable: false,
+    renderCell: ({ row }) =>
+    <ActionAllot row={row} />
+  },
+  {
+    field: "viewDetails",
+    headerName: "View Details",
+    width: 160,
+    sortable: false,
+    renderCell: ({ row }) =>
+          <ViewDetails row={row} />
+  }
+
 ];
 
 const rows = [
-  { id: 215, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { roomNo: 215, students:['Maaz Ansari','Aqib Hussain'], floorNo: 1, occupancy:2,status:'full'},
+  { roomNo: 227, students:['Ritik Sharma','Vaibhav Bhalla'], floorNo: 1, occupancy:3,status:'unfilled'},
+  { roomNo: 606, students:['Rishi','Adii'], floorNo: 5, occupancy:2,status:'full'},
+  
 ];
 
 
 
 
 const AllotRooms = ()=>{
+
 
 
 return (<>
@@ -75,7 +116,7 @@ return (<>
         <div className='floor-search'>
         <p style={{display:'inline'}}>Floor No: </p>
             <TextField variant='outlined' size="small" label='Floor Search'/>
-            <Button sx={{ml:'7px'}} variant='contained'>Search</Button>
+            <Button  sx={{ml:'7px'}} variant='contained'>Search</Button>
         </div>
 
     </div>
@@ -84,6 +125,7 @@ return (<>
 <div className='table-area'>
   <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          getRowId={(row) => row.roomNo}
           rows={rows}
           columns={columns}
           initialState={{

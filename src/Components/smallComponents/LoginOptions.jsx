@@ -57,6 +57,7 @@ export default function LoginOptions(){
                     if(setting==='Logout'){
                       dispatch(logout());
                       Navigate('/');
+                      
                     }
             }} name={setting}>
               <Typography  textAlign="center">{setting}</Typography>

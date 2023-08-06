@@ -62,7 +62,7 @@
 
 .table-area{
     width:80%;
-    margin: auto;
+    margin:45px auto 25px;
 }
 
 @media screen and (max-width: 1024px) {
