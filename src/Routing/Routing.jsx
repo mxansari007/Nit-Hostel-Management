@@ -2,8 +2,6 @@ import {lazy, Suspense} from 'react';
 import Adminlogin from '../Pages/Adminlogin/Adminlogin';
 import {Navigate, Route,Routes} from 'react-router-dom';
 import Loadingpage from '../Components/smallComponents/Loadingpage/Loadingpage';
-import { useSelector} from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import NotLoggedIn from '../Pages/NotLoggedIn/NotLoggedIn';
 import PageNotFound from '../Pages/PageNotFound/PageNotFound';
 const Studentlogin = lazy(() => import ('../Pages/StudentLogin/Studentlogin'));
@@ -13,18 +11,14 @@ import UploadPage from  '../Pages/Dashboard/UploadPage/UploadPage';
 import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
 import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
+import { useSelector } from 'react-redux';
 
 const Routing = () => {
-
-
-
-
     const isLoggedIn = useSelector(state => state.isLoggedIn.value);
-    console.log(isLoggedIn);
+    const localLogin = localStorage.getItem('localLogin');
 
 
-
-    if(isLoggedIn||localStorage.getItem('userId')){
+    if(isLoggedIn){
         return(
             <>
         <Routes>

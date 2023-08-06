@@ -5,9 +5,9 @@ import {useSelector} from 'react-redux';
 
 const PageNotFound = function() {
 
-  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
+const localLogin = localStorage.getItem('localLogin');
 
-  if(isLoggedIn){
+  if(localLogin){
   return (
     <div>
       <Navigate to="/Dashboard" replace/>

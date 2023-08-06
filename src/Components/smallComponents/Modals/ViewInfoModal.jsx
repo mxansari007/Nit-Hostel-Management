@@ -25,47 +25,28 @@ export default function ViewInfoModal(props) {
   
   if(e.target.name == 'firstName'){
     temp = {firstName:e.target.value,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
-                  department:props.row.department,
-                  email:props.row.email,
-                  Profile:props.row.Profile
+                ...save
                 }
               }
     else if(e.target.name == 'lastName'){
-      temp = {firstName:props.row.firstName,
+      temp = {  ...save,
                     lastName:e.target.value,
-                    rollNo:props.row.rollNo,
-                    department:props.row.department,
-                    email:props.row.email,
-                    Profile:props.row.Profile
                   }
                 }
   else if(e.target.name == 'rollNo'){
-    temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
+    temp = {      ...save,
                   rollNo:e.target.value,
-                  department:props.row.department,
-                  email:props.row.email,
-                  Profile:props.row.Profile
         }
   }
   else if(e.target.name == 'department'){
-     temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
+     temp = {     ...save,
                   department:e.target.value,
-                  email:props.row.email,
-                  Profile:props.row.Profile
                 }
               }
   else if(e.target.name == 'email'){
-    temp = {firstName:props.row.firstName,
-                  lastName:props.row.lastName,
-                  rollNo:props.row.rollNo,
-                  department:props.row.department,
+    temp = {      ...save,
                   email:e.target.value,
-                  Profile:props.row.Profile
+
                 }
   }
 
@@ -73,327 +54,127 @@ export default function ViewInfoModal(props) {
 
 const handleAd = (e) =>{
   if(e.target.name == 'semester'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
+        ...save.Profile,
         semester:e.target.value,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
-      }
+
+      },
+      
     }
   }else if(e.target.name == 'gender'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:e.target.value,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
+          ...save.Profile,
+          gender:e.target.value,
       }}
   }else if(e.target.name == 'dob'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
+        ...save.Profile,
         dateOfBirth:e.target.value,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'contact'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
+        ...save.Profile,
         contactNumber:e.target.value,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 's-contact'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
+        ...save.Profile,
         secondaryNumber:e.target.value,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'fatherName'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
+        ...save.Profile,
         fatherName:e.target.value,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'fatherOccu'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
+        ...save.Profile,
         fatherOccupation:e.target.value,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'motherName'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
+        ...save.Profile,
         motherName: e.target.value,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'motherOccu'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
+        ...save.Profile,
         motherOccupation:e.target.value,
-        bloodGroup: props.row.Profile.bloodGroup,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'bloodGroup'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
+        ...save.Profile,
         bloodGroup: e.target.value,
-        identificationMark: props.row.Profile.identificationMark,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }else if(e.target.name == 'idMark'){
-    temp = {firstName:props.row.firstName,
-      lastName:props.row.lastName,
-      rollNo:props.row.rollNo,
-      department:e.target.value,
-      email:props.row.email,
+    temp = {
+      ...save,
       Profile:{
-        semester:props.row.Profile.semester,
-        gender:props.row.Profile.gender,
-        dateOfBirth:props.row.Profile.dateOfBirth,
-        contactNumber:props.row.Profile.contactNumber,
-        secondaryNumber:props.row.Profile.secondaryNumber,
-        fatherName:props.row.Profile.fatherName,
-        fatherOccupation:props.row.Profile.fatherOccupation,
-        motherName: props.row.Profile.motherName,
-        motherOccupation: props.row.Profile.motherOccupation,
-        bloodGroup: props.row.Profile.bloodGroup,
+        ...save.Profile,
         identificationMark: e.target.value,
-        bankDetails:props.row.Profile.bankDetails
       }}
   }
 }
 
 const handleBank = (e)=>{
     if(e.target.name == 'achn'){
-      temp = {firstName:props.row.firstName,
-        lastName:props.row.lastName,
-        rollNo:props.row.rollNo,
-        department:e.target.value,
-        email:props.row.email,
+      temp = {
+        ...save,
         Profile:{
-          semester:props.row.Profile.semester,
-          gender:props.row.Profile.gender,
-          dateOfBirth:props.row.Profile.dateOfBirth,
-          contactNumber:props.row.Profile.contactNumber,
-          secondaryNumber:props.row.Profile.secondaryNumber,
-          fatherName:props.row.Profile.fatherName,
-          fatherOccupation:props.row.Profile.fatherOccupation,
-          motherName: props.row.Profile.motherName,
-          motherOccupation: props.row.Profile.motherOccupation,
-          bloodGroup: props.row.Profile.bloodGroup,
-          identificationMark: e.target.value,
+          ...save.Profile,
           bankDetails:{
+            ...save.Profile.bankDetails,
             AccountHolderName:e.target.value,
-            AccountNumber:props.row.Profile.bankDetails.AccountNumber,
-            BankName:props.row.Profile.bankDetails.BankName,
-            IFSC:props.row.Profile.bankDetails.IFSC
           }
         }}
     }else if(e.target.name == 'acn'){
-      temp = {firstName:props.row.firstName,
-        lastName:props.row.lastName,
-        rollNo:props.row.rollNo,
-        department:e.target.value,
-        email:props.row.email,
+      temp = { 
+        ...save,
         Profile:{
-          semester:props.row.Profile.semester,
-          gender:props.row.Profile.gender,
-          dateOfBirth:props.row.Profile.dateOfBirth,
-          contactNumber:props.row.Profile.contactNumber,
-          secondaryNumber:props.row.Profile.secondaryNumber,
-          fatherName:props.row.Profile.fatherName,
-          fatherOccupation:props.row.Profile.fatherOccupation,
-          motherName: props.row.Profile.motherName,
-          motherOccupation: props.row.Profile.motherOccupation,
-          bloodGroup: props.row.Profile.bloodGroup,
-          identificationMark: e.target.value,
+          ...save.Profile,
           bankDetails:{
-            AccountHolderName:props.row.Profile.bankDetails.AccountHolderName,
+            ...save.Profile.bankDetails,
             AccountNumber:e.target.value,
-            BankName:props.row.Profile.bankDetails.BankName,
-            IFSC:props.row.Profile.bankDetails.IFSC
           }
         }}
     }else if(e.target.name == 'bn'){
-      temp = {firstName:props.row.firstName,
-        lastName:props.row.lastName,
-        rollNo:props.row.rollNo,
-        department:e.target.value,
-        email:props.row.email,
+      temp = {
+        ...save,
         Profile:{
-          semester:props.row.Profile.semester,
-          gender:props.row.Profile.gender,
-          dateOfBirth:props.row.Profile.dateOfBirth,
-          contactNumber:props.row.Profile.contactNumber,
-          secondaryNumber:props.row.Profile.secondaryNumber,
-          fatherName:props.row.Profile.fatherName,
-          fatherOccupation:props.row.Profile.fatherOccupation,
-          motherName: props.row.Profile.motherName,
-          motherOccupation: props.row.Profile.motherOccupation,
-          bloodGroup: props.row.Profile.bloodGroup,
-          identificationMark: e.target.value,
+          ...save.Profile,
           bankDetails:{
-            AccountHolderName:props.row.Profile.bankDetails.AccountHolderName,
-            AccountNumber:props.row.Profile.bankDetails.AccountNumber,
+            ...save.Profile.bankDetails,
             BankName:e.target.value,
-            IFSC:props.row.Profile.bankDetails.IFSC
+
           }
         }}
     }else if(e.target.name == 'ifsc'){
-      temp = {firstName:props.row.firstName,
-        lastName:props.row.lastName,
-        rollNo:props.row.rollNo,
-        department:e.target.value,
-        email:props.row.email,
+      temp = {
+        ...save,
         Profile:{
-          semester:props.row.Profile.semester,
-          gender:props.row.Profile.gender,
-          dateOfBirth:props.row.Profile.dateOfBirth,
-          contactNumber:props.row.Profile.contactNumber,
-          secondaryNumber:props.row.Profile.secondaryNumber,
-          fatherName:props.row.Profile.fatherName,
-          fatherOccupation:props.row.Profile.fatherOccupation,
-          motherName: props.row.Profile.motherName,
-          motherOccupation: props.row.Profile.motherOccupation,
-          bloodGroup: props.row.Profile.bloodGroup,
-          identificationMark: e.target.value,
+          ...save.Profile,
           bankDetails:{
-            AccountHolderName:props.row.Profile.bankDetails.AccountHolderName,
-            AccountNumber:props.row.Profile.bankDetails.AccountNumber,
-            BankName:props.row.Profile.bankDetails.BankName,
+            ...save.Profile.bankDetails,
             IFSC:e.target.value
           }
         }}

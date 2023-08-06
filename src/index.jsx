@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import store from './Store/Store';
 
 
+
 //You can change global style from here
 const theme = createTheme({
     palette:{

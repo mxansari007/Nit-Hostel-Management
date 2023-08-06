@@ -13,7 +13,7 @@ import logo from './assets/images/2.png';
 import './assets/css/Navbar.css';
 import LoginOptions from '../smallComponents/LoginOptions';
 import { useNavigate,Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 
 
@@ -22,6 +22,7 @@ const pages = ['Home', 'Contact Us', 'About'];
 
 const Navbar=()=> {
 
+  const localLogin = localStorage.getItem('localLogin');
   
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();
@@ -128,7 +129,7 @@ const Navbar=()=> {
               </Button>
             ))}
           </Box>
-         {localStorage.getItem('userId')?<LoginOptions/>:null}
+         {localLogin?<LoginOptions/>:null}
         </Toolbar>
       </Container>
     </AppBar>

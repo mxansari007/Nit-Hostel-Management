@@ -1,0 +1,76 @@
+.container{
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+
+    width:600px;
+
+}
+
+.Heading h1{
+    color: teal;
+    text-align: center;
+}
+
+.Heading{
+    padding: 12px;
+    border-radius: 5px;
+    max-width: 400px;
+    box-shadow: 0px 7px 10px 10px rgba(0,0,0,0.03);
+    border: 1px solid black;
+    margin:25px auto 0;
+}
+
+.badges{
+    display:flex;
+    flex-direction: row;
+}
+
+.badge{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid #9E9FA5;
+    margin-left: 9px;
+    border-radius: 5px;
+    height: 64px;
+}
+
+.search-area{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap:10px;
+}
+
+.badge-title{
+    color: #8062D6;
+}
+
+.upper-area{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin:56px auto 54px;
+}
+
+
+.table-area{
+    width:80%;
+    margin:45px auto 25px;
+}
+
+@media screen and (max-width: 1024px) {
+    .upper-area{
+        width: 70%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap:25px;
+        margin:25px auto 0;
+    }
+}

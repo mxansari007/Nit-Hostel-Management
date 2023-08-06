@@ -1,0 +1,32 @@
+
+
+.add-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+    width: 70%;
+    margin: 45px auto 25px;
+
+}
+
+
+.Buttons{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:45px auto 25px;
+
+}
+
+
+.error{
+    color:red;
+}
+
+@media screen and (max-width:768px) {
+    .add-container{
+        grid-template-columns: 1fr;
+    }
+
+}

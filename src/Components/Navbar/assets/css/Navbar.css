@@ -1,10 +1,13 @@
 *{
     box-sizing: border-box;
     color: black;
+    margin:0;
+    padding:0;
 }
 
-.logo-heading h1{font-family: 'Montserrat'; font-weight: 700; font-size: 1.5rem; }
-.logo-heading p{font-family: 'Urbanist';  font-size: 1rem;margin-top: -20px;}
+.logo-heading h1{font-family: 'Montserrat'; font-weight: 700; font-size: 1.4rem; }
+.logo-heading p{font-family: 'Urbanist';  font-size: 1rem;margin-top: -7px; color: gray}
+.logo-heading{margin-top: 25px;}
 #logo{
     width: 80px;
     padding:10px;
