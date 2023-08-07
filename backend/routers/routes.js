@@ -12,8 +12,8 @@ const { adminLogin } = require("../controllers/Admins/adminLogin");
 const { studentSignup } = require("../controllers/Students/studentSignup");
 const { pdfDownload } = require("../controllers/pdf-download");
 const { auth } = require("../middlewares/auth");
-const { getCount } = require("../controllers/Admins/Rooms/getCount");
-
+const { allotRooms } = require('../controllers/Admins/Rooms/allotRooms');
+const { roomController } = require('../controllers/Admins/Rooms/roomController');
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -46,7 +46,9 @@ router.post('/viewStudentInfo', auth, studentInfo);
 
 //// controllers  for  allot room
 
-
+// data filtering routes
+router.get('/allotRooms', allotRooms)
+router.get('/roomController', roomController);
 
 // //*  get count 
 // router.get('/getCount', getCount);
