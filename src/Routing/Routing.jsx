@@ -18,7 +18,7 @@ const Routing = () => {
     const localLogin = localStorage.getItem('localLogin');
 
 
-    if(localLogin){
+    if(isLoggedIn){
         return(
             <>
         <Routes>

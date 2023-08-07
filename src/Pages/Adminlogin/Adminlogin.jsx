@@ -85,5 +85,5 @@ return(<>
 
 
 
-export default Adminlogin
+export default Adminlogin;
 

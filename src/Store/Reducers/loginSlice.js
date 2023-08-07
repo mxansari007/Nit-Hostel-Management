@@ -5,6 +5,7 @@ export const loginSlice = createSlice({
     initialState:{
         value:false,
         tokken:null,
+        logoutLoading:false,
     },
     reducers:{
         login:(state) =>{
@@ -12,12 +13,15 @@ export const loginSlice = createSlice({
             localStorage.setItem('localLogin',true);
         },
         logout: (state) => {
-            state.value = false
             localStorage.removeItem('localLogin');
+            state.value = false
+        },
+        initialLogin:(state)=>{
+            state.value = true;
         }
     }
 })
 
 export default loginSlice.reducer 
 
-export const {login,logout} = loginSlice.actions; 
+export const {login,logout,initialLogin} = loginSlice.actions; 

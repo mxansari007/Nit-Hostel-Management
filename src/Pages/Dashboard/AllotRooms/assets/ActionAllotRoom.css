@@ -1,0 +1,16 @@
+.table-container{
+   
+    margin: 15px auto 25px;
+}
+
+.occup{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:50%;
+    margin:200px auto 0;
+}
+
+.Allot-btn{
+    margin: 45px auto;
+}

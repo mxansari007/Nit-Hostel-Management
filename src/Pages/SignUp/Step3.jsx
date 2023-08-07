@@ -3,10 +3,11 @@ import './assets/css/Signup.css';
 import {prev,next} from '../../Store/Reducers/signupSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import {useForm} from 'react-hook-form';
-import { setProfile } from '../../Store/Reducers/signUpDataSlice';
+import { setBank } from '../../Store/Reducers/signUpDataSlice';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { signedUpDone,reset } from '../../Store/Reducers/signupSlice';
+import { useState } from 'react';
 
 const Step3 = ()=>{
 
@@ -14,7 +15,6 @@ const Step3 = ()=>{
     const formData = useSelector(state =>state.signUpData.data);
     const Dispatch = useDispatch();
     const navigate = useNavigate();
-
     const form = useForm({
         defaultValues:{
             AccountHolderName:"",
@@ -29,22 +29,28 @@ const Step3 = ()=>{
 
     const onSubmit = (data)=>{
         if(isValid){
-            Dispatch(setProfile(data));
-            const config = {
-              headers: {
-                "Content-Type": "application/json"
-                },
-                withCredentials: true
-              }
-            axios.post(import.meta.env.VITE_BASE_URL+ '/studentSignup',formData,config)
-            .then(res=>{
-                console.log(true);
-                // navigate('/student')
-            }).catch(err=>{
-                console.log(err);
-            });
+          setBank(data);
+          console.log(formData);
+          const config = {
+            headers: {
+              "Content-Type": "application/json"
+              },
+              withCredentials: true
+            }
+          axios.post(import.meta.env.VITE_BASE_URL+ '/studentSignup',formData,config)
+          .then(res=>{
+              console.log(true);
+              navigate('/student')
+              Dispatch(reset());
+              Dispatch(signedUpDone());
+          }).catch(err=>{
+              console.log(err);
+          });
         }
     }
+    
+
+
 
     return <>
         
