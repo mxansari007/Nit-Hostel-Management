@@ -8,6 +8,8 @@ exports.pdfDownload = async (req, res) => {
     try {
         // Read HTML Template
     const jsonData=req.body;
+    console.log(jsonData);
+    console.log("hello");
     console.log(path.join(__dirname,`pdfTemplates/${jsonData.templateName}.html`));
     const html = fs.readFileSync(path.join(__dirname,`pdfTemplates/${jsonData.templateName}.html`), "utf8");
     const  filename=`${jsonData.rollNo}_${jsonData.name}.pdf`;
@@ -32,7 +34,8 @@ exports.pdfDownload = async (req, res) => {
           lastName:jsonData.lastName,
           department:jsonData.department,
           year:jsonData.year,
-          email:jsonData.email
+          email:jsonData.email,
+          image:jsonData.image,
         },
         path:outputpdf,
         type: "",

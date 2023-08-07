@@ -210,10 +210,12 @@ const saveToBackEnd = ()=>{
         </Modal.Header>
         <Modal.Body>
 
-        <div className="container">
+        <div className="viewinfo-container">
         <Paper sx={{p:'25px'}}>
         <div className="Box">
-        <div className="photo"></div>
+        <div className="photo">
+          <img className="photo" src={save.Profile.image} />
+        </div>
         </div>
         <div className="all-info">
         <Divider />

@@ -14,6 +14,7 @@ import {prev,next} from '../../Store/Reducers/signupSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import Step2 from './Step2.jsx';
 import Step3 from './Step3.jsx';
+import Step4 from './Step4.jsx';
 import './assets/css/Step2.css';
 import {setProfile} from '../../Store/Reducers/signUpDataSlice';
 
@@ -88,6 +89,11 @@ return (
         <Step transition="scale">
           {({ accomplished }) => {
             return accomplished?<div className='right-icon'><i className='fa-solid fa-money-bill'></i></div>:<div className='step'><h2>3</h2></div>;
+          }}
+        </Step>
+        <Step transition="scale">
+          {({ accomplished }) => {
+            return accomplished?<div className='right-icon'><i className='fa-regular fa-image'></i></div>:<div className='step'><h2>4</h2></div>;
           }}
         </Step>
       </ProgressBar>
@@ -177,6 +183,7 @@ return (
 
 <Step2 />
 <Step3 />
+<Step4 />
 
 {/* <DevTool control={control}/> */}
     </div>

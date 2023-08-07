@@ -11,12 +11,13 @@ export const signupSlice = createSlice({
     reducers:{
         prev:(state)=>{
             if(state.count>0){
-            state.count = state.count -50;
+            state.count = state.count - (100/3);
             }
+            console.log(state.count);
         },
         next:(state)=>{
             if(state.count<100){
-                state.count = state.count + 50;
+                state.count = state.count + (100/3);
             }
             console.log(state.count);
         },

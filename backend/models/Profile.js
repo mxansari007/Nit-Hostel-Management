@@ -39,6 +39,9 @@ const ProfileSchema = new mongoose.Schema({
     address: {
         type: String,
     },
+    image:{
+        type:String,
+    },
     bankDetails: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

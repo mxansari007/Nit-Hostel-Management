@@ -19,9 +19,13 @@ export const signUpDataSlice = createSlice({
         setBank:(state,action)=>{
             state.data = {...state.data,...action.payload};
             console.log(state.data);
+        },
+        setImage:(state,action)=>{
+            state.data = {...state.data,...action.payload};
+            console.log(state.data);
         }
     }
 });
 
-export const {setProfile,setAdditional,setBank} = signUpDataSlice.actions;
+export const {setProfile,setAdditional,setBank,setImage} = signUpDataSlice.actions;
 export default signUpDataSlice.reducer;

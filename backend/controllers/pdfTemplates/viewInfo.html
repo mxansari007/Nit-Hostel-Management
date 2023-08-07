@@ -12,13 +12,17 @@
  
  h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 40px;
+    font-size: 18pt;
     
 }
 
 h2{
     font-family: 'Times New Roman', Times, serif;
-    font-size: 35px;
+    font-size: 16pt;
+}
+
+p{
+    font-size:12pt;
 }
 
 .content{
@@ -27,12 +31,12 @@ h2{
 }
 .photo{
     border: 2px solid black;
-    width: 150px;
-    height:190px;
+    width: 55pt;
+    height:65pt;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 30pt;
 }
 </style>
 </head>
@@ -40,7 +44,7 @@ h2{
 <h1 style="text-align: center;">NIT Kurukshetra</h1>
 <h2 style="text-align: center;">Hostel 11, Vivekanand Bhawan</h2>
 <div class="content">
-<div class="photo"><p>photo</p></div>
+<img class="photo" alt ="profile-image" src="{{this.image}}" />
 <p class="content-head"><b>Name</b>: {{this.firstName}} {{this.lastName}}</p>
 <p class="content-head"><b>Roll no</b>: {{this.rollNo}}</p>
 <p class="content-head"><b>Department</b>: {{this.department}}</p>

@@ -33,7 +33,7 @@ return ( <Container maxWidth="lg" sx={{mt:'100px'}}>
 <Grid container spacing={2} >
     <Grid  item xs={12} md={4}>
         <Paper className="box">
-            <FolderSharedRoundedIcon className="icon" sx={{fontSize:'5rem'}}/>
+            <FolderSharedRoundedIcon className="icon" sx={{fontSize:'4rem'}}/>
             <h2>Student Info</h2>
             <DropDown 
             names=
@@ -46,7 +46,7 @@ return ( <Container maxWidth="lg" sx={{mt:'100px'}}>
     </Grid>
     <Grid item xs={12} md={4}>
         <Paper className="box">
-            <MarkEmailUnreadRoundedIcon className="icon" sx={{fontSize:'5rem'}}/>
+            <MarkEmailUnreadRoundedIcon className="icon" sx={{fontSize:'4rem',}}/>
             <h2>Complaints</h2>
             <DropDown 
             names=
@@ -59,7 +59,7 @@ return ( <Container maxWidth="lg" sx={{mt:'100px'}}>
     </Grid>
     <Grid item xs={12} md={4}>
     <Paper className="box">
-            <NightShelterIcon className="icon" sx={{fontSize:'5rem'}}/>
+            <NightShelterIcon className="icon" sx={{fontSize:'4rem'}}/>
             <h2>Rooms Info</h2>
             <DropDown 
             names=

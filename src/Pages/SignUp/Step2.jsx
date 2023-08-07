@@ -9,7 +9,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import { setAdditional } from '../../Store/Reducers/signUpDataSlice';
+import { setProfile,setAdditional } from '../../Store/Reducers/signUpDataSlice';
 // import AdapterDateFns from '@mui/lab/AdapterDateFns'; 
 
 const Step2 = ()=>{
@@ -53,7 +53,7 @@ const onSubmit = (data)=>{
 
 
     return (<>
-        {count==50?<div>
+        {count===(100/3)?<div>
   <h2>Additional Details</h2>
   <form onSubmit={handleSubmit(onSubmit)} noValidate>
   <div className='add-container'>
@@ -67,7 +67,7 @@ const onSubmit = (data)=>{
       value={semester}
       label="Semester"
       error={errors.semester}
-      {...register("semester",{onChange:(e)=>{setSemester(e.target.value);},required:true})}
+      {...register("semester",{onChange:(e)=>{setSemester(e.target.value);},required:{value:true,message:'*Semester is Required'}})}
     >
       <MenuItem value={1}>1</MenuItem>
       <MenuItem value={2}>2</MenuItem>
@@ -79,6 +79,7 @@ const onSubmit = (data)=>{
       <MenuItem value={6}>8</MenuItem>
     </Select>
     </FormControl>
+    <p className="error">{errors.semester?.message}</p>
     </div>
 
     <div style={{margin:'auto'}}>
@@ -91,43 +92,54 @@ const onSubmit = (data)=>{
       value={gender}
       label="department"
       error={errors.gender}
-      {...register("gender",{onChange:(e)=>{setGender(e.target.value);},required:true})}
+      {...register("gender",{onChange:(e)=>{setGender(e.target.value);},required:{value:true,message:'*Gender is Required'}})}
     >
       <MenuItem value={'Male'}>Male</MenuItem>
       <MenuItem value={'Female'}>Female</MenuItem>
     </Select>
     </FormControl>
+    <p className="error">{errors.gender?.message}</p>
     </div>
     
     <div style={{margin:'auto'}}>
-          <TextField error={errors.dateOfBirth} name="dateOfBirth" size="small" {...register("dateOfBirth",{required:true})} variant='outlined' label="Date of Birth" placeholder='dd/mm/yyyy'/>
+          <TextField error={errors.dateOfBirth} name="dateOfBirth" size="small" {...register("dateOfBirth",{required:{value:true,message:'*date of birth is Required'}})} variant='outlined' label="Date of Birth" placeholder='dd/mm/yyyy'/>
+          <p className="error">{errors.dateOfBirth?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.contactNumber} name="contactNumber" size="small" {...register("contactNumber",{required:true})} variant='outlined' label="Contact"/>
+      <TextField error={errors.contactNumber} name="contactNumber" size="small" {...register("contactNumber",{required:{value:true,message:'*Primary contact is Required'}})} variant='outlined' label="Contact"/>
+      <p className="error">{errors.contactNumber?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField size="small" {...register("secondaryNumber")} variant='outlined' label="Secondary Contact"/>
+      <TextField placeholder='Optional' size="small" {...register("secondaryNumber")} variant='outlined' label="Secondary Contact"/>
+      <p className="error">{errors.secondaryNumber?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.address} size="small" {...register("address",{required:true})} variant='outlined' label="Address"/>
+      <TextField error={errors.address} size="small" {...register("address",{required:{value:true,message:'*Address is Required'}})} variant='outlined' label="Address"/>
+      <p className="error">{errors.address?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.fatherName} size="small" {...register("fatherName",{required:true})}  variant='outlined' label="Father's Name"/>
+      <TextField error={errors.fatherName} size="small" {...register("fatherName",{required:{value:true,message:'*Father Name is Required'}})}  variant='outlined' label="Father's Name"/>
+      <p className="error">{errors.fatherName?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.fatherOccupation} size="small" {...register("fatherOccupation",{required:true})} variant='outlined' label="Father's Occupation"/>
+      <TextField error={errors.fatherOccupation} size="small" {...register("fatherOccupation",{required:{value:true,message:'Father Occupation is Required'}})} variant='outlined' label="Father's Occupation"/>
+      <p className="error">{errors.fatherOccupation?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.motherName} size="small" {...register("motherName",{required:true})} variant='outlined' label="Mother's Name"/>
+      <TextField error={errors.motherName} size="small" {...register("motherName",{required:{value:true,message:'*Mother Name is Required'}})} variant='outlined' label="Mother's Name"/>
+      <p className="error">{errors.motherName?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.motherOccupation} size="small" {...register("motherOccupation",{required:true})} variant='outlined' label="Mother's Occupation"/>
+      <TextField error={errors.motherOccupation} size="small" {...register("motherOccupation",{required:{value:true,message:'*Mother Occupation is Required'}})} variant='outlined' label="Mother's Occupation"/>
+      <p className="error">{errors.motherOccupation?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.bloodGroup} size="small" {...register("bloodGroup",{required:true})} variant='outlined' label="Blood Group"/>
+      <TextField error={errors.bloodGroup} size="small" {...register("bloodGroup",{required:{value:true,message:'*Blood Group is Required'}})} variant='outlined' label="Blood Group"/>
+      <p className="error">{errors.bloodGroup?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField error={errors.identificationMark} size="small" {...register("identificationMark",{required:true})} variant='outlined' label="Identification Mark"/>
+      <TextField error={errors.identificationMark} size="small" {...register("identificationMark",{required:{value:true,message:'*Identification Mark is Required'}})} variant='outlined' label="Identification Mark"/>
+      <p className="error">{errors.identificationMark?.message}</p>
     </div>
     </div>
     <div className='Buttons'>

@@ -18,6 +18,7 @@ const DownloadingButton = (props)=>{
                         "lastName":props.row.lastName,
                         "year":props.row.year,
                         "department":props.row.department,
+                        "image":props.row.Profile.image,
                         "email":props.row.email},{responseType:'arraybuffer',withCredentials:true}).then((response)=>{
                          console.log(response);
                          fileDownloader(response.data, `${props.row.rollNo}_${props.row.firstName}.pdf`);

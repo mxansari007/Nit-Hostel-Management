@@ -3,18 +3,14 @@ import './assets/css/Signup.css';
 import {prev,next} from '../../Store/Reducers/signupSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import {useForm} from 'react-hook-form';
-import { setBank } from '../../Store/Reducers/signUpDataSlice';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { signedUpDone,reset } from '../../Store/Reducers/signupSlice';
+import {setAdditional } from '../../Store/Reducers/signUpDataSlice';
 import { useState } from 'react';
 
 const Step3 = ()=>{
 
     const count = useSelector(state => state.signupProgress.count);
-    const formData = useSelector(state =>state.signUpData.data);
     const Dispatch = useDispatch();
-    const navigate = useNavigate();
+
     const form = useForm({
         defaultValues:{
             AccountHolderName:"",
@@ -29,23 +25,10 @@ const Step3 = ()=>{
 
     const onSubmit = (data)=>{
         if(isValid){
-          setBank(data);
-          console.log(formData);
-          const config = {
-            headers: {
-              "Content-Type": "application/json"
-              },
-              withCredentials: true
-            }
-          axios.post(import.meta.env.VITE_BASE_URL+ '/studentSignup',formData,config)
-          .then(res=>{
-              console.log(true);
-              navigate('/student')
-              Dispatch(reset());
-              Dispatch(signedUpDone());
-          }).catch(err=>{
-              console.log(err);
-          });
+          console.log(data);
+          Dispatch(setAdditional(data));
+          Dispatch(next());
+
         }
     }
     
@@ -54,27 +37,31 @@ const Step3 = ()=>{
 
     return <>
         
-{count==100?<div>
+{count===(100*2/3)?<div>
     <h2>Bank Details</h2>
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
     <div className='bank-container'>
     <div style={{margin:'auto'}}>
-      <TextField size="small" error={errors.AccountHolderName} {...register("AccountHolderName",{required:true})} variant='outlined' label="Account Holder Name"/>
+      <TextField size="small" error={errors.AccountHolderName} {...register("AccountHolderName",{required:{value:true,message:'*Accound Holder name required'}})} variant='outlined' label="Account Holder Name"/>
+    <p className='error'>{errors.AccountHolderName?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField size="small" error={errors.AccountNumber} {...register("AccountNumber",{required:true})} variant='outlined' label="Account Number"/>
+      <TextField size="small" error={errors.AccountNumber} {...register("AccountNumber",{required:{value:true,message:'*Account Number'}})} variant='outlined' label="Account Number"/>
+      <p className='error'>{errors.AccountNumber?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField size="small" error={errors.BankName} {...register("BankName",{required:true})} variant='outlined' label="Bank Name"/>
+      <TextField size="small" error={errors.BankName} {...register("BankName",{required:{value:true,message:'*Bank Name is required'}})} variant='outlined' label="Bank Name"/>
+      <p className='error'>{errors.BankName?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
-      <TextField size="small" error={errors.IFSC} {...register("IFSC",{required:true})} variant='outlined' label="IFSC Code"/>
+      <TextField size="small" error={errors.IFSC} {...register("IFSC",{required:{value:true,message:'*IFSC is required'}})} variant='outlined' label="IFSC Code"/>
+      <p className='error'>{errors.IFSC?.message}</p>
     </div>
     </div>
   
     <div className='Buttons'>
         <Button type="button" variant='outlined' onClick={()=>{Dispatch(prev())}}>Previous</Button>
-        <Button type="submit" variant='contained'>Submit</Button>
+        <Button type="submit" variant='contained'>Next</Button>
     </div>
     </form>
   </div>:null}
