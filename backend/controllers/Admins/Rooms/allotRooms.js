@@ -31,7 +31,17 @@ exports.allotRooms = async (req, res) => {
         const pageSize = parseInt(req.query.pageSize) || 10; // Default page size is 10 if not provided
 
 
-        const data = await RoomsData.find(filter).skip(page).limit(pageSize).sort({ [sortField]: sortOrder });
+        const data = await RoomsData.find(filter).populate({
+            path: 'students',
+            populate: {
+                path: 'Profile',
+                populate: {
+                    path: 'bankDetails',
+                    model: 'BankDetails'
+                }
+            }
+
+        }).skip(page).limit(pageSize).sort({ [sortField]: sortOrder });
 
         res.status(201).json({ data: data, totalRooms: totalRooms, fullyOccupiedRooms: fullyOccupiedRooms });
     } catch (error) {

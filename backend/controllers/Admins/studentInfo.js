@@ -1,32 +1,34 @@
-const Student =require('../../models/students');
+const Student = require('../../models/students');
 
-exports.studentInfo = async (req,res)=>{
+exports.studentInfo = async (req, res) => {
     try {
-        const {rollNo,firstName,lastName,department} = req.body;
+        const { rollNo, firstName, lastName, department } = req.body;
         const payload = {};
-        if(rollNo!='' && rollNo!=undefined){
-            payload.rollNo=parseInt(rollNo, 10);
+        if (rollNo != '' && rollNo != undefined) {
+            payload.rollNo = parseInt(rollNo, 10);
         }
-        if(firstName!='' && firstName!=undefined){
-            payload.firstName=firstName;
+        if (firstName != '' && firstName != undefined) {
+            payload.firstName = firstName;
         }
-        if(lastName!='' && lastName!=undefined){
-            payload.lastName=lastName;
+        if (lastName != '' && lastName != undefined) {
+            payload.lastName = lastName;
         }
-        if(department!='' && department!=undefined){
-            payload.department=department;
+        if (department != '' && department != undefined) {
+            payload.department = department;
         }
-        console.log("payload: "+payload);
+        console.log("payload: " + payload);
         const students = await Student.find(payload).populate({
-            path:'Profile',
+            path: 'Profile',
             populate: {
-                path:'bankDetails',
-                model:'BankDetails'
-            }
+                path: 'bankDetails',
+                model: 'BankDetails',
+            },
+        }).populate({
+            path: 'Rooms'
         }).exec();
-        console.log("student"+students);
+        console.log("student" + students);
         return res.send(students);
-      } catch (error) {
+    } catch (error) {
         return res.send(error.message);
-      }
+    }
 };

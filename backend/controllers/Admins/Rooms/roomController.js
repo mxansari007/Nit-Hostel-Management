@@ -5,33 +5,41 @@ exports.roomController = async (req, res) => {
     try {
 
         // getting students information
-        const { rollNo, roomNo, floorNo, status, occupancy } = req.body;
-        const data = await Students.findOne({ rollNo });
-        const idOfStudent = data._id
+        let { rollNo, roomNo, floorNo, status, occupancy } = req.body;
 
-        const isRoomExist = await Rooms.findOne({ roomNo }) === 'true';
+        const studentData = await Students.findOne({ rollNo });
+        const idOfStudent = studentData._id
 
-        if (isRoomExist === false) {
-            const allottedRoom = new Rooms({
-                roomNo, floorNo, status, occupancy, students: idOfStudent
-            })
+        const roomData = await Rooms.findOne({ roomNo });
+        const idOfRoom = roomData._id
+        if (roomData.students.length !== 2) {
 
-            await allottedRoom.save()
+            try {
+                const allotRoom = await Rooms.findByIdAndUpdate(idOfRoom, { $push: { students: idOfStudent } });
+                // console.log(allotRoom);
+                await Students.findByIdAndUpdate(idOfStudent, { Rooms: idOfRoom });
+
+                // after allotment we update the room status as well
+                if (status === 'vacant') {
+                    await Rooms.findByIdAndUpdate(idOfRoom, { status: 'Half-filled' })
+                } else {
+                    await Rooms.findByIdAndUpdate(idOfRoom, { status: 'Fully-filled' })
+                }
+
+                // 
+                res.status(200).send('Room Successfully Alloted');
+
+            } catch (error) {
+                return res.status(401).send("error " + error.message);
+            }
         } else {
-            console.log(idOfStudent)
+            res.status(201).send('cannot allot room');
+
         }
-
-
-
-        // const data1 = await Students.findOne(idOfStudent);
-
-
-
-        return res.status(200).send({ data: data });
-
 
     } catch (err) {
         return res.status(401).send("error " + err.message);
+
     }
 
 }
