@@ -42,7 +42,7 @@ router.post('/jsonUpload', auth, jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload', auth, pdfDownload);
 //// view student data
-router.post('/viewStudentInfo', auth, studentInfo);
+router.post('/viewStudentInfo', studentInfo);
 
 //// controllers  for  allot room
 
