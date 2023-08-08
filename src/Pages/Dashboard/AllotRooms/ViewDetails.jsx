@@ -5,7 +5,7 @@ import './assets/ViewDetails.css';
 const ViewDetails = (props)=>{
 
     const {setVisible,bindings} = useModal();
-    console.log(props.row);
+
 
     return <>
       <Button size="small" variant='contained' onClick={() => setVisible(true)}>

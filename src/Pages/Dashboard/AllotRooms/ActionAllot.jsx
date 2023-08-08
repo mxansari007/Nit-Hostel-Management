@@ -10,14 +10,16 @@ import Paper from '@mui/material/Paper';
 import './assets/ActionAllotRoom.css';
 import {useState} from 'react';
 import {TextField} from '@mui/material';
-
+import axios from 'axios';
 
 
 const ActionAllot = (props)=>{
+    const [rollNo,setRollNo] = useState();
+    const [roomNo,setRoom] = useState(props.row.roomNo);
     const {setVisible,bindings} = useModal();
     const students =[{rollNo:52211211,firstName:'Maaz',lastName:'Ansari',department:'MCA',year:2,contact:'9213992321'},
                     {rollNo:52212232,firstName:'Aqib',lastName:'Hussain',department:'MCA',year:2,contact:'9213992232'}];
-    
+    console.log(props);
     const [interVisible, setinterVisible] = useState(false);
     const handler = () => setinterVisible(true);
     const closeHandler = () => {
@@ -25,6 +27,25 @@ const ActionAllot = (props)=>{
         console.log("closed");
     };
 
+
+    const handleChange = (event)=>{
+        setRollNo(event.target.value);
+    }
+
+
+    const onSubmit = ()=>{
+      const sendObj = {roomNo,rollNo};
+      const config = {
+        headers: {
+          "Content-Type": "application/json"
+          },
+          withCredentials: true
+        }
+        axios.post(import.meta.env.VITE_BASE_URL + '/roomController',sendObj,config)
+        .then(res=>{console.log(res)})
+        .catch(err=>console.log(err));
+
+    }
 
     return <>
       <Button size="small" variant='contained' onClick={() => setVisible(true)}>
@@ -95,10 +116,10 @@ const ActionAllot = (props)=>{
         <h1>Assign New Room</h1>
         </Modal.Header>
         <Modal.Body>
-        <TextField size="small" variant="outlined" label="Roll No" />
+        <TextField name="rollNoField" onChange={handleChange} size="small" variant="outlined" label="Roll No" />
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="contained">Assign</Button>
+        <Button name="assignSubmit" onClick={onSubmit} variant="contained">Assign</Button>
         </Modal.Footer>
       </Modal>
     </div>

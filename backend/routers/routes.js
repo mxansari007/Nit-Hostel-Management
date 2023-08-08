@@ -48,7 +48,7 @@ router.post('/viewStudentInfo', studentInfo);
 
 // data filtering routes
 router.get('/allotRooms', allotRooms)
-router.get('/roomController', roomController);
+router.post('/roomController', roomController);
 
 // //*  get count 
 // router.get('/getCount', getCount);

@@ -14,8 +14,10 @@ const columns = [
     headerName: 'Student #1', 
     width: 130,
     valueGetter:(params) =>{
-      if(params.row.students.length == 2){
-        return `${params.row.students[0]}`;
+      if(params.row.students.length == 0){
+        return '-';
+      }else if(params.row.students.length > 0){
+        return `${params.row.students[0].firstName} ${params.row.students[0].lastName}`;
       }
     }
    },
@@ -24,8 +26,10 @@ const columns = [
     headerName: 'Student #2', 
     width: 130,
     valueGetter:(params) =>{
-      if(params.row.students.length == 2){
-        return `${params.row.students[1]}`;
+      if(params.row.students.length <= 1){
+        return '-';
+      }else if(params.row.students.length > 1){
+        return `${params.row.students[1].firstName} ${params.row.students[1].lastName}`;
       }
     }
   },
@@ -33,8 +37,10 @@ const columns = [
     headerName: 'Student #3', 
     width: 130,
     valueGetter:(params) =>{
-      if(params.row.students.length == 2){
+      if(params.row.students.length <= 2){
         return '-';
+      }else if(params.row.students.length === 3){
+        return `${params.row.students[2].firstName} ${params.row.students[2].lastName}`;
       }
     }
   },
@@ -69,41 +75,68 @@ const columns = [
 
 ];
 
-const rows = [
-  { roomNo: 215, students:['Maaz Ansari','Aqib Hussain'], floorNo: 1, occupancy:2,status:'full'},
-  { roomNo: 227, students:['Ritik Sharma','Vaibhav Bhalla'], floorNo: 1, occupancy:3,status:'unfilled'},
-  { roomNo: 606, students:['Rishi','Adii'], floorNo: 5, occupancy:2,status:'full'},
+const config = {
+  headers: {
+    "Content-Type": "application/json"
+    },
+    withCredentials: true
+  }
+
+
+
+// const rows = [
+//   { roomNo: 215, students:['Maaz Ansari','Aqib Hussain'], floorNo: 1, occupancy:2,status:'full'},
+//   { roomNo: 227, students:['Ritik Sharma','Vaibhav Bhalla'], floorNo: 1, occupancy:3,status:'unfilled'},
+//   { roomNo: 606, students:['Rishi','Adii'], floorNo: 5, occupancy:2,status:'full'},
   
-];
+// ];
 
 
 
 
 const AllotRooms = ()=>{
-
+const [pageCount,setPageCount] = useState(0);
+const [rows,setRows] = useState([{roomNo:"",floorNo:"",students:[],status:"",occupancy:""}]);
   useEffect(()=>{
-    const config = {
-      headers: {
-        "Content-Type": "application/json"
-        },
-        withCredentials: true
-      }
+
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
-    .then(res=>console.log(res.data))
+    .then(res=>{
+      console.log(res.data);
+      setRows(res.data.data);
+    })
     .catch(err=>console.log(err));
   },[])
 
   const [roomQuery,setRoomQuery] = useState();
+  const [floorQuery,setFloorQuery] = useState();
 
-  const handleRoom = (event)=>{
+  const handleChange = (event)=>{
         setRoomQuery(event.target.value);
   }
 
   const handleSubmit = (event)=>{
       if(event.target.name == "roomSubmit"){
+        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`)
+        .then(res =>{console.log(res.data.data[0]);setRows([res.data.data[0]])});
+      }else if(event.target.name == "floorSubmit"){
 
       }
   }
+//?status=vacant,Fully-filled,Half-filled
+
+
+
+  //Pagination
+const handleNextPage = ()=>{
+  setPageCount(pageCount+10);
+    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
+    then(res=>{setRows(res.data.data)}).
+    catch(err=>console.log(err));
+    console.log(rows);
+}
+
+
+
 
 return (<>
 <div className="room-container">
@@ -132,13 +165,13 @@ return (<>
   
         <div className='room-search'>
             <p style={{display:'inline'}}>Room No: </p>
-            <TextField onChange={handleRoom} size="small" variant='outlined' label='Room Search' />
+            <TextField name="roomField" onChange={handleChange} size="small" variant='outlined' label='Room Search' />
             <Button onClick={handleSubmit} name="roomSubmit" sx={{ml:'7px'}} variant='contained'>Search</Button>
         </div>
         <div className='floor-search'>
         <p style={{display:'inline'}}>Floor No: </p>
             <TextField variant='outlined' size="small" label='Floor Search'/>
-            <Button  sx={{ml:'7px'}} variant='contained'>Search</Button>
+            <Button name="" sx={{ml:'7px'}} variant='contained'>Search</Button>
         </div>
 
     </div>
@@ -159,6 +192,8 @@ return (<>
           checkboxSelection
         />
   </div>
+
+  <Button variant='contained' onClick={handleNextPage}>Next</Button>
 </div>
 
 

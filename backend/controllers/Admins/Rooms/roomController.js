@@ -20,7 +20,8 @@ exports.roomController = async (req, res) => {
                 await Students.findByIdAndUpdate(idOfStudent, { Rooms: idOfRoom });
 
                 // after allotment we update the room status as well
-                if (status === 'vacant') {
+
+                if (roomData.status === 'vacant') {
                     await Rooms.findByIdAndUpdate(idOfRoom, { status: 'Half-filled' })
                 } else {
                     await Rooms.findByIdAndUpdate(idOfRoom, { status: 'Fully-filled' })
