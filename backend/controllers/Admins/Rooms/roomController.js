@@ -11,7 +11,7 @@ exports.roomController = async (req, res) => {
 
         const isRoomExist = await Rooms.findOne({ roomNo }) === 'true';
 
-        if (isRoomExist === undefined) {
+        if (isRoomExist === false) {
             const allottedRoom = new Rooms({
                 roomNo, floorNo, status, occupancy, students: idOfStudent
             })

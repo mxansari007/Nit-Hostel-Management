@@ -1,10 +1,10 @@
 import { TextField,Button } from '@mui/material';
 import './assets/AllotRooms.css';
-import {useRef} from 'react';
+import {useRef, useState,useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import ViewDetails from './ViewDetails.jsx';
 import ActionAllot from './ActionAllot';
-
+import axios from 'axios';
 
 const columns = [
   { field: 'roomNo', headerName: 'Room No', width: 70 },
@@ -81,7 +81,29 @@ const rows = [
 
 const AllotRooms = ()=>{
 
+  useEffect(()=>{
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+        },
+        withCredentials: true
+      }
+    axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err));
+  },[])
 
+  const [roomQuery,setRoomQuery] = useState();
+
+  const handleRoom = (event)=>{
+        setRoomQuery(event.target.value);
+  }
+
+  const handleSubmit = (event)=>{
+      if(event.target.name == "roomSubmit"){
+
+      }
+  }
 
 return (<>
 <div className="room-container">
@@ -110,8 +132,8 @@ return (<>
   
         <div className='room-search'>
             <p style={{display:'inline'}}>Room No: </p>
-            <TextField size="small" variant='outlined' label='Room Search' />
-            <Button sx={{ml:'7px'}} variant='contained'>Search</Button>
+            <TextField onChange={handleRoom} size="small" variant='outlined' label='Room Search' />
+            <Button onClick={handleSubmit} name="roomSubmit" sx={{ml:'7px'}} variant='contained'>Search</Button>
         </div>
         <div className='floor-search'>
         <p style={{display:'inline'}}>Floor No: </p>
