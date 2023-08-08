@@ -5,7 +5,11 @@ import {Divider} from '@mui/material';
 import {useEffect, useState} from 'react';
 import {Input} from '@mui/material';
 import { LoadingButton } from "@mui/lab";
-
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function ViewInfoModal(props) {
 
@@ -271,6 +275,33 @@ const saveToBackEnd = ()=>{
             <p><span style={{fontWeight:'bold'}}>Bank Name :</span> {bank?<Input name="bn" onChange={handleBank} defaultValue={save.Profile.bankDetails.BankName} />:save.Profile.bankDetails.BankName}</p>
             <p><span style={{fontWeight:'bold'}}>IFSC Code :</span> {bank?<Input name="ifsc" onChange={handleBank} defaultValue={save.Profile.bankDetails.IFSC} />:save.Profile.bankDetails.IFSC}</p>
             </div>
+            
+      <div style={{marginTop:'20px'}}>
+      <Accordion disabled={save.Profile.aadhaarFrontImage===null?false:true}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Aadhaar Front Image</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <img src={save.Profile.aadhaarFrontImage} alt="Front Image" />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion disabled={save.Profile.aadhaarFrontImage===null?false:true}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Aadhaar Back Image</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <img src={save.Profile.aadhaarBackImage} alt="Back Image" />
+        </AccordionDetails>
+      </Accordion>
+    </div>
         </div>
         </Paper>
         </div>

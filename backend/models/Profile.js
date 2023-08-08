@@ -42,6 +42,12 @@ const ProfileSchema = new mongoose.Schema({
     image:{
         type:String,
     },
+    aadhaarFrontImage:{
+        type:String,
+    },
+    aadhaarBackImage:{
+        type:String,
+    },
     bankDetails: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

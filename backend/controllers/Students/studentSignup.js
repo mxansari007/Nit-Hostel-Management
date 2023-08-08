@@ -8,7 +8,7 @@ exports.studentSignup = async (req, res) => {
             gender, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
-            identificationMark, address, AccountHolderName, AccountNumber,image, BankName, IFSC } = req.body;
+            identificationMark, address, AccountHolderName, AccountNumber,image,aadhaarFrontImage,aadhaarBackImage,BankName, IFSC } = req.body;
 
         const bankDetails = new BankDetail({
             AccountHolderName,
@@ -23,7 +23,7 @@ exports.studentSignup = async (req, res) => {
             gender, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
-            identificationMark, address,image, bankDetails: bankDetails._id
+            identificationMark, address,image, aadhaarFrontImage,aadhaarBackImage,bankDetails: bankDetails._id
         })
         // console.log(profile)
         await profile.save();
