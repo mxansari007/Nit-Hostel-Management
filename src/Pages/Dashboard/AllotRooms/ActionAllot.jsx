@@ -11,15 +11,19 @@ import './assets/ActionAllotRoom.css';
 import {useState} from 'react';
 import {TextField} from '@mui/material';
 import axios from 'axios';
-
+import {Snackbar, Alert} from '@mui/material';
 
 const ActionAllot = (props)=>{
+    const [openSnack,setSnack] = useState(false);
+    const [message,setMessage] = useState();
     const [rollNo,setRollNo] = useState();
     const [roomNo,setRoom] = useState(props.row.roomNo);
     const {setVisible,bindings} = useModal();
+    const [occupants,setOccupants] = useState(props.row.students);
+
     const students =[{rollNo:52211211,firstName:'Maaz',lastName:'Ansari',department:'MCA',year:2,contact:'9213992321'},
                     {rollNo:52212232,firstName:'Aqib',lastName:'Hussain',department:'MCA',year:2,contact:'9213992232'}];
-    console.log(props);
+
     const [interVisible, setinterVisible] = useState(false);
     const handler = () => setinterVisible(true);
     const closeHandler = () => {
@@ -42,8 +46,17 @@ const ActionAllot = (props)=>{
           withCredentials: true
         }
         axios.post(import.meta.env.VITE_BASE_URL + '/roomController',sendObj,config)
-        .then(res=>{console.log(res)})
+        .then(res=>{console.log(res);
+              if(res.status === 200){
+                setSnack(true);
+                setMessage(1);
+              }else{
+                setSnack(true);
+                setMessage(2);
+              }
+        })
         .catch(err=>console.log(err));
+        
 
     }
 
@@ -65,8 +78,8 @@ const ActionAllot = (props)=>{
         <Modal.Body>
 
         <div className="occup">
-            <p>Occupants: 2</p>
-            <p>Occupancy: 3</p>
+            <p>Occupants: {props.row.students.length}</p>
+            <p>Occupancy: {props.row.occupancy}</p>
         </div>
         <div className="table-container">
         <TableContainer component={Paper}>
@@ -82,14 +95,14 @@ const ActionAllot = (props)=>{
           </TableRow>
         </TableHead>
         <TableBody>
-            {students.map((d)=>{
+            {occupants.map((d)=>{
                 return(
             <TableRow>
             <TableCell>{d.rollNo}</TableCell>
             <TableCell align="right">{`${d.firstName} ${d.lastName}`}</TableCell>
             <TableCell align="right">{d.department}</TableCell>
             <TableCell align="right">{d.year}</TableCell>
-            <TableCell align="right">{d.contact}</TableCell>
+            <TableCell align="right">{d.Profile.contactNumber}</TableCell>
             <TableCell align="right"><a href="#"><i style={{fontSize:'1.2rem',color:'teal'}} className="fa-regular fa-circle-xmark"></i></a></TableCell>
           </TableRow>)
             })}
@@ -120,9 +133,21 @@ const ActionAllot = (props)=>{
         </Modal.Body>
         <Modal.Footer>
         <Button name="assignSubmit" onClick={onSubmit} variant="contained">Assign</Button>
+        {message===1?<Snackbar open={openSnack} autoHideDuration={6000} onClose={()=>{setSnack(false)}}>
+        <Alert onClose={()=>{setSnack(false)}} severity="success" sx={{ width: '100%' }}>
+          Room Assigned Successfully
+        </Alert>
+      </Snackbar>:null}
+      {message===2?<Snackbar open={openSnack} autoHideDuration={6000} onClose={()=>{setSnack(false)}}>
+        <Alert onClose={()=>{setSnack(false)}} severity="error" sx={{ width: '100%' }}>
+          Room is Occupied Can not Assign!
+        </Alert>
+      </Snackbar>:null}
         </Modal.Footer>
       </Modal>
+
     </div>
+
     </Modal.Body>
      <Modal.Footer style={{boxShadow:'0px 0px 3px 2px teal', zIndex:'1'}}>
           <Button color="error" sx={{mr:'10px'}} variant="outlined" onClick={() => setVisible(false)}>

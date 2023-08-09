@@ -1,11 +1,13 @@
 import {Modal, useModal} from "@nextui-org/react";
 import {Button} from '@mui/material';
 import './assets/ViewDetails.css';
-
+import {useEffect} from 'react';
 const ViewDetails = (props)=>{
 
     const {setVisible,bindings} = useModal();
-
+    useEffect(()=>{
+      console.log(props);
+    },[])
 
     return <>
       <Button size="small" variant='contained' onClick={() => setVisible(true)}>

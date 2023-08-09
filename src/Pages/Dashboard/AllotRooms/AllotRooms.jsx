@@ -84,25 +84,21 @@ const config = {
 
 
 
-// const rows = [
-//   { roomNo: 215, students:['Maaz Ansari','Aqib Hussain'], floorNo: 1, occupancy:2,status:'full'},
-//   { roomNo: 227, students:['Ritik Sharma','Vaibhav Bhalla'], floorNo: 1, occupancy:3,status:'unfilled'},
-//   { roomNo: 606, students:['Rishi','Adii'], floorNo: 5, occupancy:2,status:'full'},
-  
-// ];
-
 
 
 
 const AllotRooms = ()=>{
 const [pageCount,setPageCount] = useState(0);
 const [rows,setRows] = useState([{roomNo:"",floorNo:"",students:[],status:"",occupancy:""}]);
+const [totalRooms,setTotalRooms] = useState(0);
+const [totalOccupied,setTotalOccupied] = useState(0);
   useEffect(()=>{
 
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
     .then(res=>{
-      console.log(res.data);
       setRows(res.data.data);
+      setTotalRooms(res.data.totalRooms);
+      setTotalOccupied(res.data.fullyOccupiedRooms);
     })
     .catch(err=>console.log(err));
   },[])
@@ -111,15 +107,23 @@ const [rows,setRows] = useState([{roomNo:"",floorNo:"",students:[],status:"",occ
   const [floorQuery,setFloorQuery] = useState();
 
   const handleChange = (event)=>{
+      if(event.target.name === 'roomField'){
         setRoomQuery(event.target.value);
+      }else if(event.target.name === 'floorField'){
+        console.log(event.target.value);
+        setFloorQuery(event.target.value);
+      }
   }
 
   const handleSubmit = (event)=>{
-      if(event.target.name == "roomSubmit"){
+      if(event.target.name === "roomSubmit"){
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`)
-        .then(res =>{console.log(res.data.data[0]);setRows([res.data.data[0]])});
-      }else if(event.target.name == "floorSubmit"){
-
+        .then(res =>{setRows([res.data.data[0]]);console.log(res.data.data[0])});
+      }else if(event.target.name === "floorSubmit"){
+        console.log(floorQuery);
+        console.log('hit');
+        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`)
+        .then(res =>{setRows(res.data.data);console.log(res.data.data)});
       }
   }
 //?status=vacant,Fully-filled,Half-filled
@@ -132,7 +136,7 @@ const handleNextPage = ()=>{
     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
     then(res=>{setRows(res.data.data)}).
     catch(err=>console.log(err));
-    console.log(rows);
+
 }
 
 
@@ -148,15 +152,15 @@ return (<>
 <div className='upper-area'>
     <div className="badges">
         <div className='badge'>
-            <p>450</p>
+            <p>{totalRooms}</p>
             <p className='badge-title'>Total Rooms</p>
         </div>
         <div className='badge'>
-            <p>200</p>
+            <p>{totalOccupied}</p>
             <p className='badge-title'>Occupied</p>
         </div>
         <div className='badge'>
-            <p>250</p>
+            <p>{totalRooms-totalOccupied}</p>
             <p className='badge-title'>Vacant</p>
         </div>
     </div>
@@ -170,8 +174,8 @@ return (<>
         </div>
         <div className='floor-search'>
         <p style={{display:'inline'}}>Floor No: </p>
-            <TextField variant='outlined' size="small" label='Floor Search'/>
-            <Button name="" sx={{ml:'7px'}} variant='contained'>Search</Button>
+            <TextField onChange={handleChange} name="floorField" variant='outlined' size="small" label='Floor Search'/>
+            <Button onClick={handleSubmit} name="floorSubmit" sx={{ml:'7px'}} variant='contained'>Search</Button>
         </div>
 
     </div>
