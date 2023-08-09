@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import logo from './assets/images/2.png';
+import logo from './assets/images/nit-logo.png';
 import './assets/css/Navbar.css';
 import LoginOptions from '../smallComponents/LoginOptions';
 import { useNavigate,Link } from 'react-router-dom';

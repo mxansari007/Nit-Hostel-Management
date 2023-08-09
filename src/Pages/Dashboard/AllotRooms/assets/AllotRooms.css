@@ -6,9 +6,7 @@
 }
 
 .search{
-
     width:600px;
-
 }
 
 .Heading h1{
@@ -64,6 +62,36 @@
     width:80%;
     margin:45px auto 25px;
 }
+
+
+.page-item{
+    color:white;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.page-link{
+    color:white;
+    display: inline;
+    padding: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #26a69a;
+    font-weight: bold;
+    box-shadow: 0 15px 8px 8px rgba(0,0,0,0.1);
+    margin-right: 5px;
+}
+
+.pageButtons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 
 @media screen and (max-width: 1024px) {
     .upper-area{
