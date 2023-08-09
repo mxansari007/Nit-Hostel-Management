@@ -5,6 +5,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import ViewDetails from './ViewDetails.jsx';
 import ActionAllot from './ActionAllot';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
+
 
 const columns = [
   { field: 'roomNo', headerName: 'Room No', width: 70 },
@@ -88,11 +90,14 @@ const config = {
 
 
 const AllotRooms = ()=>{
-const [pageCount,setPageCount] = useState(0);
+
+const [pageCount,setPageCount] = useState(10);
 const [rows,setRows] = useState([{roomNo:"",floorNo:"",students:[],status:"",occupancy:""}]);
 const [totalRooms,setTotalRooms] = useState(0);
 const [totalOccupied,setTotalOccupied] = useState(0);
-  useEffect(()=>{
+  
+
+useEffect(()=>{
 
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
     .then(res=>{
@@ -130,13 +135,23 @@ const [totalOccupied,setTotalOccupied] = useState(0);
 
 
 
-  //Pagination
+  //Pagination backend
 const handleNextPage = ()=>{
   setPageCount(pageCount+10);
     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
-    then(res=>{setRows(res.data.data)}).
-    catch(err=>console.log(err));
+    then(res=>{setRows(res.data.data); if(res.data.data.length===0){
+        setPageCount(pageCount-10);
+    }}).
+    catch(err=>{console.log(err);setPageCount(pageCount-10)});
 
+}
+
+const handlePerviousPage = ()=>{
+    setPageCount(pageCount-10);
+    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
+    then(res=>{setRows(res.data.data)}).
+    catch(err=>{console.log(err);setPageCount(10);});
+    console.log(pageCount);
 }
 
 
@@ -196,8 +211,10 @@ return (<>
           checkboxSelection
         />
   </div>
-
+  <div className='pageButtons'>
+  <Button variant='contained' onClick={handlePerviousPage}>Prev</Button>
   <Button variant='contained' onClick={handleNextPage}>Next</Button>
+  </div>
 </div>
 
 
@@ -208,3 +225,14 @@ return (<>
 
 
 export default AllotRooms;
+
+
+
+
+
+
+
+
+
+
+

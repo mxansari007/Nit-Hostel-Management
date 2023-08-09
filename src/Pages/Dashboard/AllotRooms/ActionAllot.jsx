@@ -55,7 +55,7 @@ const ActionAllot = (props)=>{
                 setMessage(2);
               }
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{console.log(err);setSnack(true);setMessage(3);});
         
 
     }
@@ -141,6 +141,11 @@ const ActionAllot = (props)=>{
       {message===2?<Snackbar open={openSnack} autoHideDuration={6000} onClose={()=>{setSnack(false)}}>
         <Alert onClose={()=>{setSnack(false)}} severity="error" sx={{ width: '100%' }}>
           Room is Occupied Can not Assign!
+        </Alert>
+      </Snackbar>:null}
+      {message===3?<Snackbar open={openSnack} autoHideDuration={6000} onClose={()=>{setSnack(false)}}>
+        <Alert onClose={()=>{setSnack(false)}} severity="error" sx={{ width: '100%' }}>
+          Unable to find this Roll No!
         </Alert>
       </Snackbar>:null}
         </Modal.Footer>
