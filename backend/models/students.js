@@ -47,10 +47,10 @@ const studentSchema = new mongoose.Schema({
         required: true,
         ref: "Profile",
     },
-    Rooms: {
+    Rooms: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Rooms",
-    },
+    }],
 
 },
     { timestamps: true }
