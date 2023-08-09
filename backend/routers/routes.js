@@ -13,7 +13,8 @@ const { studentSignup } = require("../controllers/Students/studentSignup");
 const { pdfDownload } = require("../controllers/pdf-download");
 const { auth } = require("../middlewares/auth");
 const { allotRooms } = require('../controllers/Admins/Rooms/allotRooms');
-const { roomController } = require('../controllers/Admins/Rooms/roomController');
+const { addStudent } = require('../controllers/Admins/Rooms/addStudent');
+const { removeStudent } = require('../controllers/Admins/Rooms/removeStudent');
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -42,14 +43,14 @@ router.post('/jsonUpload', auth, jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload', auth, pdfDownload);
 //// view student data
-router.post('/viewStudentInfo', studentInfo);
+router.post('/viewStudentInfo', auth, studentInfo);
 
 //// controllers  for  allot room
 
 // data filtering routes
-router.get('/allotRooms', allotRooms)
-router.post('/roomController', roomController);
-
+router.get('/allotRooms', auth, allotRooms)
+router.post('/addStudent', auth, addStudent);
+router.post('/removeStudent', auth, removeStudent);
 // //*  get count 
 // router.get('/getCount', getCount);
 // router.post('/roomsSearch',auth,roomsSearch);

@@ -4,7 +4,7 @@ const StudentsData = require('../../../models/students')
 exports.allotRooms = async (req, res) => {
     try {
         const totalRooms = await RoomsData.countDocuments();
-        const fullyOccupiedRooms = await RoomsData.countDocuments({ status: 'full' });
+        const fullyOccupiedRooms = await RoomsData.countDocuments({ status: 'Fully-filled' });
 
         // console.log(totalRooms);
         const filter = {};
