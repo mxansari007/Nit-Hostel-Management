@@ -43,6 +43,10 @@ const Step4 = ()=>{
         }
     }
 
+    const handleSubmit = ()=>{
+        
+    }
+
     return <>
     {count===parseFloat(100)?<div>
 <div className="image">

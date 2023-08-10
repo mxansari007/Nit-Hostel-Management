@@ -153,11 +153,11 @@ const ActionAllot = (props)=>{
                   axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
                   then(res=>{Dispatch(setRows(res.data.data));}).
                   catch(err=>{console.log(err);});
-                  }else if(roomQuery!==0){
+                  }else if(roomQuery!==0 && floorQuery === -1){
                     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`,config).
                     then(res=>{Dispatch(setRows([res.data.data[0]]));}).
                     catch(err=>{console.log(err);});
-                  }else if(floorQuery!==-1){
+                  }else if(floorQuery!==-1 && roomQuery === 0){
                     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`,config).
                     then(res=>{Dispatch(setRows([res.data.data[0]]));}).
                     catch(err=>{console.log(err);});
