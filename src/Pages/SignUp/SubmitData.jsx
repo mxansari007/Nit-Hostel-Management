@@ -3,10 +3,12 @@ import { useSelector,useDispatch } from "react-redux"
 import { Button } from "@mui/material";
 import { prev } from "../../Store/Reducers/signupSlice";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const SubmitData = ()=>{
 
     const allData = useSelector(state=>state.signUpData.data);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleSubmit = ()=>{
 
         console.log(allData);

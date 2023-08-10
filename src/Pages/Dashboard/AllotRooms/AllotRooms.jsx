@@ -6,76 +6,8 @@ import ViewDetails from './ViewDetails.jsx';
 import ActionAllot from './ActionAllot';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-
-
-const columns = [
-  { field: 'roomNo', headerName: 'Room No', width: 70 },
-  { field: 'floorNo', headerName: 'Floor No', width: 70 },
-  { 
-    field: 'student1', 
-    headerName: 'Student #1', 
-    width: 130,
-    valueGetter:(params) =>{
-      if(params.row.students.length == 0){
-        return '-';
-      }else if(params.row.students.length > 0){
-        return `${params.row.students[0].firstName} ${params.row.students[0].lastName}`;
-      }
-    }
-   },
-  { 
-    field: 'student2', 
-    headerName: 'Student #2', 
-    width: 130,
-    valueGetter:(params) =>{
-      if(params.row.students.length <= 1){
-        return '-';
-      }else if(params.row.students.length > 1){
-        return `${params.row.students[1].firstName} ${params.row.students[1].lastName}`;
-      }
-    }
-  },
-  { field: 'student3', 
-    headerName: 'Student #3', 
-    width: 130,
-    valueGetter:(params) =>{
-      if(params.row.students.length <= 2){
-        return '-';
-      }else if(params.row.students.length === 3){
-        return `${params.row.students[2].firstName} ${params.row.students[2].lastName}`;
-      }
-    }
-  },
-  {
-    field: 'occupancy',
-    headerName: 'Occupancy',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 80,
-  },
-  {
-    field: "Allot",
-    headerName: "Allot Rooms",
-    sortable: false,
-    renderCell: ({ row }) =>
-    <ActionAllot row={row} />
-  },
-  {
-    field: "viewDetails",
-    headerName: "View Details",
-    width: 160,
-    sortable: false,
-    renderCell: ({ row }) =>
-          <ViewDetails row={row} />
-  }
-
-];
+import {next,prev,setRows,setFloorQuery,setRoomQuery, setTotalRooms,setTotalOccupied,reset} from '../../../Store/Reducers/roomSlice';
+import { useSelector,useDispatch } from 'react-redux';
 
 const config = {
   headers: {
@@ -91,70 +23,146 @@ const config = {
 
 const AllotRooms = ()=>{
 
-const [pageCount,setPageCount] = useState(10);
-const [rows,setRows] = useState([{roomNo:"",floorNo:"",students:[],status:"",occupancy:""}]);
-const [totalRooms,setTotalRooms] = useState(0);
-const [totalOccupied,setTotalOccupied] = useState(0);
+
+const Dispatch = useDispatch();
+const pageCount = useSelector(state => state.roomHandle.pageCount);
+const rows = useSelector(state=>state.roomHandle.rows);
+const roomQuery = useSelector(state => state.roomHandle.roomQuery);
+const floorQuery = useSelector(state => state.roomHandle.floorQuery);
+const totalRooms = useSelector(state=>state.roomHandle.totalRooms);
+const totalOccupied = useSelector(state=>state.roomHandle.totalOccupied);
   
+const columns = [
+  { field: 'roomNo', headerName: 'Room No', width: 100 },
+  { field: 'floorNo', headerName: 'Floor No', width: 90 },
+  { 
+    field: 'student1', 
+    headerName: 'Student #1', 
+    width: 150,
+    valueGetter:(params) =>{
+      if(params.row.students.length == 0){
+        return '-';
+      }else if(params.row.students.length > 0){
+        return `${params.row.students[0].firstName} ${params.row.students[0].lastName}`;
+      }
+    }
+   },
+  { 
+    field: 'student2', 
+    headerName: 'Student #2', 
+    width: 150,
+    valueGetter:(params) =>{
+      if(params.row.students.length <= 1){
+        return '-';
+      }else if(params.row.students.length > 1){
+        return `${params.row.students[1].firstName} ${params.row.students[1].lastName}`;
+      }
+    }
+  },
+   {
+    field: 'occupancy',
+    headerName: 'Occupancy',
+    type: 'number',
+    width: 90,
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 140,
+  },
+  {
+    field: "Allot",
+    headerName: "Allot Rooms",
+    sortable: false,
+    renderCell: ({ row }) =>
+    <ActionAllot row={row} pageCount={pageCount}/>
+  },
+  {
+    field: "viewDetails",
+    headerName: "View Details",
+    width: 160,
+    sortable: false,
+    renderCell: ({ row }) =>
+          <ViewDetails row={row} />
+  }
+
+];
+
 
 useEffect(()=>{
 
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
     .then(res=>{
-      setRows(res.data.data);
-      setTotalRooms(res.data.totalRooms);
-      setTotalOccupied(res.data.fullyOccupiedRooms);
+      // setRows(res.data.data);
+      Dispatch(setRows(res.data.data));
+      // setTotalRooms(res.data.totalRooms);
+      // setTotalOccupied(res.data.fullyOccupiedRooms);
+      Dispatch(setTotalRooms(res.data.totalRooms));
+      Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
     })
     .catch(err=>console.log(err));
   },[])
 
-  const [roomQuery,setRoomQuery] = useState();
-  const [floorQuery,setFloorQuery] = useState();
 
   const handleChange = (event)=>{
       if(event.target.name === 'roomField'){
-        setRoomQuery(event.target.value);
+        Dispatch(setRoomQuery(event.target.value));
       }else if(event.target.name === 'floorField'){
         console.log(event.target.value);
-        setFloorQuery(event.target.value);
+        Dispatch(setFloorQuery(event.target.value));
       }
   }
 
   const handleSubmit = (event)=>{
       if(event.target.name === "roomSubmit"){
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`)
-        .then(res =>{setRows([res.data.data[0]]);console.log(res.data.data[0])});
+        .then(res =>{Dispatch(setRows([res.data.data[0]]));console.log(res.data.data[0])});
       }else if(event.target.name === "floorSubmit"){
         console.log(floorQuery);
         console.log('hit');
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`)
-        .then(res =>{setRows(res.data.data);console.log(res.data.data)});
+        .then(res =>{Dispatch(setRows(res.data.data));console.log(res.data.data)});
       }
   }
 //?status=vacant,Fully-filled,Half-filled
 
 
-
-  //Pagination backend
-const handleNextPage = ()=>{
-  setPageCount(pageCount+10);
-    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
-    then(res=>{setRows(res.data.data); if(res.data.data.length===0){
-        setPageCount(pageCount-10);
-    }}).
-    catch(err=>{console.log(err);setPageCount(pageCount-10)});
-
-}
-
-const handlePerviousPage = ()=>{
-    setPageCount(pageCount-10);
-    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
-    then(res=>{setRows(res.data.data)}).
-    catch(err=>{console.log(err);setPageCount(10);});
-    console.log(pageCount);
+//Pagination
+const fetchData = async ()=>{
+  axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
+  then(res=>{Dispatch(setRows(res.data.data))}).
+  catch(err=>{console.log(err);});
 }
 
 
+useEffect(()=>{
+  fetchData();
+},[pageCount]);
+
+
+const handleNextPage =async () =>{
+    Dispatch(next());
+}
+
+
+
+const handlePerviousPage =async ()=>{
+    Dispatch(prev());
+
+}
+
+const handleReset = () =>{
+  axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
+  .then(res=>{
+    Dispatch(setRows(res.data.data));
+    Dispatch(setTotalRooms(res.data.totalRooms));
+    Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
+  })
+  .catch(err=>console.log(err));
+  Dispatch(reset());
+}
 
 
 return (<>
@@ -197,22 +205,23 @@ return (<>
 </div>
 
 <div className='table-area'>
-  <div style={{ height: 400, width: '100%' }}>
+  <div style={{ height: 650, width: '100%' }}>
         <DataGrid
           getRowId={(row) => row.roomNo}
           rows={rows}
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[10]}
           checkboxSelection
         />
   </div>
   <div className='pageButtons'>
   <Button variant='contained' onClick={handlePerviousPage}>Prev</Button>
+  <Button variant='contained' onClick={handleReset}>Reset</Button>
   <Button variant='contained' onClick={handleNextPage}>Next</Button>
   </div>
 </div>

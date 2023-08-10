@@ -25,17 +25,17 @@ const handelRoom = async (roomNo, studentData) => {
                     await Rooms.findByIdAndUpdate(idOfRoom, { status: 'Fully-filled' })
                 }
 
-                return 'Successfully allocated room to student';
+                return 'Success';
 
             } catch (error) {
                 return ("error " + error.message);
             }
         } else {
-            return 'Fully-filled rooms are not allocated';
+            return 'Fully-filled';
 
         }
     } else {
-        return 'student already have been alloted a room'
+        return 'allreadyAlloted'
 
     }
 
