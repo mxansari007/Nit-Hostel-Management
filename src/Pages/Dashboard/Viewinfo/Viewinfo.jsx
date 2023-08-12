@@ -222,7 +222,7 @@ export default function ViewInfo() {
               <TableCell align="right">    
                 <DownloadingButton row = {row} />
                 {/* <Button onClick={()=>{setLayout('fullscreen')}} size="small" sx={{ml:'5px'}} variant="contained">View info</Button> */}
-                 <ViewInfoModal row={row}/>
+                 {/* <ViewInfoModal row={row}/> */}
                   </TableCell>
             </TableRow>)
           })}

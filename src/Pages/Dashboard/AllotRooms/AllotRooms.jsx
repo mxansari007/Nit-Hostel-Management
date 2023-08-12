@@ -76,8 +76,8 @@ const columns = [
     field: "Allot",
     headerName: "Allot Rooms",
     sortable: false,
-    renderCell: ({ row }) =>
-    <ActionAllot row={row} pageCount={pageCount}/>
+    // renderCell: ({ row }) =>
+    // // <ActionAllot row={row} pageCount={pageCount}/>
   },
   {
     field: "viewDetails",
