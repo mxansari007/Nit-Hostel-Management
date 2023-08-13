@@ -4,6 +4,22 @@ const ProfileSchema = new mongoose.Schema({
     gender: {
         type: String,
     },
+    officialEmail: {
+        type: String,
+        required: true,
+        unique: [true, "Email id already present"],
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error("invalid email");
+            }
+        }
+    },
+    branch: {
+        type: String,
+    },
+    course: {
+        type: String,
+    },
     dateOfBirth: {
         type: String,
     },
@@ -37,6 +53,9 @@ const ProfileSchema = new mongoose.Schema({
     }
     ,
     address: {
+        type: String,
+    },
+    state: {
         type: String,
     },
     image:{

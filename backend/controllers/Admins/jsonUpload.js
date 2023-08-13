@@ -41,6 +41,9 @@ exports.jsonUpload = async (req, res) => {
       });
       profiles.push({
         gender: obj.gender,
+        officialEmail: obj.officialEmail,
+        branch: obj.branch,
+        course: obj.course,
         dateOfBirth: obj.dateOfBirth,
         contactNumber: obj.contactNumber,
         secondaryNumber: obj.secondaryNumber,
@@ -52,6 +55,7 @@ exports.jsonUpload = async (req, res) => {
         bloodGroup: obj.bloodGroup,
         identificationMark: obj.identificationMark,
         address: obj.address,
+        state: obj.state,
       });
 
       bankDetails.push({
