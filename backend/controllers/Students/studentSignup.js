@@ -5,10 +5,12 @@ exports.studentSignup = async (req, res) => {
     try {
         // console.log(req.body);
         const { rollNo, firstName, lastName, year, password, department, email,
-            gender, dateOfBirth, contactNumber,
+            gender,officialEmail,branch,course, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
-            identificationMark, address, AccountHolderName, AccountNumber,image,aadhaarFrontImage,aadhaarBackImage,BankName, IFSC } = req.body;
+            identificationMark, address,state,
+            AccountHolderName, AccountNumber,BankName, IFSC,
+            image,aadhaarFrontImage,aadhaarBackImage} = req.body;
 
         const bankDetails = new BankDetail({
             AccountHolderName,
@@ -20,7 +22,7 @@ exports.studentSignup = async (req, res) => {
         await bankDetails.save();
 
         const profile = new Profile({
-            gender, dateOfBirth, contactNumber,
+            gender,officialEmail,branch,course, dateOfBirth, contactNumber,
             secondaryNumber, fatherName, fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
             identificationMark, address,image, aadhaarFrontImage,aadhaarBackImage,bankDetails: bankDetails._id
