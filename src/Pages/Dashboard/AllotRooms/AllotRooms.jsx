@@ -76,8 +76,8 @@ const columns = [
     field: "Allot",
     headerName: "Allot Rooms",
     sortable: false,
-    // renderCell: ({ row }) =>
-    // // <ActionAllot row={row} pageCount={pageCount}/>
+    renderCell: ({ row }) =>
+    <ActionAllot row={row} pageCount={pageCount}/>
   },
   {
     field: "viewDetails",
@@ -95,10 +95,10 @@ useEffect(()=>{
 
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
     .then(res=>{
-      // setRows(res.data.data);
+      setRows(res.data.data);
       Dispatch(setRows(res.data.data));
-      // setTotalRooms(res.data.totalRooms);
-      // setTotalOccupied(res.data.fullyOccupiedRooms);
+      setTotalRooms(res.data.totalRooms);
+      setTotalOccupied(res.data.fullyOccupiedRooms);
       Dispatch(setTotalRooms(res.data.totalRooms));
       Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
     })

@@ -3,7 +3,7 @@ const router = new express.Router();
 const multer = require('multer');
 const path = require('path');
 
-const {jsonRoomUpload} = require("../controllers/Admins/Rooms/jsonRoomUpload");
+const { jsonRoomUpload } = require("../controllers/Admins/Rooms/jsonRoomUpload");
 const { studentInfo } = require("../controllers/Admins/studentInfo");
 const { csvUpload } = require("../middlewares/csvUpload");
 const { jsonUpload } = require('../controllers/Admins/jsonUpload');
@@ -15,6 +15,7 @@ const { auth } = require("../middlewares/auth");
 const { allotRooms } = require('../controllers/Admins/Rooms/allotRooms');
 const { addStudent } = require('../controllers/Admins/Rooms/addStudent');
 const { removeStudent } = require('../controllers/Admins/Rooms/removeStudent');
+const { roomsMapping } = require('../controllers/Admins/Rooms/roomsMapping');
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,6 +40,8 @@ router.post('/studentlogin', studentLogin);
 //// for csv students upload
 router.post('/csv', auth, upload.single('file'), csvUpload, jsonUpload);
 router.post('/roomCSV', upload.single('file'), csvUpload, jsonRoomUpload);
+router.post('/roomMap', upload.single('file'), csvUpload, roomsMapping);
+
 ////for json students upload
 router.post('/jsonUpload', auth, jsonUpload);
 //// to download pdf file
@@ -52,8 +55,9 @@ router.post('/viewStudentInfo', auth, studentInfo);
 router.get('/allotRooms', allotRooms)
 router.post('/addStudent', auth, addStudent);
 router.post('/removeStudent', auth, removeStudent);
-// //*  get count 
-// router.get('/getCount', getCount);
-// router.post('/roomsSearch',auth,roomsSearch);
+// upload room csv/Excel
+
+
+
 
 module.exports = router;
