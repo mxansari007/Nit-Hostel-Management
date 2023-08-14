@@ -65,11 +65,15 @@ const UploadPage = ()=>{
           setUploading(false);
           if(response.data.length==0){
             setMessage(1);
+            setData(response.data);
+          }else if(response.data.errors){
+            setMessage(5);
           }else{
             setMessage(2);
+            setData(response.data);
           }
           console.log(response.data);
-          setData(response.data);
+
         })
         .catch((error) => {
           // handle errors

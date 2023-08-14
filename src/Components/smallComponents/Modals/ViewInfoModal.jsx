@@ -235,8 +235,10 @@ const saveToBackEnd = ()=>{
             <p><span style={{fontWeight:'bold'}}>First Name :</span> {profile?<Input name="firstName" onChange={handleProfile} defaultValue={save.firstName} />:save.firstName}</p>
             <p><span style={{fontWeight:'bold'}}>Last Name :</span> {profile?<Input name="lastName" onChange={handleProfile} defaultValue={save.lastName}/>:save.lastName}</p>
             <p><span style={{fontWeight:'bold'}}>Roll No :</span> {profile?<Input name="rollNo" onChange={handleProfile} defaultValue={save.rollNo} />:save.rollNo}</p>
+            <p><span style={{fontWeight:'bold'}}>Official Email :</span> {profile?<Input name="off-email" onChange={handleAd} defaultValue={save.Profile.offcialEmail} />:save.Profile.officialEmail}</p>
+            <p><span style={{fontWeight:'bold'}}>Course :</span> {profile?<Input name="course" onChange={handleAd} defaultValue={save.Profile.course} />:save.Profile.course}</p>
+            <p><span style={{fontWeight:'bold'}}>Branch :</span> {profile?<Input name="branch" onChange={handleAd} defaultValue={save.Profile.branch} />:save.Profile.branch}</p>
             <p><span style={{fontWeight:'bold'}}>Department :</span> {profile?<Input name="department" onChange={handleProfile} defaultValue={save.department} />:save.department}</p>
-            <p><span style={{fontWeight:'bold'}}>Email :</span> {profile?<Input name="email" onChange={handleProfile} defaultValue={save.email} />:save.email}</p>
             </div>
             <Divider />
             <div className="sub-title">
@@ -248,12 +250,17 @@ const saveToBackEnd = ()=>{
             </div>
             <Divider />
             <div className="Box">
+            <p><span style={{fontWeight:'bold'}}>Room No :</span> {save.Rooms.length!=0?save.Rooms[0].roomNo:null}</p>
             <p><span style={{fontWeight:'bold'}}>Semester :</span> {additional?<Input name="semester" onChange={handleAd} defaultValue={save.Profile.semester} />: save.Profile.semester}</p>
             <p><span style={{fontWeight:'bold'}}>Gender :</span> {additional?<Input name="gender" onChange={handleAd} defaultValue={save.Profile.gender} />:save.Profile.gender}</p>
             <p><span style={{fontWeight:'bold'}}>Date Of Birth :</span> {additional?<Input name="dob" onChange={handleAd} defaultValue={save.Profile.dateOfBirth} />:save.Profile.dateOfBirth}</p>
+            <p><span style={{fontWeight:'bold'}}>Email :</span> {profile?<Input name="email" onChange={handleProfile} defaultValue={save.email} />:save.email}</p>
             <p><span style={{fontWeight:'bold'}}>Contact :</span> {additional?<Input name="contact" onChange={handleAd} defaultValue={save.Profile.contactNumber} />:save.Profile.contactNumber}</p>
             <p><span style={{fontWeight:'bold'}}>Secondary Contact :</span> {additional?<Input name="s-contact" onChange={handleAd} defaultValue={save.Profile.secondaryNumber} />:save.Profile.secondaryNumber}</p>
+            <p><span style={{fontWeight:'bold'}}>Address :</span> {additional?<Input name="semester" onChange={handleAd} defaultValue={save.Profile.address} />: save.Profile.address}</p>
+            <p><span style={{fontWeight:'bold'}}>State :</span> {additional?<Input name="semester" onChange={handleAd} defaultValue={save.Profile.state} />: save.Profile.state}</p>
             <p><span style={{fontWeight:'bold'}}>Father's Name :</span> {additional?<Input name="fatherName" onChange={handleAd} defaultValue={save.Profile.fatherName} />:save.Profile.fatherName}</p>
+            <p><span style={{fontWeight:'bold'}}>Father's Contact :</span> {additional?<Input name="fatherContact" onChange={handleAd} defaultValue={save.Profile.fatherContact} />:save.Profile.fatherContact}</p>
             <p><span style={{fontWeight:'bold'}}>Father's Occupation :</span> {additional?<Input name="fatherOccu" onChange={handleAd} defaultValue={save.Profile.fatherOccupation} />:save.Profile.fatherOccupation}</p>
             <p><span style={{fontWeight:'bold'}}>Mother's Name :</span> {additional?<Input name="motherName" onChange={handleAd} defaultValue={save.Profile.motherName} />:save.Profile.motherName}</p>
             <p><span style={{fontWeight:'bold'}}>Mother's Occupation :</span> {additional?<Input name="motherOccu" onChange={handleAd} defaultValue={save.Profile.motherOccupation} />:save.Profile.motherOccupation}</p>

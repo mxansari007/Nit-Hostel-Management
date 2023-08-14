@@ -102,3 +102,8 @@
         margin:25px auto 0;
     }
 }
+
+.tbl-loading{
+    width:60%;
+    margin: auto;
+}

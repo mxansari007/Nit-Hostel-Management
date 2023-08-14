@@ -6,7 +6,7 @@ exports.studentSignup = async (req, res) => {
         // console.log(req.body);
         const { rollNo, firstName, lastName, year, password, department, email,
             gender,officialEmail,branch,course, dateOfBirth, contactNumber,
-            secondaryNumber, fatherName, fatherOccupation,
+            secondaryNumber, fatherName, fatherContact,fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
             identificationMark, address,state,
             AccountHolderName, AccountNumber,BankName, IFSC,
@@ -23,7 +23,7 @@ exports.studentSignup = async (req, res) => {
 
         const profile = new Profile({
             gender,officialEmail,branch,course, dateOfBirth, contactNumber,
-            secondaryNumber, fatherName, fatherOccupation,
+            secondaryNumber, fatherName, fatherContact,fatherOccupation,
             motherName, motherOccupation, semester, bloodGroup,
             identificationMark, address,image, aadhaarFrontImage,aadhaarBackImage,bankDetails: bankDetails._id
         })

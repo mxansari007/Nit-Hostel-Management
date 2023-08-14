@@ -8,6 +8,7 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import {next,prev,setRows,setFloorQuery,setRoomQuery, setTotalRooms,setTotalOccupied,reset} from '../../../Store/Reducers/roomSlice';
 import { useSelector,useDispatch } from 'react-redux';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const config = {
   headers: {
@@ -31,6 +32,7 @@ const roomQuery = useSelector(state => state.roomHandle.roomQuery);
 const floorQuery = useSelector(state => state.roomHandle.floorQuery);
 const totalRooms = useSelector(state=>state.roomHandle.totalRooms);
 const totalOccupied = useSelector(state=>state.roomHandle.totalOccupied);
+const [loading,setLoading] = useState(false);
   
 const columns = [
   { field: 'roomNo', headerName: 'Room No', width: 100 },
@@ -92,7 +94,7 @@ const columns = [
 
 
 useEffect(()=>{
-
+    setLoading(true);
     axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
     .then(res=>{
       setRows(res.data.data);
@@ -101,8 +103,9 @@ useEffect(()=>{
       setTotalOccupied(res.data.fullyOccupiedRooms);
       Dispatch(setTotalRooms(res.data.totalRooms));
       Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
+      setLoading(false);
     })
-    .catch(err=>console.log(err));
+    .catch(err=>{console.log(err);setLoading(false)});
   },[])
 
 
@@ -116,6 +119,7 @@ useEffect(()=>{
   }
 
   const handleSubmit = (event)=>{
+    setLoading(true);
       if(event.target.name === "roomSubmit"){
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`)
         .then(res =>{Dispatch(setRows([res.data.data[0]]));console.log(res.data.data[0])});
@@ -125,6 +129,7 @@ useEffect(()=>{
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`)
         .then(res =>{Dispatch(setRows(res.data.data));console.log(res.data.data)});
       }
+      setLoading(false);
   }
 //?status=vacant,Fully-filled,Half-filled
 
@@ -138,7 +143,9 @@ const fetchData = async ()=>{
 
 
 useEffect(()=>{
+  setLoading(true);
   fetchData();
+  setLoading(false);
 },[pageCount]);
 
 
@@ -154,6 +161,7 @@ const handlePerviousPage =async ()=>{
 }
 
 const handleReset = () =>{
+  setLoading(true);
   axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
   .then(res=>{
     Dispatch(setRows(res.data.data));
@@ -162,6 +170,7 @@ const handleReset = () =>{
   })
   .catch(err=>console.log(err));
   Dispatch(reset());
+  setLoading(false);
 }
 
 
@@ -206,6 +215,10 @@ return (<>
 
 <div className='table-area'>
   <div style={{ height: 650, width: '100%' }}>
+        {loading?
+        <div className='tbl-loading'>
+        <LinearProgress />
+        </div>:
         <DataGrid
           getRowId={(row) => row.roomNo}
           rows={rows}
@@ -218,12 +231,14 @@ return (<>
           pageSizeOptions={[10]}
           checkboxSelection
         />
+        }
   </div>
   <div className='pageButtons'>
   <Button variant='contained' onClick={handlePerviousPage}>Prev</Button>
   <Button variant='contained' onClick={handleReset}>Reset</Button>
   <Button variant='contained' onClick={handleNextPage}>Next</Button>
   </div>
+  
 </div>
 
 

@@ -36,6 +36,9 @@ const ProfileSchema = new mongoose.Schema({
     fatherOccupation: {
         type: String,
     },
+    fatherContact: {
+        type: Number,
+    },
     motherName: {
         type: String,
     },

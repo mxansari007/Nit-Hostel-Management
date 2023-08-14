@@ -48,6 +48,7 @@ exports.jsonUpload = async (req, res) => {
         contactNumber: obj.contactNumber,
         secondaryNumber: obj.secondaryNumber,
         fatherName: obj.fatherName,
+        fatherContact: obj.fatherContact,
         fatherOccupation: obj.fatherOccupation,
         motherName: obj.motherName,
         motherOccupation: obj.motherOccupation,
