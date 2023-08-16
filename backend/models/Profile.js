@@ -72,7 +72,7 @@ const ProfileSchema = new mongoose.Schema({
     },
     bankDetails: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        // required: true,
         ref: "BankDetails",
     }
 });

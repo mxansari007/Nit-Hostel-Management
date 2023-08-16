@@ -17,12 +17,12 @@ const studentSchema = new mongoose.Schema({
     },
     lastName: {
         type: String,
-        required: true,
+        // required: true,
         minlength: 3
     },
     year: {
         type: Number,
-        required: true,
+        // required: true,
     },
     password: {
         type: String,
@@ -44,7 +44,7 @@ const studentSchema = new mongoose.Schema({
     },
     Profile: {
         type: mongoose.Schema.Types.ObjectId,
-        // required: true,
+        required: true,
         ref: "Profile",
     },
     Rooms: [{

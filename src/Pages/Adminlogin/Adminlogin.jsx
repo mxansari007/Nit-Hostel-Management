@@ -61,6 +61,7 @@ return(<>
  <Paper id="loginBox" elevation={2}>
       
 <h2>Admin Login</h2>
+<form>
 <FormControl>
 <TextField  onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
 <TextField onChange={handleChange} sx={{display:'block',my:'17px'}} name="password" id="outlined-basic" label="Password" type="password" variant="outlined"/>
@@ -77,6 +78,7 @@ return(<>
           <span>Login</span>
         </LoadingButton>
         </FormControl>
+</form>
         <p className='sign-up'>Login as <Link className="link" to='student'>Student</Link>/ <Link className="link" to='/signup'>Sign Up</Link></p>
 </Paper>
 </>
