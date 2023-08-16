@@ -13,12 +13,12 @@ const studentSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        minlength: 3
+        // minlength: 3
     },
     lastName: {
         type: String,
         // required: true,
-        minlength: 3
+        // minlength: 3
     },
     year: {
         type: Number,
@@ -34,13 +34,13 @@ const studentSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
-        unique: [true, "Email id already present"],
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error("invalid email");
-            }
-        }
+        // required: true,
+        // unique: [true, "Email id already present"],
+        // validate(value) {
+        //     if (!validator.isEmail(value)) {
+        //         throw new Error("invalid email");
+        //     }
+        // }
     },
     Profile: {
         type: mongoose.Schema.Types.ObjectId,

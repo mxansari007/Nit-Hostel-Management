@@ -150,7 +150,7 @@ const modify = () => {
 <UploadInstructions />
 </div>
 
-<div className="table">
+{/* <div className="table">
 <h2 className="table-heading">Duplicate Data</h2>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -176,7 +176,7 @@ const modify = () => {
 
 {/* Modify logic */}
 
-            <TableCell align="right"><Checkbox onChange={
+            {/* <TableCell align="right"><Checkbox onChange={
               (event)=>{
                 console.log(event.target.checked);
                 if(event.target.checked){
@@ -189,7 +189,7 @@ const modify = () => {
                   }/>
 
 {/* Modify logic */}
-            
+{/*             
             </TableCell>
               <TableCell component="th" scope="row">
                 {row.rollNo}
@@ -208,11 +208,11 @@ const modify = () => {
 
     <div className="modifyButton">
     <Button variant="outlined" onClick={handleModify}>Modify Data</Button>
-    </div>
+    </div> */}
 
 {/* Modal Element */}
 
-<Modal
+{/* <Modal
   open={open}
   onClose={handleClose}
   aria-labelledby="modal-modal-title"
@@ -261,10 +261,9 @@ const modify = () => {
   </div>
 </div>
 </Modal>
+</div> */} 
 
-    </div>
-    </>
-
+</>
 }
 
 
