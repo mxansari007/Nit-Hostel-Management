@@ -44,7 +44,7 @@ const studentSchema = new mongoose.Schema({
     },
     Profile: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        // required: true,
         ref: "Profile",
     },
     Rooms: [{
