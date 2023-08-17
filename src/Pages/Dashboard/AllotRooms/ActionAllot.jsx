@@ -132,7 +132,7 @@ const ActionAllot = (props)=>{
             <TableCell align="right">{`${d.firstName} ${d.lastName}`}</TableCell>
             <TableCell align="right">{d.department}</TableCell>
             <TableCell align="right">{d.year}</TableCell>
-            {/* <TableCell align="right">{d.Profile.contactNumber}</TableCell> */}
+            <TableCell align="right">{d.Profile.contactNumber}</TableCell>
             <TableCell align="right"><a onClick={()=>{
               const rollNo = d.rollNo
               const sendObj = {rollNo,roomNo};
