@@ -52,7 +52,7 @@ exports.addStudent = async (req, res) => {
         // console.log(studentData)
         // if student's data doesn't exist in database(i.e student is not registered)
         if (studentData === null) {
-            return res.status(404).send({ message: 'Student not found' });
+            return res.status(500).send({ message: 'Student not found' });
         } else {
 
             const result = await handelRoom(roomNo, studentData);
@@ -61,7 +61,7 @@ exports.addStudent = async (req, res) => {
 
 
     } catch (err) {
-        return res.status(401).send("error " + err.message);
+        return res.status(500).send("error " + err.message);
 
     }
 
