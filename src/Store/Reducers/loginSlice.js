@@ -6,14 +6,15 @@ export const loginSlice = createSlice({
         value:false,
         tokken:null,
         logoutLoading:false,
+        page:'',
     },
     reducers:{
         login:(state) =>{
             state.value = true
-            localStorage.setItem('localLogin',true);
+            sessionStorage.setItem('localLogin',true);
         },
         logout: (state) => {
-            localStorage.removeItem('localLogin');
+            sessionStorage.removeItem('localLogin');
             state.value = false
         },
         initialLogin:(state)=>{
