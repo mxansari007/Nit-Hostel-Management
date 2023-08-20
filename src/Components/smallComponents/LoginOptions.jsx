@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import {logout} from '../../Store/Reducers/loginSlice';
+import axios from 'axios';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -55,9 +56,21 @@ export default function LoginOptions(){
             <MenuItem  key={setting}  onClick={()=>{
                    setAnchorElUser(null);
                     if(setting==='Logout'){
-                      dispatch(logout());
-                      Navigate('/');
-                      
+                      const config = {
+                        headers: {
+                          "Content-Type": "application/json"
+                          },
+                          withCredentials: true
+                        }
+                      axios.get(import.meta.env.VITE_BASE_URL + '/logout',config)
+                      .then((res)=>{
+                        dispatch(logout());
+                        Navigate('/');      
+                      })
+                      .catch((err)=>{
+
+                      });
+                     
                     }
             }} name={setting}>
               <Typography  textAlign="center">{setting}</Typography>

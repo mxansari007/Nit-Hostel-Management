@@ -16,11 +16,11 @@ const adminSchema=new mongoose.Schema({
 
 adminSchema.methods.generateAuthToken =async function(next){
     try{
-       const token=jwt.sign({_id:this._id.toString(),accountType: "admin"},process.env.JWT_SECRET);
+       const token=jwt.sign({_id:this._id,accountType: "admin"},process.env.JWT_SECRET);
        return token;
     }catch(e){
-          res.send("the error occurred"+error);
-          console.log("the error occurred"+error);
+        res.send("the error occurred in generate auth token function"+error);
+        console.log("the error occurred generate auth token function"+error);
     }
 };
 //! we will create a new collection

@@ -3,7 +3,13 @@ require("dotenv").config();
 exports.auth = async (req, res, next) => {
   try {
     //extract token
-   const token = req.cookies.accessToken
+    const cookies = req.headers.cookie;
+    if(!cookies){
+     return res.status(401).send('cookie expired in auth');
+    }
+    const token = cookies.split("=")[1];
+    console.log("cookies in auth \n"+cookies);
+    console.log("token in auth \n"+token);
    if(!token){
     return res.status(401).send('Token is missing');
    }
@@ -13,14 +19,14 @@ exports.auth = async (req, res, next) => {
       token,
       process.env.JWT_SECRET
     )
-    console.log(verifyUser);
+    console.log("verify user in auth middleware->"+verifyUser);
    } catch (error) {
-     return res.send("invalid token")
+     return res.status(401).send("invalid token")
    }
 
     next();
   } catch (error) {
-     return res.status(401).send("auth me"+error);
+     return res.status(401).send("Unauthorized request");
   }
 }
 
