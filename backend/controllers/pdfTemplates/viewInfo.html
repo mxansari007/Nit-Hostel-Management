@@ -13,6 +13,7 @@
  h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18pt;
+    color: #20cfb2;
     
 }
 
@@ -29,6 +30,15 @@ p{
     font-size: 28px;
     margin-left: 40px;
 }
+
+.Container{
+    width: 19cm;
+    height: 27cm;
+    border:2px solid black;
+    border-radius: 25px;
+}
+
+
 .photo{
     border: 2px solid black;
     width: 55pt;
@@ -38,18 +48,50 @@ p{
     align-items: center;
     margin-top: 30pt;
 }
+
+.faa{
+   display: flex;
+  margin:2px ;
+ 
+   justify-content: space-between;
+   padding: 0px;
+   }
+.gg{
+    display: flex;
+    margin:2px;
+   justify-content: space-between;
+   padding: 0px
+}
+  
 </style>
 </head>
-<body>
+<body >
+<div class="Container">
 <h1 style="text-align: center;">NIT Kurukshetra</h1>
 <h2 style="text-align: center;">Hostel 11, Vivekanand Bhawan</h2>
 <div class="content">
 <img class="photo" alt ="profile-image" src="{{this.image}}" />
-<p class="content-head"><b>Name</b>: {{this.firstName}} {{this.lastName}}</p>
-<p class="content-head"><b>Roll no</b>: {{this.rollNo}}</p>
-<p class="content-head"><b>Department</b>: {{this.department}}</p>
-<p class="content-head"><b>Year</b>: {{this.year}}</p>
-<p class="content-head"><b>Email</b>: {{this.email}}</p>
+
+<h6 style="color: #20cfb2;border: 1px solid black; padding:5px;">Profile Details</h6>
+
+<div class="faa">
+<div><p class="content-head " ><b> First Name</b>: {{this.firstName}} </p></div>
+<div><p class="content-head "><b>Last Name</b>:{{this.lastName}}</p></div>
+<div><p class="content-head "><b>Roll no</b>: {{this.rollNo}}</p></div>
+</div>
+<br>
+<div class="gg">
+<div><p class="content-head"><b>Department</b>: {{this.department}}</p></div>
+<div><p class="content-head"><b>Course: </b>{{this.Course}}</p></div>
+<div><p class="content-head"><b>Branch</b>: {{this.branch}}</p></div>
+
+</div>
+<div><p class="content-head"><b>Email</b>: {{this.email}}</p></div>
+<p class="content-head"><b>Address: </b>{{this.address}}</p>
+<div><p class="content-head"><b>Semester: </b>{{this.semester}}</p></div>
+<div><p class="content-head"><b>Year</b>: {{this.year}}</p></div>
+
+</div>
 </div>
 </body>
 </html>
