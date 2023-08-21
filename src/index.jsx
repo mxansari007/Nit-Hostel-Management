@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createTheme,ThemeProvider} from '@mui/material';
 import { teal } from '@mui/material/colors';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import './MainStyle/Css/Fonts.css';
 import './MainStyle/Css/Styles.css'
 import { Provider } from 'react-redux';

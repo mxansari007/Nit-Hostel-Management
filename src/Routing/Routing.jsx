@@ -15,9 +15,7 @@ import { useSelector } from 'react-redux';
 
 const Routing = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn.value);
-    const localLogin = localStorage.getItem('localLogin');
-
-
+    
     if(isLoggedIn){
         return(
             <>
