@@ -5,7 +5,7 @@ exports.allotRooms = async (req, res) => {
     try {
         const totalRooms = await RoomsData.countDocuments();
         const fullyOccupiedRooms = await RoomsData.countDocuments({ status: 'Fully-filled' });
-
+        const partiallyOccupiedRooms = await RoomsData.countDocuments({ status: 'Half-filled' });
         // console.log(totalRooms);
         const filter = {};
 
@@ -43,7 +43,10 @@ exports.allotRooms = async (req, res) => {
 
         }).skip(page).limit(pageSize).sort({ [sortField]: sortOrder });
 
-        res.status(201).json({ data: data, totalRooms: totalRooms, fullyOccupiedRooms: fullyOccupiedRooms });
+        res.status(201).json({
+            data: data, totalRooms: totalRooms, fullyOccupiedRooms: fullyOccupiedRooms,
+            partiallyOccupiedRooms: partiallyOccupiedRooms
+        });
     } catch (error) {
         res.status(400).json({ error: 'Internal Server Error' });
     }

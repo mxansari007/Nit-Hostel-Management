@@ -6,3 +6,17 @@
 .floor-title{
     color: #FF8551;
 }
+
+.image{
+    width: 45px;
+    border: 1px solid black;
+}
+.occupants{
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+#room-paper{
+    width:400px;
+    margin: 25px auto  0px;
+}

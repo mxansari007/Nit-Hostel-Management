@@ -5,9 +5,10 @@ import {useSelector} from 'react-redux';
 
 const PageNotFound = function() {
 
-const localLogin = localStorage.getItem('localLogin');
+const localLogin = sessionStorage.getItem('localLogin');
 
   if(localLogin){
+
   return (
     <div>
       <Navigate to="/Dashboard" replace/>

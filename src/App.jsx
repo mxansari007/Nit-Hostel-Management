@@ -7,6 +7,8 @@ import {useEffect} from 'react';
 import { Snackbar } from '@mui/base';
 import { Alert } from '@mui/lab';
 
+
+
 function App() {
 
   // const signedStatus = useSelector(state =>state.signUpProgress.signedUp);
@@ -14,7 +16,7 @@ function App() {
 const Dispatch = useDispatch();
 
   useEffect(()=>{
-    localStorage.getItem('localLogin')?Dispatch(initialLogin()):null;
+    sessionStorage.getItem('localLogin')?Dispatch(initialLogin()):null;
 },[])
 
 

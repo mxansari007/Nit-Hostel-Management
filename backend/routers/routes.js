@@ -9,6 +9,7 @@ const { csvUpload } = require("../middlewares/csvUpload");
 const { jsonUpload } = require('../controllers/Admins/jsonUpload');
 const { studentLogin } = require("../controllers/Students/studentLogin");
 const { adminLogin } = require("../controllers/Admins/adminLogin");
+const { logout } = require('../controllers/Admins/logout');
 const { studentSignup } = require("../controllers/Students/studentSignup");
 const { pdfDownload } = require("../controllers/pdf-download");
 const { auth } = require("../middlewares/auth");
@@ -32,7 +33,7 @@ router.post('/studentSignup', studentSignup);
 
 //// for admin login
 router.post('/adminlogin', adminLogin);
-
+router.get('/logout', logout);
 //// for students login
 
 router.post('/studentlogin', studentLogin);
@@ -47,7 +48,7 @@ router.post('/jsonUpload', auth, jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload', auth, pdfDownload);
 //// view student data
-router.post('/viewStudentInfo', auth, studentInfo);
+router.post('/viewStudentInfo', studentInfo);
 
 //// controllers  for  allot room
 

@@ -22,7 +22,7 @@ const pages = ['Home', 'Contact Us', 'About'];
 
 const Navbar=()=> {
 
-  const localLogin = localStorage.getItem('localLogin');
+  const localLogin = sessionStorage.getItem('localLogin');
   
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();
