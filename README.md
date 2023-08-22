@@ -11,10 +11,13 @@
 
 
 ##How to Run Our App
-- first use command
-- npm install react-script
-- then start the app using command
-- npm start
+- navigate to project folder
+- npm i
+- cd backend
+- npm i
+- cd ..
+- npm run dev
+
 
 
 ##Tools in Use
