@@ -17,6 +17,15 @@ exports.studentInfo = async (req, res) => {
             payload.department = department;
         }
         console.log("payload: " + payload);
+
+        // Data sorting queries 
+        const sortField = req.query.sortField || 'rollNo'; // Default sort field is 'name' if not provided
+        const sortOrder = req.query.sortOrder === 'desc' // Sort order, default is ascending
+
+        // pagination queries
+        const page = parseInt(req.query.page) || 0; // Default to page 1 if not provided
+        const pageSize = parseInt(req.query.pageSize) || 10; // Default page size is 10 if not provided
+
         const students = await Student.find(payload).populate({
             path: 'Profile',
             populate: {
@@ -25,7 +34,7 @@ exports.studentInfo = async (req, res) => {
             },
         }).populate({
             path: 'Rooms'
-        }).exec();
+        }).skip(page).limit(pageSize).sort({ [sortField]: sortOrder });;
         console.log("student" + students);
         return res.send(students);
     } catch (error) {

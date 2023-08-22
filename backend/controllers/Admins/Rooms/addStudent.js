@@ -56,6 +56,7 @@ exports.addStudent = async (req, res) => {
         } else {
 
             const result = await handelRoom(roomNo, studentData);
+
             return res.status(200).send({ status: result });
         }
 
