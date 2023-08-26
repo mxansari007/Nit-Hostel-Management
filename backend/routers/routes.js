@@ -5,6 +5,7 @@ const path = require('path');
 
 const { jsonRoomUpload } = require("../controllers/Admins/Rooms/jsonRoomUpload");
 const { studentInfo } = require("../controllers/Admins/studentInfo");
+const { deleteStudent } = require("../controllers/Admins/deleteStudent");
 const { csvUpload } = require("../middlewares/csvUpload");
 const { jsonUpload } = require('../controllers/Admins/jsonUpload');
 const { studentLogin } = require("../controllers/Students/studentLogin");
@@ -40,20 +41,22 @@ router.post('/studentlogin', studentLogin);
 
 //// for csv students upload
 router.post('/csv', auth, upload.single('file'), csvUpload, jsonUpload);
-router.post('/roomCSV', upload.single('file'), csvUpload, jsonRoomUpload);
-router.post('/roomMap', upload.single('file'), csvUpload, roomsMapping);
+router.post('/roomCSV',auth, upload.single('file'), csvUpload, jsonRoomUpload);
+router.post('/roomMap',auth, upload.single('file'), csvUpload, roomsMapping);
 
 ////for json students upload
 router.post('/jsonUpload', auth, jsonUpload);
 //// to download pdf file
 router.post('/pdfDownload', auth, pdfDownload);
 //// view student data
-router.post('/viewStudentInfo', studentInfo);
+
+router.post('/viewStudentInfo',auth, studentInfo);
+router.delete('/deleteStudent', auth, deleteStudent);
 
 //// controllers  for  allot room
 
 // data filtering routes
-router.get('/allotRooms', allotRooms)
+router.get('/allotRooms',auth, allotRooms)
 router.post('/addStudent', auth, addStudent);
 router.post('/removeStudent', auth, removeStudent);
 // upload room csv/Excel
