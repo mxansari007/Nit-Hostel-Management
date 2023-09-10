@@ -8,7 +8,6 @@ exports.adminLogin=async (req,res)=>{
         const isMatch=await bcrypt.compare(password,findAdmin.password);
         const token= await findAdmin.generateAuthToken();
         console.log("token from admin login \n "+token+"\n");
-        // console.log(isMatch);
         if(isMatch){
                 if(req.cookies[`${findAdmin._id}`]){
                     res.cookies[`${findAdmin._id}`] ="";
@@ -24,13 +23,10 @@ exports.adminLogin=async (req,res)=>{
         // we are storing cookie in jwtoken and it will expires in 30days
         res.cookie(String(findAdmin._id), token, options);
         res.status(200).send("token successfully stored");
-        // res.cookie('accessToken', token, options).status(200).send(token);
-  
-           
         }else{
             res.status(401).send("Invalid Username or Password");
         }
     } catch (error) {
-        res.status(404).send("Invalid Username "+error.message);
+        res.status(404).send("Unable to login Internal server error "+error);
     }
 }

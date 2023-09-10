@@ -19,8 +19,8 @@ adminSchema.methods.generateAuthToken =async function(next){
        const token=jwt.sign({_id:this._id,accountType: "admin"},process.env.JWT_SECRET);
        return token;
     }catch(e){
-        res.send("the error occurred in generate auth token function"+error);
-        console.log("the error occurred generate auth token function"+error);
+        console.log("the error occurred generate auth token function"+e);
+        throw 501;
     }
 };
 //! we will create a new collection
