@@ -1,4 +1,4 @@
-import { TextField,Button } from '@mui/material';
+import { TextField,Button,Pagination } from '@mui/material';
 import './assets/AllotRooms.css';
 import {useRef, useState,useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
@@ -6,7 +6,7 @@ import ViewDetails from './ViewDetails.jsx';
 import ActionAllot from './ActionAllot';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import {next,prev,setRows,setFloorQuery,setRoomQuery, setTotalRooms,setTotalOccupied,reset} from '../../../Store/Reducers/roomSlice';
+import {next,prev,setRows,setFloorQuery,setRoomQuery, setTotalRooms,setTotalOccupied,reset,setHalfFilled} from '../../../Store/Reducers/roomSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -19,9 +19,6 @@ const config = {
 
 
 
-
-
-
 const AllotRooms = ()=>{
 
 
@@ -31,9 +28,12 @@ const rows = useSelector(state=>state.roomHandle.rows);
 const roomQuery = useSelector(state => state.roomHandle.roomQuery);
 const floorQuery = useSelector(state => state.roomHandle.floorQuery);
 const totalRooms = useSelector(state=>state.roomHandle.totalRooms);
+const halfFilled = useSelector(state => state.roomHandle.halfFilled);
 const totalOccupied = useSelector(state=>state.roomHandle.totalOccupied);
 const [loading,setLoading] = useState(false);
-  
+const [page,setPage] = useState(1);
+const totalPages = parseInt(totalRooms%10==0?totalRooms/10:totalRooms/10+1);
+
 const columns = [
   { field: 'roomNo', headerName: 'Room No', width: 100 },
   { field: 'floorNo', headerName: 'Floor No', width: 90 },
@@ -93,20 +93,6 @@ const columns = [
 ];
 
 
-useEffect(()=>{
-    setLoading(true);
-    axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
-    .then(res=>{
-      setRows(res.data.data);
-      Dispatch(setRows(res.data.data));
-      setTotalRooms(res.data.totalRooms);
-      setTotalOccupied(res.data.fullyOccupiedRooms);
-      Dispatch(setTotalRooms(res.data.totalRooms));
-      Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
-      setLoading(false);
-    })
-    .catch(err=>{console.log(err);setLoading(false)});
-  },[])
 
 
   const handleChange = (event)=>{
@@ -144,34 +130,20 @@ const fetchData = async ()=>{
 
 useEffect(()=>{
   setLoading(true);
-  fetchData();
+  axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}`,config).
+  then(res=>{Dispatch(setRows(res.data.data))}).
+  catch(err=>{console.log(err);});
   setLoading(false);
-},[pageCount]);
-
-
-const handleNextPage =async () =>{
-    Dispatch(next());
-}
+},[page]);
 
 
 
-const handlePerviousPage =async ()=>{
-    Dispatch(prev());
 
-}
+const handlePage =(event, value) => {
+  setPage(value);
+};
 
-const handleReset = () =>{
-  setLoading(true);
-  axios.get(import.meta.env.VITE_BASE_URL + '/allotRooms',config)
-  .then(res=>{
-    Dispatch(setRows(res.data.data));
-    Dispatch(setTotalRooms(res.data.totalRooms));
-    Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
-  })
-  .catch(err=>console.log(err));
-  Dispatch(reset());
-  setLoading(false);
-}
+
 
 
 return (<>
@@ -190,6 +162,10 @@ return (<>
         <div className='badge'>
             <p>{totalOccupied}</p>
             <p className='badge-title'>Occupied</p>
+        </div>
+        <div className='badge'>
+            <p>{halfFilled}</p>
+            <p className='badge-title'>Half-Filled</p>
         </div>
         <div className='badge'>
             <p>{totalRooms-totalOccupied}</p>
@@ -233,10 +209,8 @@ return (<>
         />
         }
   </div>
-  <div className='pageButtons'>
-  <Button variant='contained' onClick={handlePerviousPage}>Prev</Button>
-  <Button variant='contained' onClick={handleReset}>Reset</Button>
-  <Button variant='contained' onClick={handleNextPage}>Next</Button>
+  <div className="pagiNation">
+        {page!=0?<Pagination count={totalPages} color="primary" shape="rounded" page={page} onChange={handlePage} />:null}
   </div>
   
 </div>
