@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import Input from '@mui/material/Input';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useReducer,useState } from "react";
+import { useReducer,useState,useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from 'axios';
@@ -18,6 +18,14 @@ import { TextField } from "@mui/material";
 import {Grid} from '@mui/material';
 import DownloadingButton from '../../../Components/smallComponents/DownloadingButton/DownloadingButton';
 import ViewInfoModal from "../../../Components/smallComponents/Modals/ViewInfoModal";
+import { Pagination } from "@mui/material"
+
+const config = {
+  headers: {
+    "Content-Type": "application/json"
+    },
+    withCredentials: true
+  }
 
 
 
@@ -99,8 +107,13 @@ export default function ViewInfo() {
   const tableHeads = ['Roll no','First Name','Last Name','Year','Department','Email','Download / View Info'];
   const [isFound,setFound] = useState(true);
   const labels = [{name:'Roll No',state:state.rollNo}, {name:'First Name',state:state.firstName}, {name:'Last Name',state:state.lastName}, {name:'Departement',state:state.departement}];
-
-
+  const [page,setPage] = useState(0);
+  const [queryData,setQueryData] = useState({
+    rollNo: "",
+    firstName: "",
+    lastName: "",
+    departement: ""
+  });
   
 
 
@@ -109,11 +122,24 @@ export default function ViewInfo() {
     dispatch({ type: event.target.name });
   };
 
+  const handlePage =(event, value) => {
+    setPage(value);
+  };
 
+
+  useEffect(()=>{
+    if(page>0){
+    axios.post(import.meta.env.VITE_BASE_URL + `/viewStudentInfo?page=${(page-1)*10}`,queryData,config).
+    then(res=>{setData(res.data)}).
+    catch(err=>{console.log(err);});
+    }
+  },[page]);
+  
 
   const onSubmit = (data) => {
     console.log(data);
-    
+    setQueryData(data);
+    setPage(1);
     //place your axios here
     axios.post(import.meta.env.VITE_BASE_URL+'/viewStudentInfo',data,{
       withCredentials: true,
@@ -178,6 +204,7 @@ export default function ViewInfo() {
           dispatch({ type: 'Reset' });
           setData([]);
           setFound(true);
+          setPage(0);
           reset({
             rollNo:"",
             firstName: "",
@@ -204,7 +231,7 @@ export default function ViewInfo() {
         </TableHead>
         <TableBody>
         
-          {jsonData.map((row) => {
+          {jsonData!=undefined&&jsonData.length!=0?jsonData.map((row) => {
             
             return(
             <TableRow
@@ -225,11 +252,14 @@ export default function ViewInfo() {
                  <ViewInfoModal row={row}/>
                   </TableCell>
             </TableRow>)
-          })}
+          }):null}
           {isFound?null:<h1 style={{fontSize:'1.5rem',padding:'1em'}}>No Record Found</h1>}
         </TableBody>
       </Table>
     </TableContainer>
+    <div className="pagiNation">
+        {page!=0?<Pagination count={21} color="primary" shape="rounded" page={page} onChange={handlePage} />:null}
+  </div>
     </div>
     </div>
   );

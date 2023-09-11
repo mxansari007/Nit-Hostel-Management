@@ -50,6 +50,7 @@ const Adminlogin =() =>{
     axios.post(import.meta.env.VITE_BASE_URL + '/adminlogin',values,config)
    .then((res)=>{
     dispatch(login());
+    localStorage.setItem('history','/Dashboard')
     navigate('/Dashboard')})
    .catch(err=>{setLoading(false);setMessage(true);});
   }

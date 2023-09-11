@@ -45,19 +45,6 @@ return ( <Container maxWidth="lg" sx={{mt:'100px'}}>
         </Paper>
     </Grid>
     <Grid item xs={12} md={4}>
-        <Paper className="box">
-            <MarkEmailUnreadRoundedIcon className="icon" sx={{fontSize:'4rem',}}/>
-            <h2>Complaints</h2>
-            <DropDown 
-            names=
-            {[
-                {value:'View Complaints',icon:<VisibilityIcon/>,place:'/viewcomplaints'},
-                {value:'Download Complaints',icon:<SimCardDownloadRoundedIcon/>,place:''},
-                {value:'Edit Complaints',icon:<EditRoundedIcon/>,place:''}
-                ]}/ >
-        </Paper>
-    </Grid>
-    <Grid item xs={12} md={4}>
     <Paper className="box">
             <NightShelterIcon className="icon" sx={{fontSize:'4rem'}}/>
             <h2>Rooms Info</h2>
@@ -69,17 +56,21 @@ return ( <Container maxWidth="lg" sx={{mt:'100px'}}>
                 {value:'Upload Info',icon:<CloudUploadIcon/>,place:''}
                 ]}/ >
         </Paper>
+
     </Grid>
     <Grid item xs={12} md={4}>
-        <Paper className="box">item4</Paper>
+    <Paper className="box">
+            <MarkEmailUnreadRoundedIcon className="icon" sx={{fontSize:'4rem',}}/>
+            <h2>Complaints</h2>
+            <DropDown 
+            names=
+            {[
+                {value:'View Complaints',icon:<VisibilityIcon/>,place:'/viewcomplaints'},
+                {value:'Download Complaints',icon:<SimCardDownloadRoundedIcon/>,place:''},
+                {value:'Edit Complaints',icon:<EditRoundedIcon/>,place:''}
+                ]}/ >
+        </Paper>
     </Grid>
-    <Grid item xs={12} md={4}>
-        <Paper className="box">item5</Paper>
-    </Grid>
-    <Grid item xs={12} md={4}>
-        <Paper className="box">item6</Paper>
-    </Grid>
-    
 </Grid>
 </ThemeProvider>
 </Container> )

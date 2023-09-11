@@ -22,7 +22,7 @@ const pages = ['Home', 'Contact Us', 'About'];
 
 const Navbar=()=> {
 
-  const localLogin = sessionStorage.getItem('localLogin');
+  const localLogin = localStorage.getItem('localLogin');
   
   const [anchorElNav, setAnchorElNav] = useState(null);
   const Navigator = useNavigate();
@@ -39,7 +39,11 @@ const Navbar=()=> {
   const handlePage = (event) =>{
     
     if(event.target.name === 'Home'||event.target.outerText=== 'Home'){
+      if(localLogin){
+        Navigator('/Dashboard');
+      }else{
         Navigator('/');
+      }
     }
     else if(event.target.name === 'About'||event.target.outerText=== 'About'){
       Navigator('/about');
@@ -56,7 +60,8 @@ const Navbar=()=> {
     <AppBar position="static">
       <Container maxWidth="100%" sx={{backgroundColor:'white'}}>
         <Toolbar disableGutters>
-          <Link className="logo-link" to="/">
+
+        {localLogin?<Link className="logo-link" to="/Dashboard">
         <div className='logo-container'>
           <div>
           <img src={logo} id="logo"/>
@@ -66,7 +71,17 @@ const Navbar=()=> {
           <p>Hostel Management System</p>
           </div>
           </div>
-          </Link>
+          </Link>:<Link className="logo-link" to="/">
+        <div className='logo-container'>
+          <div>
+          <img src={logo} id="logo"/>
+          </div>
+          <div className="logo-heading">
+          <h1>NIT Kurukshetra</h1>
+          <p>Hostel Management System</p>
+          </div>
+          </div>
+          </Link>}  
           <div className='logo-container-small'>
           <div>
           <img src={logo} id="logo"/>

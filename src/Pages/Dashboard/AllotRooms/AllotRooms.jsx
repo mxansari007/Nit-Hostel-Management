@@ -6,9 +6,10 @@ import ViewDetails from './ViewDetails.jsx';
 import ActionAllot from './ActionAllot';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import {next,prev,setRows,setFloorQuery,setRoomQuery, setTotalRooms,setTotalOccupied,reset,setHalfFilled} from '../../../Store/Reducers/roomSlice';
+import {setRows, setTotalRooms,setTotalOccupied,reset,setHalfFilled} from '../../../Store/Reducers/roomSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
+
 
 const config = {
   headers: {
@@ -25,14 +26,15 @@ const AllotRooms = ()=>{
 const Dispatch = useDispatch();
 const pageCount = useSelector(state => state.roomHandle.pageCount);
 const rows = useSelector(state=>state.roomHandle.rows);
-const roomQuery = useSelector(state => state.roomHandle.roomQuery);
-const floorQuery = useSelector(state => state.roomHandle.floorQuery);
 const totalRooms = useSelector(state=>state.roomHandle.totalRooms);
 const halfFilled = useSelector(state => state.roomHandle.halfFilled);
 const totalOccupied = useSelector(state=>state.roomHandle.totalOccupied);
 const [loading,setLoading] = useState(false);
 const [page,setPage] = useState(1);
 const totalPages = parseInt(totalRooms%10==0?totalRooms/10:totalRooms/10+1);
+const [roomQuery,setRoomQuery] = useState("");
+const [floorQuery, setFloorQuery] = useState("");
+
 
 const columns = [
   { field: 'roomNo', headerName: 'Room No', width: 100 },
@@ -93,26 +95,36 @@ const columns = [
 ];
 
 
+useEffect(()=>{
+  axios.get(import.meta.env.VITE_BASE_URL+'/allotRooms',config)
+  .then(res => {setRows(res.data.data)
+                console.log(res.data);
+                Dispatch(setTotalRooms(res.data.totalRooms));
+                Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
+                Dispatch(setHalfFilled(res.data.partiallyOccupiedRooms))
+  })      
+  .catch(err=> console.log(err));
+},[])
+
 
 
   const handleChange = (event)=>{
       if(event.target.name === 'roomField'){
-        Dispatch(setRoomQuery(event.target.value));
-      }else if(event.target.name === 'floorField'){
-        console.log(event.target.value);
-        Dispatch(setFloorQuery(event.target.value));
+        setRoomQuery(event.target.value);
+      }else{
+        setFloorQuery(event.target.value);
       }
   }
 
   const handleSubmit = (event)=>{
     setLoading(true);
       if(event.target.name === "roomSubmit"){
-        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`)
+        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`,config)
         .then(res =>{Dispatch(setRows([res.data.data[0]]));console.log(res.data.data[0])});
       }else if(event.target.name === "floorSubmit"){
         console.log(floorQuery);
         console.log('hit');
-        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`)
+        axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`,config)
         .then(res =>{Dispatch(setRows(res.data.data));console.log(res.data.data)});
       }
       setLoading(false);
@@ -121,19 +133,21 @@ const columns = [
 
 
 //Pagination
-const fetchData = async ()=>{
-  axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${pageCount}`,config).
-  then(res=>{Dispatch(setRows(res.data.data))}).
-  catch(err=>{console.log(err);});
-}
 
 
 useEffect(()=>{
   setLoading(true);
-  axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}`,config).
-  then(res=>{Dispatch(setRows(res.data.data))}).
-  catch(err=>{console.log(err);});
-  setLoading(false);
+  if(floorQuery!=null){
+    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}&floorNo=${floorQuery}`,config).
+    then(res=>{Dispatch(setRows(res.data.data))}).
+    catch(err=>{console.log(err);});
+    setLoading(false);
+  }else{
+    axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}`,config).
+    then(res=>{Dispatch(setRows(res.data.data))}).
+    catch(err=>{console.log(err);});
+    setLoading(false);
+  }
 },[page]);
 
 

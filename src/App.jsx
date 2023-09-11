@@ -16,45 +16,17 @@ function App() {
 const Dispatch = useDispatch();
 
   useEffect(()=>{
-    sessionStorage.getItem('localLogin')?Dispatch(initialLogin()):null;
+    localStorage.getItem('localLogin')?Dispatch(initialLogin()):null;
 },[])
 
-const handleBeforeUnload =   () => {
-  const config = {
-      headers: {
-        "Content-Type": "application/json"
-        },
-        withCredentials: true
-      }
-    axios.get(import.meta.env.VITE_BASE_URL + '/logout',config)
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-
-     })};
-
-
-useEffect(() => {
-  // window.addEventListener('beforeunload', handleBeforeUnload);
-
-  // return () => {
-  //   window.removeEventListener('beforeunload', handleBeforeUnload);
-  // };
-
-  handleBeforeUnload();
-
-}, []);
+window.onbeforeunload = ()=>{
+  localStorage.setItem('history',window.location.pathname);
+}
 
   return (
     <>
     <Navbar />
     <Routing />
-    {/* <Snackbar open={signedStatus} autoHideDuration={6000}>
-        <Alert severity="success" sx={{ width: '100%' }}>
-          This is a success message!
-        </Alert>
-      </Snackbar> */}
      </>
   );
 }
