@@ -17,7 +17,7 @@ exports.adminLogin=async (req,res)=>{
         // expires:10000,
 				httpOnly: true,
                 path: "/",
-                sameSite: 'Strict',
+                sameSite: 'none',
                 secure:true
 			};
         // we are storing cookie in jwtoken and it will expires in 30days
