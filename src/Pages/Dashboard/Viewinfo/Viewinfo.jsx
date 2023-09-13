@@ -131,7 +131,12 @@ export default function ViewInfo() {
     if(page>0){
     axios.post(import.meta.env.VITE_BASE_URL + `/viewStudentInfo?page=${(page-1)*10}`,queryData,config).
     then(res=>{setData(res.data)}).
-    catch(err=>{console.log(err);});
+    catch(err=>{console.log(err);
+      if(err.response.status === 401){
+        localStorage.removeItem('localLogin');
+        window.location.reload();
+      }
+    });
     }
   },[page]);
   
@@ -154,7 +159,12 @@ export default function ViewInfo() {
           setFound(true);
         }
     })
-    .catch(err=>{console.log(err);});
+    .catch(err=>{console.log(err);
+      if(err.response.status === 401){
+        localStorage.removeItem('localLogin');
+        window.location.reload();
+      }
+    });
   };
 
 

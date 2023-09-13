@@ -75,11 +75,15 @@ const UploadPage = ()=>{
           console.log(response.data);
 
         })
-        .catch((error) => {
+        .catch((err) => {
           // handle errors
+          if(err.response.status === 401){
+            localStorage.removeItem('localLogin');
+            window.location.reload();
+          }
           setUploading(false);
           setMessage(5);
-          console.log(error);
+ 
         });
       
     }
@@ -107,6 +111,10 @@ const modify = () => {
     setModifyLoading(false);
     console.log(res.data);
   }).catch((err)=>{
+    if(err.response.status === 401){
+      localStorage.removeItem('localLogin');
+      window.location.reload();
+    }
     console.log(err);
   })
 

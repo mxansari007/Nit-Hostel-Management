@@ -13,14 +13,6 @@ Font.register({
   ]
 });
 
-Font.register({
-  family: 'Nunito',
-  fonts:[
-    {src: 'https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDLshRTM9jo7eTWk.ttf',fontWeight:400},
-    {src:'https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDFwmRTM9jo7eTWk.ttf',fontWeight:'bold'}
-  ]
-});
-
 
  
 
@@ -30,11 +22,11 @@ const styles = StyleSheet.create({
     photo:{ marginLeft:'30px',width:'100px',height:'130px',border:'1px solid black',borderRadius:'20px'},
     content:{ 
       fontFamily:'Urbanist',
+      fontWeight:'400',
       display: 'grid',
-   grid: '100px  / auto  auto auto',
-   gridGap: '10px',
-       
-   padding: '12px',
+      grid: '100px / auto auto auto',
+      gridGap: '10px',
+      padding: '12px',
       display:'flex',flexDirection:'row',justifyContent:'space-between'},
     logo:{width:'100px',height:'100px' ,margin:'auto'},
     head: { textAlign: 'center' ,marginTop:'5px'},
@@ -129,7 +121,7 @@ const DownloadingButton = (props)=>{
 
     if (instance.loading) return <LoadingButton loading variant="conatined" size="small">Loading</LoadingButton>;
   
-    if (instance.error) return <div>Something went wrong: {error}</div>;
+    if (instance.error) return <div>Something went wrong</div>;
 
 
 
