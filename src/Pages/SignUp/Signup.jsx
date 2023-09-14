@@ -38,7 +38,7 @@ const form = useForm({
         year:"",
         password:"",
         department:"",
-        email:"",
+        email:""
     },
     mode:'all'
 });

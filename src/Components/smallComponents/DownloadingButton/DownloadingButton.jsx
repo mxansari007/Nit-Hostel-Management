@@ -68,7 +68,7 @@ const DownloadingButton = (props)=>{
 
            <View style={styles.content}>
            <Text style={styles.section}>First Name: {props.row.firstName}</Text>
-           <Text style={styles.section}>Last Name:  {props.row.lasttName}; </Text>
+           <Text style={styles.section}>Last Name:  {props.row.lastName}; </Text>
            <Text style={styles.section}>Roll No:  {props.row.rollNo}; </Text>
            </View>
 
