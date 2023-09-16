@@ -11,6 +11,7 @@ import UploadPage from  '../Pages/Dashboard/UploadPage/UploadPage';
 import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
 import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
+import ForgetPassword from '../Pages/ForgetPassword/ForgetPassword';
 import { useSelector } from 'react-redux';
 
 const Routing = () => {
@@ -37,6 +38,7 @@ const Routing = () => {
         <Routes>
             <Route path="*" element={<NotLoggedIn />} />
             <Route path='/' element={<Adminlogin />}/>
+            <Route path='/forgetpsd' element={<ForgetPassword/>}/>
             <Route path='/signup' element={<Suspense  fallback={<Loadingpage />}><Signup/></Suspense>}/>
             <Route path='/student' element={<Suspense  fallback={<Loadingpage />}><Studentlogin/></Suspense>}/>
         </Routes>
