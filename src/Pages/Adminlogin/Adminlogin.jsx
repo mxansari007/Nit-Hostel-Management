@@ -80,6 +80,7 @@ return(<>
         </LoadingButton>
         </FormControl>
 </form>
+        <p className='sign-up'>Forget Password  <Link className="link" to='forgetpsd'>click here</Link></p>
         <p className='sign-up'>Login as <Link className="link" to='student'>Student</Link>/ <Link className="link" to='/signup'>Sign Up</Link></p>
 </Paper>
 </>
