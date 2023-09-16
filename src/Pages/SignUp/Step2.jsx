@@ -29,6 +29,8 @@ const Step2 = ()=>{
             bloodGroup:"",
             identificationMark:"",
             address:"",
+            officialEmail:"",
+
         },
         mode:"all",
     });
@@ -104,6 +106,10 @@ const onSubmit = (data)=>{
     <div style={{margin:'auto'}}>
           <TextField error={errors.dateOfBirth} name="dateOfBirth" size="small" {...register("dateOfBirth",{required:{value:true,message:'*date of birth is Required'}})} variant='outlined' label="Date of Birth" placeholder='dd/mm/yyyy'/>
           <p className="error">{errors.dateOfBirth?.message}</p>
+    </div>
+    <div style={{margin:'auto'}}>
+          <TextField error={errors.officialEmail} name="officialEmail" size="small" {...register("officialEmail",{required:{value:true,message:'*official Email is required'}})} variant='outlined' label="Official Email" placeholder='rollNo@nitkkr.ac.in'/>
+          <p className="error">{errors.officialEmail?.message}</p>
     </div>
     <div style={{margin:'auto'}}>
       <TextField error={errors.contactNumber} name="contactNumber" size="small" {...register("contactNumber",{required:{value:true,message:'*Primary contact is Required'}})} variant='outlined' label="Contact"/>

@@ -103,7 +103,12 @@ useEffect(()=>{
                 Dispatch(setTotalOccupied(res.data.fullyOccupiedRooms));
                 Dispatch(setHalfFilled(res.data.partiallyOccupiedRooms))
   })      
-  .catch(err=> console.log(err));
+  .catch(err=>{
+    if(err.response.status === 401){
+      localStorage.removeItem('localLogin');
+      window.location.reload();
+    }
+  });
 },[])
 
 
@@ -120,12 +125,24 @@ useEffect(()=>{
     setLoading(true);
       if(event.target.name === "roomSubmit"){
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?roomNo=${roomQuery}`,config)
-        .then(res =>{Dispatch(setRows([res.data.data[0]]));console.log(res.data.data[0])});
+        .then(res =>{Dispatch(setRows([res.data.data[0]]));console.log(res.data.data[0])})
+        .catch(err =>{
+          if(err.response.status === 401){
+            localStorage.removeItem('localLogin');
+            window.location.reload();
+          }
+        })
       }else if(event.target.name === "floorSubmit"){
         console.log(floorQuery);
         console.log('hit');
         axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?floorNo=${floorQuery}`,config)
-        .then(res =>{Dispatch(setRows(res.data.data));console.log(res.data.data)});
+        .then(res =>{Dispatch(setRows(res.data.data));console.log(res.data.data)})
+        .catch(err =>{
+          if(err.response.status === 401){
+            localStorage.removeItem('localLogin');
+            window.location.reload();
+          }
+        })
       }
       setLoading(false);
   }
@@ -140,12 +157,22 @@ useEffect(()=>{
   if(floorQuery!=null){
     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}&floorNo=${floorQuery}`,config).
     then(res=>{Dispatch(setRows(res.data.data))}).
-    catch(err=>{console.log(err);});
+    catch(err=>{console.log(err);
+      if(err.response.status === 401){
+        localStorage.removeItem('localLogin');
+        window.location.reload();
+      }
+    });
     setLoading(false);
   }else{
     axios.get(import.meta.env.VITE_BASE_URL + `/allotRooms?page=${(page-1)*10}`,config).
     then(res=>{Dispatch(setRows(res.data.data))}).
-    catch(err=>{console.log(err);});
+    catch(err=>{console.log(err);
+      if(err.response.status === 401){
+        localStorage.removeItem('localLogin');
+        window.location.reload();
+      }
+    });
     setLoading(false);
   }
 },[page]);

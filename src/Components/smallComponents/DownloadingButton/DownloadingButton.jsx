@@ -8,22 +8,19 @@ import { LoadingButton } from '@mui/lab';
 
 
 Font.register({
-  family: 'Nunito',
+  family: 'Urbanist',
   fonts:[
-    {src: 'https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDLshRTM9jo7eTWk.ttf',fontWeight:400},
-    {src:'https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDFwmRTM9jo7eTWk.ttf',fontWeight:'bold'}
+    {src: 'https://fonts.gstatic.com/s/urbanist/v15/L0xjDF02iFML4hGCyOCpRdycFsGxSrqDyx4fFpOrS8SlKw.ttf',fontWeight:400},
+    {src:'https://fonts.gstatic.com/s/urbanist/v15/L0xjDF02iFML4hGCyOCpRdycFsGxSrqDFRkfFpOrS8SlKw.ttf',fontWeight:'bold'}
   ]
 });
-
-
  
 
 const styles = StyleSheet.create({
  
     section:{color:'black',textAlign:'center',fontSize:'12',padding:'15'},
     photo:{ marginLeft:'30px',width:'100px',height:'130px',border:'1px solid black',borderRadius:'20px'},
-    content:{ fontFamily:'Nunito',fontWeight:400,display: 'grid',grid: '100px  / auto  auto auto',gridGap: '5px',
-               padding: '3px'},
+    content:{ fontFamily:'Urbanist',fontWeight:400,padding: '3px',display:'flex',flexDirection:'row',justifyContent:'space-between'},
     logo:{width:'100px',height:'100px' ,margin:'auto'},
     head: { textAlign: 'center' ,marginTop:'5px'},
     head2:{  border:'1px solid #9FE2BF',color:'#097969',padding:'5px',marginTop:'10px',borderStyle:'outset',borderLeftWidth:'thin',borderRightWidth:'thin'},
@@ -115,7 +112,7 @@ const DownloadingButton = (props)=>{
 
     if (instance.loading) return <LoadingButton loading variant="contained" size="small">loading</LoadingButton>;
   
-    if (instance.error) return <div>Something went wrong: {error}</div>;
+    if (instance.error) return <div>Something went wrong</div>;
 
 
 
