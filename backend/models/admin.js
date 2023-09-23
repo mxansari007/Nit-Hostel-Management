@@ -6,11 +6,24 @@ const adminSchema=new mongoose.Schema({
     username:{
         type:String,
         required:true,
+        unique:[true,"username already exists"]
     },
     password:{
         type:String,
-        required:true
-    },  
+        required:[true,"please enter a password"]
+    },
+    email:{
+        type:String,
+        unique:[true,"please enter a email address"],
+        validate(value) {
+                if (!validator.isEmail(value)) {
+                    throw new Error("invalid email");
+                }
+            }
+    },
+    mobile:{
+        type :Number,
+    }
    
 });
 
