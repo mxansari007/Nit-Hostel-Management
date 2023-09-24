@@ -3,17 +3,19 @@ const bcrypt=require("bcryptjs");
 
 exports.adminLogin=async (req,res)=>{
     try {
-        const {username,password}=req.body;
-        const findAdmin = await Admin.findOne({username: username});
+        const {email,password}=req.body;
+        console.log(email + password);
+        const findAdmin = await Admin.findOne({email});
+        console.log(findAdmin);
+        if(!findAdmin){
+            return res.status(401).send("email not registered");
+        }
         const isMatch=await bcrypt.compare(password,findAdmin.password);
         const token= await findAdmin.generateAuthToken();
         console.log("token from admin login \n "+token+"\n");
         if(isMatch){
-                // if(req.cookies[`${findAdmin._id}`]){
-                //     res.cookies[`${findAdmin._id}`] ="";
-                // }
             const options = {
-				expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+				expires: new Date(Date.now() +   15 * 60 * 60 * 1000),
         // expires:10000,
 				httpOnly: true,
                 path: "/",

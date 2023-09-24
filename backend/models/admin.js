@@ -3,11 +3,6 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
 const adminSchema=new mongoose.Schema({
-    username:{
-        type:String,
-        required:true,
-        unique:[true,"username already exists"]
-    },
     password:{
         type:String,
         required:[true,"please enter a password"]
@@ -15,6 +10,7 @@ const adminSchema=new mongoose.Schema({
     email:{
         type:String,
         unique:[true,"please enter a email address"],
+        required:true,
         validate(value) {
                 if (!validator.isEmail(value)) {
                     throw new Error("invalid email");
