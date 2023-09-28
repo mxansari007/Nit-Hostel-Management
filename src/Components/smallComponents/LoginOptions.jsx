@@ -11,7 +11,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {logout} from '../../Store/Reducers/loginSlice';
 import axios from 'axios';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile Settings','Dashboard', 'Logout'];
 
 export default function LoginOptions(){
 
@@ -55,6 +55,7 @@ export default function LoginOptions(){
           {settings.map((setting) => (
             <MenuItem  key={setting}  onClick={()=>{
                    setAnchorElUser(null);
+
                     if(setting==='Logout'){
                       const config = {
                         headers: {
@@ -71,6 +72,8 @@ export default function LoginOptions(){
 
                       });
                      
+                    }else if(setting === 'Profile Settings'){
+                      Navigate('/profile_settings');
                     }
             }} name={setting}>
               <Typography  textAlign="center">{setting}</Typography>
