@@ -13,8 +13,8 @@ const { adminLogin } = require("../controllers/Admins/adminLogin");
 const { logout } = require('../controllers/Admins/logout');
 const { sendotp } = require('../controllers/sendotp');
 const { verifyotp } = require('../controllers/verifyotp');
+const { forgotPassword } = require('../controllers/forgotPassword');
 const { changePassword } = require('../controllers/changePassword');
-const { resetPassword } = require('../controllers/resetPassword');
 const { studentSignup } = require("../controllers/Students/studentSignup");
 const { pdfDownload } = require("../controllers/pdf-download");
 const { auth } = require("../middlewares/auth");
@@ -41,8 +41,8 @@ router.post('/adminlogin', adminLogin);
 router.get('/logout', logout);
 router.post('/sendotp',sendotp);
 router.post('/verifyotp',verifyotp);
-router.post('/forgotPassword',changePassword);
-router.post('/resetPassword',auth,resetPassword);
+router.post('/forgotPassword',forgotPassword);
+router.post('/changePassword',auth,changePassword);
 
 //// for students login
 
