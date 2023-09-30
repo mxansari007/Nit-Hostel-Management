@@ -12,7 +12,12 @@ import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
 import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
 import ForgetPassword from '../Pages/ForgetPassword/ForgetPassword';
+import OtpVerification from '../Pages/ForgetPassword/OtpVerification';
+import NewPassword from '../Pages/ForgetPassword/newPassword';
 import { useSelector } from 'react-redux';
+
+
+
 
 const Routing = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn.value);
@@ -29,6 +34,7 @@ const Routing = () => {
         <Route path='/Dashboard' element={<Suspense  fallback={<Loadingpage />}><Dashboard /></Suspense>}/>
         <Route path='/uploadpage' element={<Suspense  fallback={<Loadingpage />}><UploadPage/></Suspense>}/>
         </Routes>
+        
         </>
         )
     }
@@ -39,6 +45,8 @@ const Routing = () => {
             <Route path="*" element={<NotLoggedIn />} />
             <Route path='/' element={<Adminlogin />}/>
             <Route path='/forgetpsd' element={<ForgetPassword/>}/>
+            <Route path='/otpVerification' element={<OtpVerification/>} />
+            <Route path="/newpassword" element={<NewPassword />} />
             <Route path='/signup' element={<Suspense  fallback={<Loadingpage />}><Signup/></Suspense>}/>
             <Route path='/student' element={<Suspense  fallback={<Loadingpage />}><Studentlogin/></Suspense>}/>
         </Routes>
