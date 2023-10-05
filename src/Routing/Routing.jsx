@@ -12,8 +12,12 @@ import Viewinfo from '../Pages/Dashboard/Viewinfo/Viewinfo';
 import ViewComplaints from '../Pages/Dashboard/ViewComplaints/VeiwComplaints';
 import AllotRooms from '../Pages/Dashboard/AllotRooms/AllotRooms';
 import ForgetPassword from '../Pages/ForgetPassword/ForgetPassword';
+
 import OtpVerification from '../Pages/ForgetPassword/OtpVerification';
 import NewPassword from '../Pages/ForgetPassword/newPassword';
+
+import ProfileSettings from '../Pages/Dashboard/ProfileSettings/ProfileSettings';
+
 import { useSelector } from 'react-redux';
 
 
@@ -28,6 +32,7 @@ const Routing = () => {
         <Routes>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/viewcomplaints" element={<ViewComplaints />} />
+        <Route path="/profile_settings" element={<ProfileSettings />} />
         <Route path="/allotrooms" element={<AllotRooms />} />
         <Route path='/uploadpage' element={<Suspense  fallback={<Loadingpage />}><UploadPage/></Suspense>}/>
         <Route path='/viewinfo' element={<Suspense  fallback={<Loadingpage />}><Viewinfo/></Suspense>}/>

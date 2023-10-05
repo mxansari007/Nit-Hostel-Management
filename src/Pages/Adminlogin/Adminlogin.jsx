@@ -19,7 +19,7 @@ const Adminlogin =() =>{
   //state variables
   const [loading, setLoading] = React.useState(false);
   const [errorMessage, setMessage] = useState(false);
-  const [values,setValues] = useState({username:null,password:null});
+  const [values,setValues] = useState({email:null,password:null});
   let navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -30,10 +30,10 @@ const Adminlogin =() =>{
   function handleChange(event){
     var name = event.target.name;
 
-    if(name === "username"){
-        setValues((prev)=>({username:event.target.value,password:prev.password}));
+    if(name === "email"){
+        setValues((prev)=>({email:event.target.value,password:prev.password}));
     }else{
-      setValues((prev)=>({username:prev.username,password:event.target.value}));
+      setValues((prev)=>({email:prev.email,password:event.target.value}));
     }
   }
 
@@ -64,7 +64,7 @@ return(<>
 <h2>Admin Login</h2>
 <form>
 <FormControl>
-<TextField  onChange={handleChange} name="username" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Username" type="text" variant="outlined"/>
+<TextField  onChange={handleChange} name="email" sx={{display:'block',my:'17px'}} id="outlined-basic" label="Email" type="email" variant="outlined"/>
 <TextField onChange={handleChange} sx={{display:'block',my:'17px'}} name="password" id="outlined-basic" label="Password" type="password" variant="outlined"/>
 <LoadingButton className="Button"
           sx={{px:'25px',my:'17px',fontFamily:'Montserrat'}}

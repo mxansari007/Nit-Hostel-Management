@@ -8,7 +8,7 @@ const studentSchema = new mongoose.Schema({
         type: Number,
         min: 8,
         required: true,
-        unique: [true, "Phone number already present"],
+        unique: [true, "roll number already present"],
     },
     firstName: {
         type: String,
